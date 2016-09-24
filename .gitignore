@@ -37,9 +37,6 @@ abbrev_defs
 /swank
 /.mc-lists.el
 TAGS
-GTAGS
-GPATH
-GRTAGS
 .emacs.d/emms/
 tutorial/
 /var
@@ -56,3 +53,16 @@ projectile.cache
 .unpacked
 srecode-map.el
 custom-set-variables.el
+
+# GNU Global
+GTAGS
+GPATH
+GRTAGS
+gtags.conf
+gtags.files
+
+# convient symbol link for generate tags from emacs source
+emacs-src
+
+# Emacs internal cache
+games/
