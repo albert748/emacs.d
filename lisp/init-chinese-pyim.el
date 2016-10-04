@@ -1,3 +1,11 @@
+;; @see https://github.com/tumashu/chinese-pyim
+(push 'chinese-pyim melpa-include-packages)
+(require-package 'chinese-pyim)
+
+(push 'chinese-pyim-basedict melpa-include-packages)
+(require-package 'chinese-pyim-basedict)
+
+
 ;; {{ make IME compatible with evil-mode
 (defun evil-toggle-input-method ()
   "when toggle on input method, goto evil-insert-state. "
@@ -38,11 +46,21 @@
   '(progn
      (setq default-input-method "chinese-pyim")
      (setq pyim-use-tooltip 'popup) ; don't use tooltip
+
+     (setq pyim-cache-directory (concat my-emacs-cache-directory "/pyim/cache"))
+     (setq pyim-personal-file (concat my-emacs-private-directory "/pyim/pyim-personal.txt"))
+     (setq pyim-property-file (concat my-emacs-private-directory "/pyim/pyim-words-property.txt"))
+
      ;; personal dictionary should be out of ~/.emacs.d if possible
-     (if (file-exists-p (file-truename "~/.eim/pyim-personal.txt"))
-       (setq pyim-personal-file "~/.eim/pyim-personal.txt"))
+     ;; (if (file-exists-p (file-truename "~/.eim/pyim-personal.txt"))
+     ;;   (setq pyim-personal-file "~/.eim/pyim-personal.txt"))
+
      ;; another official dictionary
-     (setq pyim-dicts '((:name "pinyin1" :file "~/.emacs.d/pyim/py.txt" :coding utf-8-unix :dict-type pinyin-dict)))
+     (chinese-pyim-basedict-enable)
+     ;; (setq pyim-dicts '((:name "pinyin1" :file "~/.emacs.d/pyim/py.txt" :coding utf-8-unix :dict-type pinyin-dict)))
+
+     (require 'chinese-pyim-company)
+     (setq pyim-company-max-length 6)
 
      ;; {{ fuzzy pinyin setup
      (defun pyim-fuzzy-pinyin-adjust-shanghai ()

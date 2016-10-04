@@ -1,6 +1,14 @@
 ;; -*- coding: utf-8 -*-
 ;(defvar best-gc-cons-threshold gc-cons-threshold "Best default gc threshold value. Should't be too big.")
 
+(defvar my-emacs-cache-directory (concat (or (getenv "XDG_CACHE_HOME") "~/.cache") "/emacs")
+  "Global cache directory for emacs, used to store cache files.
+useful for chinese-pyim cache.")
+
+(defvar my-emacs-private-directory (concat (or (getenv "XDG_CONFIG_HOME") "~/.config") "/emacs")
+  "Global personal configuration directory for emacs, used to store sensitive data.
+useful for personal data of input method.")
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
