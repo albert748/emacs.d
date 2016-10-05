@@ -55,7 +55,8 @@ But you may use safer HTTPS instead.")
     w3m
     erlang
     workgroups2
-    company-c-headers)
+    company-c-headers
+    go-mode)
   "Don't install any Melpa packages except these packages")
 
 ;; We include the org repository for completeness, but don't use it.
@@ -251,5 +252,6 @@ ARCHIVE is the string name of the package archive.")
 (require-package 'define-word)
 (require-package 'quack) ;; for scheme
 (require-package 'hydra)
+(require-package 'go-mode)
 
 (provide 'init-elpa)
