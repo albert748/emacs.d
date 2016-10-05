@@ -51,6 +51,14 @@
      (setq pyim-personal-file (concat my-emacs-private-directory "/pyim/pyim-personal.txt"))
      (setq pyim-property-file (concat my-emacs-private-directory "/pyim/pyim-words-property.txt"))
 
+     ;; Disable immediate association to avoid sluggish.
+     (setq pyim-enable-words-predict nil)
+
+     ;; Disable chinese completion to avoid sluggish.
+     (setq pyim-company-complete-chinese-enable nil)
+     ;; (require 'chinese-pyim-company)
+     ;; (setq pyim-company-max-length 6)
+
      ;; personal dictionary should be out of ~/.emacs.d if possible
      ;; (if (file-exists-p (file-truename "~/.eim/pyim-personal.txt"))
      ;;   (setq pyim-personal-file "~/.eim/pyim-personal.txt"))
@@ -58,9 +66,6 @@
      ;; another official dictionary
      (chinese-pyim-basedict-enable)
      ;; (setq pyim-dicts '((:name "pinyin1" :file "~/.emacs.d/pyim/py.txt" :coding utf-8-unix :dict-type pinyin-dict)))
-
-     (require 'chinese-pyim-company)
-     (setq pyim-company-max-length 6)
 
      ;; {{ fuzzy pinyin setup
      (defun pyim-fuzzy-pinyin-adjust-shanghai ()
