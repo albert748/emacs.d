@@ -177,8 +177,10 @@
 
 ;; {{ bookmark
 ;; use my own bmk if it exists
-(if (file-exists-p (file-truename "~/.emacs.bmk"))
-    (setq bookmark-file (file-truename "~/.emacs.bmk")))
+;; (if (file-exists-p (file-truename "~/.emacs.bmk"))
+;;     (setq bookmark-file (file-truename "~/.emacs.bmk")))
+
+(setq bookmark-default-file (concat my-emacs-private-directory "/bookmarks"))
 ;; }}
 
 (defun insert-lorem ()
