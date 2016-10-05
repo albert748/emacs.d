@@ -704,9 +704,23 @@ If step is -1, go backward."
   (message "indent-tabs-mode=%s" indent-tabs-mode))
 
 ;; {{ auto-save.el
-(require 'auto-save)
-(auto-save-enable)
-(setq auto-save-slient t)
+;; (require 'auto-save)
+;; (auto-save-enable)
+;; (setq auto-save-slient t)
+
+;; (defun cancel-auto-save-buffers ()
+;;   "cancel auto-save-buffers idle timer if found."
+;;   (message "Try to cancel auto-save-buffers idle timer...")
+;;   (let (timer-obj)
+;;     (dolist (elt timer-idle-list timer-obj)
+;;       (let* ((index-of-func 5)
+;;              (find-func-name 'auto-save-buffers)
+;;              (elt-func-name (aref elt index-of-func)))
+;;         (if (eq find-func-name elt-func-name)
+;;             (setq timer-obj elt))))
+;;     (if (eq timer-obj nil)
+;;         (message "Can not find auto-save-buffers idle timer, please checkout.")
+;;       (cancel-timer timer-obj))))
 ;; }}
 
 ;; {{ csv
