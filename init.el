@@ -161,11 +161,15 @@ useful for personal data of input method.")
 
   ;; my personal setup, other major-mode specific setup need it.
   ;; It's dependent on init-site-lisp.el
-  (if (file-exists-p "~/.custom.el") (load-file "~/.custom.el"))
+  (let ((my-custom-config (concat my-emacs-private-directory "/custom.el")))
+    (if (file-exists-p my-custom-config)
+        (load-file my-custom-config)))
+  ;; (if (file-exists-p "~/.custom.el") (load-file "~/.custom.el"))
   )
 
 ;; @see https://www.reddit.com/r/emacs/comments/4q4ixw/how_to_forbid_emacs_to_touch_configuration_files/
-(setq custom-file (concat user-emacs-directory "custom-set-variables.el"))
+;; (setq custom-file (concat user-emacs-directory "custom-set-variables.el"))
+(setq custom-file (concat my-emacs-private-directory "/custom-set-variables.el"))
 (load custom-file 'noerror)
 
 (setq gc-cons-threshold best-gc-cons-threshold)
