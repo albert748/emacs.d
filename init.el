@@ -6,7 +6,8 @@
   "Return filePath's file content."
   (with-temp-buffer
     (insert-file-contents filePath)
-    (buffer-string)))
+    (require 'subr-x)
+    (string-trim (buffer-string))))
 
 (defvar my-emacs-cache-directory
   (concat (or (getenv "XDG_CACHE_HOME") "~/.cache/") "/emacs/")
