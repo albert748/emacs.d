@@ -1,8 +1,5 @@
 ;; @see https://github.com/leoliu/ggtags
 
-(push 'ggtags melpa-include-packages)
-(require-package 'ggtags)
-
 ;; lisp setup
 (defun ggtags-mode-init ()
   "setup ggtags mode for available modes."
