@@ -124,7 +124,7 @@ useful for personal data of input method.")
   (require 'init-web-mode)
   (require 'init-slime)
   (require 'init-company)
-  (require 'init-chinese-pyim) ;; cannot be idle-required
+  (require 'init-chinese) ;; cannot be idle-required
   ;; need statistics of keyfreq asap
   (require 'init-keyfreq)
   (require 'init-httpd)

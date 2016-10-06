@@ -56,7 +56,10 @@ But you may use safer HTTPS instead.")
     erlang
     workgroups2
     company-c-headers
-    go-mode)
+    go-mode
+    chinese-pyim
+    chinese-pyim-basedict
+    chinese-fonts-setup)
   "Don't install any Melpa packages except these packages")
 
 ;; We include the org repository for completeness, but don't use it.
@@ -139,7 +142,7 @@ ARCHIVE is the string name of the package archive.")
             (string-match (format "%s" package) "-theme"))))
 
 ;; un-comment below code if you prefer use all the package on melpa (unstable) without limitation
-;; (setq package-filter-function nil)
+(setq package-filter-function nil)
 
 ;;------------------------------------------------------------------------------
 ;; Fire up package.el and ensure the following packages are installed.
@@ -253,5 +256,8 @@ ARCHIVE is the string name of the package archive.")
 (require-package 'quack) ;; for scheme
 (require-package 'hydra)
 (require-package 'go-mode)
+(require-package 'chinese-pyim)
+(require-package 'chinese-pyim-basedict)
+(require-package 'chinese-fonts-setup)
 
 (provide 'init-elpa)
