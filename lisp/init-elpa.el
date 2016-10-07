@@ -76,6 +76,8 @@ But you may use safer HTTPS instead.")
         chinese-fonts-setup
         restclient
         restart-emacs
+        magit
+        youdao-dictionary
 
         smex
         ace-link
