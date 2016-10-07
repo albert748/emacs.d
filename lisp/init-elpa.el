@@ -125,6 +125,11 @@ But you may use safer HTTPS instead.")
         hl-sexp
         find-file-in-project
         exec-path-from-shell
+        js-doc
+        js-comint
+        js2-refactor
+        window-numbering
+        keyfreq
         names
 
         evil
