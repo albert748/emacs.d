@@ -74,6 +74,8 @@ But you may use safer HTTPS instead.")
         chinese-pyim
         chinese-pyim-basedict
         chinese-fonts-setup
+        restclient
+        restart-emacs
 
         smex
         ace-link
