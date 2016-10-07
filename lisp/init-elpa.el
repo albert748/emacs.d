@@ -125,7 +125,18 @@ But you may use safer HTTPS instead.")
         hl-sexp
         find-file-in-project
         exec-path-from-shell
-        names))
+        names
+
+        evil
+        evil-escape
+        evil-exchange
+        evil-mark-replace
+        evil-matchit
+        evil-nerd-commenter
+        evil-numbers
+        evil-surround
+        evil-visualstar))
+
 
 (package-initialize)
 
