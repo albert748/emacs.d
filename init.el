@@ -167,7 +167,8 @@ support symbolic link.")
                                init-pomodoro
                                init-emacspeak
                                init-artbollocks-mode
-                               init-semantic))
+                               init-semantic
+                               init-youdao-dictionary))
   (idle-require-mode 1) ;; starts loading
   ;; }}
 
