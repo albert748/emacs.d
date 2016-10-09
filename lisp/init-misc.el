@@ -328,9 +328,9 @@ See \"Reusing passwords for several connections\" from INFO.
 "
   (interactive "P")
   (if (or arg (not buffer-file-name))
-      (find-file (concat "/sudo:root@127.0.0.1:"
+      (find-file (concat "/sudo:root@localhost:"
                          (read-file-name "Find file(as root): ")))
-    (find-alternate-file (concat "/sudo:@127.0.0.1:"
+    (find-alternate-file (concat "/sudo:root@localhost:"
                                  buffer-file-name))))
 
 ;;; Comment this advice because it has bug.
