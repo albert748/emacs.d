@@ -333,12 +333,14 @@ See \"Reusing passwords for several connections\" from INFO.
     (find-alternate-file (concat "/sudo:@127.0.0.1:"
                                  buffer-file-name))))
 
-(defadvice ido-find-file (after find-file-sudo activate)
-  "Find file as root if necessary."
-  (unless (and buffer-file-name
-               (file-writable-p buffer-file-name))
-    (find-alternate-file (concat "/sudo:root@127.0.0.1:"
-                                 buffer-file-name))))
+;;; Comment this advice because it has bug.
+;;; Prompt always pop out when use tramp.
+;; (defadvice ido-find-file (after find-file-sudo activate)
+;;   "Find file as root if necessary."
+;;   (unless (and buffer-file-name
+;;                (file-writable-p buffer-file-name))
+;;     (find-alternate-file (concat "/sudo:root@127.0.0.1:"
+;;                                  buffer-file-name))))
 ;; }}
 
 ;; edit confluence wiki
