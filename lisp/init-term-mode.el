@@ -65,7 +65,12 @@
   (interactive)
   (term-send-raw-string "\C-k"))
 
-(setq multi-term-program "/bin/bash")
+
+;;; Only test default shell and show message
+(if (not (string= "zsh" (file-name-nondirectory (getenv "SHELL"))))
+    (message "You need install zsh for multi-term"))
+;; (setq multi-term-program "/bin/bash")
+
 (setq term-unbind-key-list '("C-x" "<ESC>"))
 (setq term-bind-key-alist
       '(("C-c" . term-interrupt-subjob)
