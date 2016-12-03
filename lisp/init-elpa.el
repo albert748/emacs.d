@@ -9,13 +9,15 @@ But you may use safer HTTPS instead.")
     (setq package-archives
           '(;; uncomment below line if you need use GNU ELPA
             ;; ("gnu" . "https://elpa.gnu.org/packages/")
-            ("melpa" . "https://melpa.org/packages/")
-            ("melpa-stable" . "https://stable.melpa.org/packages/")))
+            ("org" . "http://orgmode.org/elpa/")  ; only http supported
+            ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
+            ("melpa" . "https://melpa.org/packages/")))
   (setq package-archives
         '(;; uncomment below line if you need use GNU ELPA
           ;; ("gnu" . "http://elpa.gnu.org/packages/")
-          ("melpa" . "http://melpa.org/packages/")
-          ("melpa-stable" . "http://stable.melpa.org/packages/"))))
+          ("org" . "http://orgmode.org/elpa/")
+          ;; ("melpa-stable" . "http://stable.melpa.org/packages/")
+          ("melpa" . "http://melpa.org/packages/"))))
 
 (setq package-menu-hide-low-priority t)
 
@@ -70,14 +72,18 @@ But you may use safer HTTPS instead.")
         company-c-headers
         go-mode
         ggtags
+        org
+        org-plus-contrib
         org-download
         chinese-pyim
         chinese-pyim-basedict
         chinese-fonts-setup
+        fcitx                           ; need fcitx-remote support
         restclient
         restart-emacs
         magit
         youdao-dictionary
+        pkgbuild-mode
 
         smex
         ace-link
@@ -146,6 +152,12 @@ But you may use safer HTTPS instead.")
         evil-surround
         evil-visualstar))
 
+;;; force to install latest org
+;;; FIXME: rewrite of site-lisp package looks impossible.
+;;; So, please download org from http://orgmode.org/elpa/ manually for initial usage.
+;;; extract the tarball to ~/.emacs.d/elpa/
+(setq package-pinned-packages '((org . "org")
+                               (org-plus-contrib . "org")))
 
 (package-initialize)
 
@@ -153,6 +165,7 @@ But you may use safer HTTPS instead.")
     (package-refresh-contents))
 
 (package-install-selected-packages)
+
 
 ;;------------------------------------------------------------------------------
 ;; Internal implementation, newbies should NOT touch code below this line!

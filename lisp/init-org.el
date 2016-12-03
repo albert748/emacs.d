@@ -96,21 +96,24 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
         (t (error "Please select a region to narrow to"))))
 
 ;; Various preferences
-(setq org-log-done t
+(setq org-log-done t           ; basic logging when move to DONE state
+      org-log-into-drawer t      ; advanced state change logging
+      ;; org-clock-into-drawer t    ; default, save clock data to LOGBOOK
+      org-tags-column 0      ; place tags directly after headline text
+      ;; org-agenda-window-setup 'current-window ; use default reorganize-frame
+      org-agenda-restore-windows-after-quit t ; restore old state with 'q' or 'x'
+      ;; org-agenda-span 14                ; default: week, expand to 2 weeks
+      org-agenda-start-on-weekday nil   ; for weekly agendas, start on the current day
+      ;; org-agenda-include-diary t        ; default: nil
       org-completion-use-ido t
       org-edit-src-content-indentation 0
       org-edit-timestamp-down-means-later t
-      org-agenda-start-on-weekday nil
-      org-agenda-span 14
-      org-agenda-include-diary t
-      org-agenda-window-setup 'current-window
       org-fast-tag-selection-single-key 'expert
       org-export-kill-product-buffer-when-displayed t
       ;; org v7
-      org-export-odt-preferred-output-format "doc"
+      ;; org-export-odt-preferred-output-format "doc"
       ;; org v8
-      org-odt-preferred-output-format "doc"
-      org-tags-column 80
+      ;; org-odt-preferred-output-format "doc"
       ;; org-startup-indented t
       ;; {{ org 8.2.6 has some performance issue. Here is the workaround.
       ;; @see http://punchagan.muse-amuse.in/posts/how-i-learnt-to-use-emacs-profiler.html
@@ -135,10 +138,13 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
 ;; Org clock
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; save all clock history to ~/.emacs.d/org-clock-save.el
+(setq org-clock-persist t)
+(org-clock-persistence-insinuate)
+
 ;; Change task state to STARTED when clocking in
 (setq org-clock-in-switch-to-state "STARTED")
-;; Save clock data and notes in the LOGBOOK drawer
-(setq org-clock-into-drawer t)
+
 ;; Removes clocked tasks with 0:00 duration
 (setq org-clock-out-remove-zero-time-clocks t)
 

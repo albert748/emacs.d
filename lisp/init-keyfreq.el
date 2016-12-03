@@ -233,12 +233,9 @@
 ;; Disable noisy echo message and keep silent.
 (defun keyfreq-autosave--do-silent ()
   "Function executed periodically to save the `keyfreq-table' in `keyfreq-file'."
-  ;; I want to exit emacs as usually even there is exception here
-  (condition-case nil
-      (progn
-        (keyfreq-table-save keyfreq-table))
-    (error
-     (message "%s is corrupt" keyfreq-file))))
+  ;; If lock file already exist, wait next timeout, this enable multi emacs sessions
+  (unless (file-exists-p keyfreq-file-lock)
+    (keyfreq-table-save keyfreq-table)))
 (advice-add 'keyfreq-autosave--do :override #'keyfreq-autosave--do-silent)
 
 (provide 'init-keyfreq)

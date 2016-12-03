@@ -4,6 +4,7 @@
 ;; run command `pip install jedi flake8 importmagic` in shell,
 ;; or just check https://github.com/jorgenschaefer/elpy
 (elpy-enable)
+(elpy-use-ipython)
 
 (defun python-mode-hook-setup ()
   (unless (is-buffer-file-temp)
