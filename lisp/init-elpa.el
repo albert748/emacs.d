@@ -70,6 +70,9 @@ But you may use safer HTTPS instead.")
         erlang
         workgroups2
         company-c-headers
+
+        csharp-mode
+        systemd
         go-mode
         ggtags
         org
