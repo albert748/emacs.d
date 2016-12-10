@@ -1,4 +1,5 @@
-(setq w3m-coding-system 'utf-8
+(setq w3m-quick-start nil
+      w3m-coding-system 'utf-8
       w3m-file-coding-system 'utf-8
       w3m-file-name-coding-system 'utf-8
       w3m-input-coding-system 'utf-8
@@ -9,10 +10,10 @@
       w3m-terminal-coding-system 'utf-8
       w3m-use-cookies t
       w3m-cookie-accept-bad-cookies t
-      w3m-home-page "http://www.google.com.au"
+      w3m-home-page "https://www.google.com/ncr"
       w3m-command-arguments       '("-F" "-cookie")
       w3m-mailto-url-function     'compose-mail
-      browse-url-browser-function 'w3m
+      browse-url-browser-function 'w3m-browse-url
       ;; use shr to view html mail, but if libxml NOT available
       ;; use w3m isntead. That's Emacs 24.3+ default logic
       ;; mm-text-html-renderer 'shr
@@ -121,9 +122,9 @@
 (setq browse-url-generic-program
       (cond
        (*is-a-mac* "open")
+       (*linux* (executable-find "chromium"))
        (*linux* (executable-find "firefox"))
        ))
-(setq browse-url-browser-function 'browse-url-generic)
 
 ;; use external browser to search programming stuff
 (defun w3mext-hacker-search ()
