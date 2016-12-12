@@ -188,11 +188,8 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   (local-set-key (kbd "C-c M-o") 'org-mime-org-buffer-htmlize)
 
   ;; don't spell check double words
-  (setq flyspell-check-doublon nil)
+  (setq flyspell-check-doublon nil))
 
-  ;; display wrapped lines instead of truncated lines
-  (setq truncate-lines nil)
-  (setq word-wrap t))
 (add-hook 'org-mode-hook 'org-mode-hook-setup)
 
 (defadvice org-open-at-point (around org-open-at-point-choose-browser activate)
