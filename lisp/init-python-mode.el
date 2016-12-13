@@ -37,6 +37,10 @@
 (elpy-enable)
 (elpy-try-use-ipython)
 
+;; there exist completion issue on rope, use jedi instead.
+;; see https://github.com/jorgenschaefer/elpy/issues/631
+(setq elpy-rpc-backend "jedi")
+
 (add-hook 'python-mode-hook 'python-mode-hook-setup)
 
 (provide 'init-python-mode)
