@@ -88,6 +88,9 @@ But you may use safer HTTPS instead.")
         youdao-dictionary
         pkgbuild-mode
 
+        ein                             ; ipython notebook support
+        ob-ipython                      ; org-babel functions for IPython evaluation
+
         smex
         ace-link
         ace-window
