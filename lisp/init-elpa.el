@@ -99,7 +99,7 @@ But you may use safer HTTPS instead.")
         auto-yasnippet
         expand-region
         fringe-helper
-        haskell-mode
+        ;; haskell-mode
         gitignore-mode
         cmake-mode
         request
@@ -122,7 +122,7 @@ But you may use safer HTTPS instead.")
         flymake-ruby
         flymake-jslint
         flymake-coffee
-        coffee-mode
+        ;; coffee-mode
         yasnippet
         cliphist
         tagedit

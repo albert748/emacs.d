@@ -156,6 +156,7 @@ support symbolic link.")
 
   (require 'init-emacs-w3m)
   (require 'init-hydra)
+  (require 'init-youdao-dictionary)
 
   ;; {{ idle require other stuff
   (setq idle-require-idle-delay 2)
@@ -167,8 +168,7 @@ support symbolic link.")
                                init-pomodoro
                                init-emacspeak
                                init-artbollocks-mode
-                               init-semantic
-                               init-youdao-dictionary))
+                               init-semantic))
   (idle-require-mode 1) ;; starts loading
   ;; }}
 
