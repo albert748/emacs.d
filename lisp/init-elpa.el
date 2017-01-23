@@ -91,6 +91,8 @@ But you may use safer HTTPS instead.")
         ein                             ; ipython notebook support
         ob-ipython                      ; org-babel functions for IPython evaluation
 
+        use-package
+
         smex
         ace-link
         ace-window
