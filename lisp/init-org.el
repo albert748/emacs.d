@@ -239,4 +239,12 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
           (lambda ()
             (local-set-key (kbd "C-c M-o") 'org-mime-htmlize)))
 ;; }}
+
+
+;; setup org-download package
+;; @see https://github.com/abo-abo/org-download
+(use-package org-download
+  :config
+  (setq org-download-method 'attach))
+
 (provide 'init-org)

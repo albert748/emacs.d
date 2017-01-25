@@ -58,6 +58,9 @@ support symbolic link.")
   (if (string= "*Messages*" (buffer-name))
       (read-only-mode -1)))
 
+;; make sure use-package rounded packages always installed
+(setq use-package-always-ensure t)
+
 ;; @see https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
 ;; Normally file-name-handler-alist is set to
 ;; (("\\`/[^/]*\\'" . tramp-completion-file-name-handler)
@@ -109,7 +112,6 @@ support symbolic link.")
   (require 'init-erlang)
   (require 'init-javascript)
   (require 'init-org)
-  (require 'init-org-download)
   (require 'init-css)
   (require 'init-python-mode)
   (require 'init-haskell)
@@ -157,19 +159,20 @@ support symbolic link.")
   (require 'init-emacs-w3m)
   (require 'init-hydra)
   (require 'init-youdao-dictionary)
+  (require 'init-misc-lazy)
+  (require 'init-which-func)
+  (require 'init-fonts)
+  (require 'init-hs-minor-mode)
+  (require 'init-writting)
+  (require 'init-pomodoro)
+  (require 'init-emacspeak)
+  (require 'init-artbollocks-mode)
+  (require 'init-semantic)
 
   ;; {{ idle require other stuff
-  (setq idle-require-idle-delay 2)
-  (setq idle-require-symbols '(init-misc-lazy
-                               init-which-func
-                               init-fonts
-                               init-hs-minor-mode
-                               init-writting
-                               init-pomodoro
-                               init-emacspeak
-                               init-artbollocks-mode
-                               init-semantic))
-  (idle-require-mode 1) ;; starts loading
+  ;; (setq idle-require-idle-delay 2)
+  ;; (setq idle-require-symbols '())
+  ;; (idle-require-mode 1) ;; starts loading
   ;; }}
 
   (when (require 'time-date nil t)
