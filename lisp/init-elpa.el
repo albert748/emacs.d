@@ -87,6 +87,7 @@ But you may use safer HTTPS instead.")
         magit
         youdao-dictionary
         pkgbuild-mode
+        powershell
 
         ein                             ; ipython notebook support
         ob-ipython                      ; org-babel functions for IPython evaluation
