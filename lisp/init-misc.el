@@ -22,11 +22,6 @@
 (global-set-key (kbd "C-q") #'aya-open-line)
 ;; }}
 
-;; {{ ace-link
-(ace-link-setup-default)
-(global-set-key (kbd "M-o") 'ace-link-addr)
-;; }}
-
 ;; open header file under cursor
 (global-set-key (kbd "C-x C-o") 'ffap)
 
@@ -509,22 +504,10 @@ See \"Reusing passwords for several connections\" from INFO.
     ad-do-it
     (setenv "GPG_AGENT_INFO" agent)))
 
-;; https://github.com/abo-abo/ace-window
-;; `M-x ace-window ENTER m` to swap window
-(global-set-key (kbd "C-x o") 'ace-window)
-
 ;; {{ move focus between sub-windows
 (require 'window-numbering)
 (custom-set-faces '(window-numbering-face ((t (:foreground "DeepPink" :underline "DeepPink" :weight bold)))))
 (window-numbering-mode 1)
-;; }}
-
-;; {{ avy, jump between texts, like easymotion in vim
-;; @see http://emacsredux.com/blog/2015/07/19/ace-jump-mode-is-dead-long-live-avy/ for more tips
-;; dired
-(eval-after-load "dired"
-  '(progn
-     (define-key dired-mode-map (kbd ";") 'avy-goto-subword-1)))
 ;; }}
 
 ;; ANSI-escape coloring in compilation-mode

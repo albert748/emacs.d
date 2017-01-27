@@ -169,6 +169,8 @@ support symbolic link.")
   (require 'init-artbollocks-mode)
   (require 'init-semantic)
 
+  (require 'init-avy)
+
   ;; {{ idle require other stuff
   ;; (setq idle-require-idle-delay 2)
   ;; (setq idle-require-symbols '())
