@@ -6,6 +6,9 @@
   (use-package chinese-pyim-basedict
     :config (chinese-pyim-basedict-enable))
 
+  (use-package chinese-pyim-greatdict
+    :config (chinese-pyim-greatdict-enable))
+
   (setq default-input-method "chinese-pyim")
   (setq pyim-default-scheme 'quanpin)
   (setq pyim-page-tooltip 'popup) ; use popup.el for drawing
@@ -80,7 +83,7 @@
 (global-set-key (kbd "C-\\") 'evil-toggle-input-method)
 ;; }}
 
-(setq pyim-punctuation-translate-p nil) ;; use western punctuation (ban jiao fu hao)
+;; (setq pyim-punctuation-translate-p nil) ;; use western punctuation (ban jiao fu hao)
 
 ;; (eval-after-load 'chinese-pyim
 ;;   '(progn
