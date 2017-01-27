@@ -74,18 +74,12 @@ But you may use safer HTTPS instead.")
         csharp-mode
         systemd
         go-mode
-        ggtags
         org
         org-plus-contrib
-        org-download
-        chinese-pyim
-        chinese-pyim-basedict
-        chinese-fonts-setup
         fcitx                           ; need fcitx-remote support
         restclient
         restart-emacs
         magit
-        youdao-dictionary
         pkgbuild-mode
         powershell
 
@@ -95,8 +89,6 @@ But you may use safer HTTPS instead.")
         use-package
 
         smex
-        ace-link
-        ace-window
         auto-yasnippet
         expand-region
         fringe-helper

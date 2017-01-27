@@ -204,14 +204,13 @@
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 
 ;; {{ which-key-mode
-(use-package which-key
-  :config
-  (which-key-mode t))
-
 ;; (require 'which-key)
 ;; (setq which-key-allow-imprecise-window-fit t) ; performance
 ;; (setq which-key-separator ":")
 ;; (which-key-mode 1)
+(use-package which-key
+  :config
+  (which-key-mode t))
 ;; }}
 
 

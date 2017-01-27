@@ -58,9 +58,6 @@ support symbolic link.")
   (if (string= "*Messages*" (buffer-name))
       (read-only-mode -1)))
 
-;; make sure use-package rounded packages always installed
-(setq use-package-always-ensure t)
-
 ;; @see https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
 ;; Normally file-name-handler-alist is set to
 ;; (("\\`/[^/]*\\'" . tramp-completion-file-name-handler)
@@ -92,6 +89,9 @@ support symbolic link.")
   (require 'init-elpa)
   (require 'init-exec-path) ;; Set up $PATH
   (require 'init-frame-hooks)
+
+  (require 'init-use-package)
+
   ;; any file use flyspell should be initialized after init-spelling.el
   ;; actually, I don't know which major-mode use flyspell.
   (require 'init-spelling)

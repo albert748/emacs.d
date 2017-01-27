@@ -55,7 +55,9 @@
 
 (git-gutter:linum-setup)
 
-(global-set-key (kbd "C-x C-g") 'git-gutter:toggle)
+;; git-gutter:toggle is obsolete since 0.86
+;; (global-set-key (kbd "C-x C-g") 'git-gutter:toggle)
+(global-set-key (kbd "C-x C-g") 'git-gutter-mode)
 (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
 ;; Stage current hunk
 (global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
