@@ -420,7 +420,7 @@ Current position is preserved."
 (move-text-default-bindings)
 
 ;; {{go-mode
-(require 'go-mode-load)
+;; (require 'go-mode-load)
 ;; }}
 
 ;; someone mentioned that blink cursor could slow Emacs24.4
@@ -465,12 +465,12 @@ Including indent-buffer, which should not be called automatically on save."
 ;; {{ save history
 ;; On Corp machines, I don't have permission to access history,
 ;; so safe-wrap is used
-(safe-wrap
- (when (file-writable-p (file-truename "~/.emacs.d/history"))
-   (setq history-length 8000)
-   (setq savehist-additional-variables '(search-ring regexp-search-ring kill-ring))
-   (savehist-mode 1))
- (message "Failed to access ~/.emacs.d/history"))
+;; (safe-wrap
+(when (file-writable-p (file-truename "~/.emacs.d/history"))
+  (setq history-length 8000)
+  (setq savehist-additional-variables '(search-ring regexp-search-ring kill-ring))
+  (savehist-mode 1))
+ ;; (message "Failed to access ~/.emacs.d/history"))
 ;; }}
 
 (provide 'init-misc-lazy)
