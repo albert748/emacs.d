@@ -13,9 +13,9 @@
     "setup ggtags for elisp mode."
     (ggtags-mode)
 
-    (if evil-normal-state-map
-        ;; FIX: remove default key binding for `evil-repeat-pop-next' from evil-mode if exist
-        (define-key evil-normal-state-map (kbd "M-.") nil))
+    ;; (if evil-normal-state-map
+    ;;     ;; FIX: remove default key binding for `evil-repeat-pop-next' from evil-mode if exist
+    ;;     (define-key evil-normal-state-map (kbd "M-.") nil))
 
     ;; GTAGSLOGGING: Path name to the log file
     ;; FIX: ggtags use "ctags" as default backend which do not support identifier references.
