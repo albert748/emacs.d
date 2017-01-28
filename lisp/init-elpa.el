@@ -25,9 +25,6 @@ But you may use safer HTTPS instead.")
       '(ace-mc
         bbdb
         color-theme
-        ivy
-        counsel
-        swiper
         wgrep
         robe
         groovy-mode
@@ -52,7 +49,6 @@ But you may use safer HTTPS instead.")
         htmlize
         scratch
         session
-        crontab-mode
         bookmark+
         flymake-lua
         multi-term
@@ -65,7 +61,6 @@ But you may use safer HTTPS instead.")
         auto-compile
         packed
         gitconfig-mode
-        textile-mode
         w3m
         erlang
         workgroups2

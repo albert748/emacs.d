@@ -1,3 +1,14 @@
+(use-package swiper
+  :config
+  ;; {{ swiper&ivy-mode
+  (defun swiper-the-thing ()
+    (interactive)
+    (swiper (my-use-selected-string-or-ask "")))
+  ;; }}
+
+  :bind* ("C-s" . swiper))
+
+
 ;; {{ @see http://oremacs.com/2015/04/19/git-grep-ivy/
 (defun counsel-escape (keyword)
   (setq keyword (replace-regexp-in-string "\"" "\\\\\"" keyword))

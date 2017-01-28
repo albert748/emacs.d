@@ -95,58 +95,12 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
              (narrow-to-region-indirect-buffer-maybe b e use-indirect-buffer))))
         (t (error "Please select a region to narrow to"))))
 
-;; Various preferences
-(setq org-log-done t           ; basic logging when move to DONE state
-      org-log-into-drawer t      ; advanced state change logging
-      ;; org-clock-into-drawer t    ; default, save clock data to LOGBOOK
-      org-tags-column 0      ; place tags directly after headline text
-      ;; org-agenda-window-setup 'current-window ; use default reorganize-frame
-      org-agenda-restore-windows-after-quit t ; restore old state with 'q' or 'x'
-      ;; org-agenda-span 14                ; default: week, expand to 2 weeks
-      org-agenda-start-on-weekday nil   ; for weekly agendas, start on the current day
-      ;; org-agenda-include-diary t        ; default: nil
-      org-completion-use-ido t
-      org-edit-src-content-indentation 0
-      org-edit-timestamp-down-means-later t
-      org-fast-tag-selection-single-key 'expert
-      org-export-kill-product-buffer-when-displayed t
-      ;; org v7
-      ;; org-export-odt-preferred-output-format "doc"
-      ;; org v8
-      ;; org-odt-preferred-output-format "doc"
-      ;; org-startup-indented t
-      ;; {{ org 8.2.6 has some performance issue. Here is the workaround.
-      ;; @see http://punchagan.muse-amuse.in/posts/how-i-learnt-to-use-emacs-profiler.html
-      org-agenda-inhibit-startup t ;; ~50x speedup
-      org-agenda-use-tag-inheritance nil ;; 3-4x speedup
-      ;; }}
-      )
-
-;; Refile targets include this file and any file contributing to the agenda - up to 5 levels deep
-(setq org-refile-targets (quote ((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5))))
-;; Targets start with the file name - allows creating level 1 tasks
-(setq org-refile-use-outline-path (quote file))
-;; Targets complete in steps so we start with filename, TAB shows the next level of targets etc
-(setq org-outline-path-complete-in-steps t)
-
-(setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
-              (sequence "WAITING(w@/!)" "SOMEDAY(S)" "PROJECT(P@)" "|" "CANCELLED(c@/!)"))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org clock
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; save all clock history to ~/.emacs.d/org-clock-save.el
-(setq org-clock-persist t)
-(org-clock-persistence-insinuate)
-
-;; Change task state to STARTED when clocking in
-(setq org-clock-in-switch-to-state "STARTED")
-
-;; Removes clocked tasks with 0:00 duration
-(setq org-clock-out-remove-zero-time-clocks t)
 
 ;; Show the clocked-in task - if any - in the header line
 (defun sanityinc/show-org-clock-in-header-line ()
@@ -163,13 +117,6 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   '(progn
      (define-key org-clock-mode-line-map [header-line mouse-2] 'org-clock-goto)
      (define-key org-clock-mode-line-map [header-line mouse-1] 'org-clock-menu)))
-
-(eval-after-load 'org
-  '(progn
-     (setq org-imenu-depth 9)
-     (require 'org-clock)
-     ;; @see http://irreal.org/blog/1
-     (setq org-src-fontify-natively t)))
 
 (defun org-mode-hook-setup ()
   (setq evil-auto-indent nil)
@@ -239,6 +186,65 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
           (lambda ()
             (local-set-key (kbd "C-c M-o") 'org-mime-htmlize)))
 ;; }}
+
+(use-package org
+  :config
+  ;; Various preferences
+  (setq org-log-done t           ; basic logging when move to DONE state
+        org-log-into-drawer t      ; advanced state change logging
+        ;; org-clock-into-drawer t    ; default, save clock data to LOGBOOK
+        org-tags-column 0      ; place tags directly after headline text
+        ;; org-agenda-window-setup 'current-window ; use default reorganize-frame
+        org-agenda-restore-windows-after-quit t ; restore old state with 'q' or 'x'
+        ;; org-agenda-span 14                ; default: week, expand to 2 weeks
+        org-agenda-start-on-weekday nil   ; for weekly agendas, start on the current day
+        ;; org-agenda-include-diary t        ; default: nil
+        org-completion-use-ido t
+        org-edit-src-content-indentation 0
+        org-edit-timestamp-down-means-later t
+        org-fast-tag-selection-single-key 'expert
+        org-export-kill-product-buffer-when-displayed t
+        ;; org v7
+        ;; org-export-odt-preferred-output-format "doc"
+        ;; org v8
+        ;; org-odt-preferred-output-format "doc"
+        ;; org-startup-indented t
+        ;; {{ org 8.2.6 has some performance issue. Here is the workaround.
+        ;; @see http://punchagan.muse-amuse.in/posts/how-i-learnt-to-use-emacs-profiler.html
+        org-agenda-inhibit-startup t ;; ~50x speedup
+        org-agenda-use-tag-inheritance nil ;; 3-4x speedup
+        ;; }}
+        )
+
+  ;; Refile targets include this file and any file contributing to the agenda - up to 5 levels deep
+  (setq org-refile-targets (quote ((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5))))
+  ;; Targets start with the file name - allows creating level 1 tasks
+  (setq org-refile-use-outline-path (quote file))
+  ;; Targets complete in steps so we start with filename, TAB shows the next level of targets etc
+  (setq org-outline-path-complete-in-steps t)
+
+  (setq org-todo-keywords
+        (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
+                (sequence "WAITING(w@/!)" "SOMEDAY(S)" "PROJECT(P@)" "|" "CANCELLED(c@/!)"))))
+
+  (setq org-imenu-depth 9)
+
+  ;; @see http://irreal.org/blog/1
+  (setq org-src-fontify-natively t)
+
+  ;; save all clock history to ~/.emacs.d/org-clock-save.el
+  (setq org-clock-persist t)
+  (org-clock-persistence-insinuate)
+
+  ;; Change task state to STARTED when clocking in
+  (setq org-clock-in-switch-to-state "STARTED")
+
+  ;; Removes clocked tasks with 0:00 duration
+  (setq org-clock-out-remove-zero-time-clocks t)
+
+  :bind*
+  (("C-c a" . org-agenda)
+   ("C-c c" . org-capture)))
 
 
 ;; setup org-download package

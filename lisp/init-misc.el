@@ -1,9 +1,3 @@
-;; {{ swiper&ivy-mode
-(defun swiper-the-thing ()
-  (interactive)
-  (swiper (my-use-selected-string-or-ask "")))
-;; }}
-
 ;; {{ shell and conf
 (add-to-list 'auto-mode-alist '("\\.[^b][^a][a-zA-Z]*rc$" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.aspell\\.en\\.pws\\'" . conf-mode))
@@ -12,6 +6,12 @@
 (add-to-list 'auto-mode-alist '("\\.ctags\\'" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.mailcap\\'" . conf-mode))
 ;; }}
+
+;; java
+(add-to-list 'auto-mode-alist '("\\.aj\\'" . java-mode))
+;; makefile
+(add-to-list 'auto-mode-alist '("\\.ninja$" . makefile-gmake-mode))
+
 
 
 ;; {{ auto-yasnippet
@@ -24,11 +24,6 @@
 
 ;; open header file under cursor
 (global-set-key (kbd "C-x C-o") 'ffap)
-
-;; java
-(add-to-list 'auto-mode-alist '("\\.aj\\'" . java-mode))
-;; makefile
-(add-to-list 'auto-mode-alist '("\\.ninja$" . makefile-gmake-mode))
 
 ;; {{ support MY packages which are not included in melpa
 (setq org2nikola-use-verbose-metadata t) ; for nikola 7.7+
@@ -151,7 +146,10 @@
 
 ;; {{ crontab
 ;; in shell "EDITOR='emacs -nw' crontab -e" to edit cron job
-(add-to-list 'auto-mode-alist '("crontab.*\\'" . crontab-mode))
+;; (add-to-list 'auto-mode-alist '("\\.cron\\(tab\\)?\\'" . crontab-mode))
+;; (add-to-list 'auto-mode-alist '("cron\\(tab\\)?\\."    . crontab-mode))
+(use-package crontab-mode
+  :mode ("\\.cron\\(tab\\)?\\'" "cron\\(tab\\)?\\."))
 ;; }}
 
 ;; cmake
@@ -223,7 +221,9 @@
 ;;     ;; `counsel-M-x' will use `smex' to remember history
 ;;     (counsel-M-x)))
 ;;; to make fcitx.el recognizable
-(global-set-key (kbd "M-x") 'counsel-M-x)
+;; (global-set-key (kbd "M-x") 'counsel-M-x)
+(use-package counsel
+  :bind ("M-x" . counsel-M-x))
 
 (defun compilation-finish-hide-buffer-on-success (buf str)
   "Could be reused by other major-mode after compilation."
@@ -386,9 +386,9 @@ See \"Reusing passwords for several connections\" from INFO.
 ;; }}
 
 ;; increase and decrease font size in GUI emacs
-(when (display-graphic-p)
-  (global-set-key (kbd "C-=") 'text-scale-increase)
-  (global-set-key (kbd "C--") 'text-scale-decrease))
+;; (when (display-graphic-p)
+;;   (global-set-key (kbd "C-=") 'text-scale-increase)
+;;   (global-set-key (kbd "C--") 'text-scale-decrease))
 
 ;; vimrc
 (add-to-list 'auto-mode-alist '("\\.?vim\\(rc\\)?$" . vimrc-mode))
@@ -714,10 +714,6 @@ If step is -1, go backward."
 ;;       (cancel-timer timer-obj))))
 ;; }}
 
-;; {{ csv
-(add-auto-mode 'csv-mode "\\.[Cc][Ss][Vv]\\'")
-(setq csv-separators '("," ";" "|" " "))
-;; }}
 
 ;; {{ regular expression tools
 (defun my-create-regex-from-kill-ring (&optional n)

@@ -1,4 +1,4 @@
-;; make sure use-package rounded packages always installed
+;;; install package from elpa if it do not specify ensure method itself.
 (setq use-package-always-ensure t)
 
 (defun package-install-silent (func pkg &optional dont-select)

@@ -1,17 +1,28 @@
 ;;; init-misc-lazy.el --- misc setup loaded later
 
-(setq auto-mode-alist
-      (cons '("\\.textile\\'" . textile-mode) auto-mode-alist))
+(use-package textile-mode
+  :mode "\\.textile\\'")
 
+;;; simple.el
 (transient-mark-mode t)
 
-(recentf-mode 1)
+;;; FIXME: defer this package as long as menu is used
+(use-package recentf
+  :ensure nil                           ; built-in package
+  :config (recentf-mode))
 
 (global-auto-revert-mode)
 (setq global-auto-revert-non-file-buffers t
       auto-revert-verbose nil)
 
-(add-to-list 'auto-mode-alist '("\\.[Cc][Ss][Vv]\\'" . csv-mode))
+;; {{ csv
+;;; FIXME: remove this package with elpa
+(use-package csv-mode
+  :ensure nil                           ; site-lisp package
+  :mode "\\.[Cc][Ss][Vv]\\'"
+  :config (setq csv-separators '("," ";" "|" " ")))
+;; }}
+
 
 ;;----------------------------------------------------------------------------
 ;; Don't disable narrowing commands
