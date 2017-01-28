@@ -1,11 +1,17 @@
 ;;; @see https://www.emacswiki.org/emacs/ColorThemes
-
-;; Most downloaded theme from melpa use builtin custom theme support
 (use-package custom
   :ensure nil                           ; built-in package
   :config
+  (use-package molokai-theme
+    :defer t)
+
   (use-package zenburn-theme
-    :config (load-theme 'zenburn t)))
+    :defer t)
+
+  ;; Most downloaded theme from melpa use only support builtin custom theme
+  ;; load as default, use `customize-themes' to select other alternatives
+  (if (not custom-enabled-themes)
+      (load-theme 'zenburn t)))
 
 (use-package color-theme
   :disabled t
