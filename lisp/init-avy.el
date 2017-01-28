@@ -1,7 +1,6 @@
-;; {{ avy, jump between texts, like easymotion in vim
-;; @see http://emacsredux.com/blog/2015/07/19/ace-jump-mode-is-dead-long-live-avy/ for more tips
-;; dired
 (use-package avy
+  ;; {{ avy, jump between texts, like easymotion in vim, replace ace-jump-mode
+  ;; @see http://emacsredux.com/blog/2015/07/19/ace-jump-mode-is-dead-long-live-avy/ for more tips
   :commands avy-goto-subword-1
 
   :config
@@ -15,7 +14,7 @@
 ;; (global-set-key (kbd "M-o") 'ace-link-addr)
 ;; ;; }}
 (use-package ace-link
-  :config (ace-link-setup-default))
+  :init (ace-link-setup-default))
 
 ;; https://github.com/abo-abo/ace-window
 ;; `M-x ace-window ENTER m` to swap window

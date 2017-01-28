@@ -1,6 +1,13 @@
-;; Use the system clipboard
-(setq x-select-enable-clipboard t
-      x-select-enable-primary t)
+(use-package select
+  :ensure nil                           ; built-in package
+  :config
+  ;; Use the system clipboard
+  ;; Obsolete since 25.1
+  ;; (setq x-select-enable-clipboard t
+  ;;       x-select-enable-primary t)
+  (setq select-enable-clipboard t
+        select-enable-primary t))
+
 
 ;; kill-ring and clipboard are same? No, it's annoying!
 ;; (setq save-interprogram-paste-before-kill t)

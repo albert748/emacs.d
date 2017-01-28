@@ -24,10 +24,8 @@ But you may use safer HTTPS instead.")
 (setq package-selected-packages
       '(ace-mc
         bbdb
-        color-theme
         wgrep
         robe
-        groovy-mode
         inf-ruby
         company ; I won't wait another 2 years for stable
         simple-httpd
@@ -36,7 +34,6 @@ But you may use safer HTTPS instead.")
         string-edit ; looks magnars don't update stable tag frequently
         findr
         mwe-log-commands
-        yaml-mode
         noflet
         db
         creole
@@ -66,8 +63,6 @@ But you may use safer HTTPS instead.")
         workgroups2
         company-c-headers
 
-        csharp-mode
-        systemd
         go-mode
         org
         org-plus-contrib
@@ -75,7 +70,6 @@ But you may use safer HTTPS instead.")
         restclient
         restart-emacs
         magit
-        pkgbuild-mode
         powershell
 
         ein                             ; ipython notebook support
@@ -87,9 +81,7 @@ But you may use safer HTTPS instead.")
         auto-yasnippet
         expand-region
         fringe-helper
-        ;; haskell-mode
         gitignore-mode
-        cmake-mode
         request
         rinari
         hydra
@@ -100,10 +92,8 @@ But you may use safer HTTPS instead.")
         git-messenger
         git-gutter
         git-timemachine
-        elpy
         paredit
         dictionary
-        markdown-mode
         rvm
         nvm
         flymake-css
@@ -118,7 +108,6 @@ But you may use safer HTTPS instead.")
         writeroom-mode
         haml-mode
         scss-mode
-        diminish
         rainbow-delimiters
         js2-mode
         flyspell-lazy

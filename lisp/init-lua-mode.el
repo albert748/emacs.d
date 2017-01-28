@@ -12,4 +12,5 @@
 (setq-default lua-indent-level 2)
 
 (add-hook 'lua-mode-hook 'my-lua-mode-setup)
+
 (provide 'init-lua-mode)

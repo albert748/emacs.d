@@ -1,10 +1,36 @@
+;; (add-to-list 'auto-mode-alist '("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode))
+(use-package yaml-mode
+  :defer t)
+
+;; (add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
+(use-package csharp-mode
+  :defer t)
+
+(use-package systemd
+  :defer t
+  :config
+  (add-hook 'systemd-mode-hook #'company-mode))
+
+(use-package pkgbuild-mode
+  :defer t)
+
+;; {{ groovy-mode
+;; (add-to-list 'auto-mode-alist '("\\.g\\(?:ant\\|roovy\\|radle\\)\\'" . groovy-mode))
+;; (add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
+(use-package groovy-mode
+  :defer t)
+;; }}
+
 ;; {{ shell and conf
-(add-to-list 'auto-mode-alist '("\\.[^b][^a][a-zA-Z]*rc$" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.aspell\\.en\\.pws\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.meta\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.?muttrc\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.ctags\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.mailcap\\'" . conf-mode))
+;; (add-to-list 'auto-mode-alist '("\\.[^b][^a][a-zA-Z]*rc$" . conf-mode))
+;; (add-to-list 'auto-mode-alist '("\\.aspell\\.en\\.pws\\'" . conf-mode))
+;; (add-to-list 'auto-mode-alist '("\\.meta\\'" . conf-mode))
+;; (add-to-list 'auto-mode-alist '("\\.?muttrc\\'" . conf-mode))
+;; (add-to-list 'auto-mode-alist '("\\.ctags\\'" . conf-mode))
+;; (add-to-list 'auto-mode-alist '("\\.mailcap\\'" . conf-mode))
+(use-package conf-mode
+  :ensure nil                           ; built-in package
+  :mode ("\\.[^b][^a][a-zA-Z]*rc$" "\\.aspell\\.en\\.pws\\'" "\\.meta\\'" "\\.?muttrc\\'" "\\.ctags\\'" "\\.mailcap\\'"))
 ;; }}
 
 ;; java
@@ -36,11 +62,11 @@
 
 ;; {{ isearch
 ;; Use regex to search by default
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
-(define-key isearch-mode-map (kbd "C-o") 'isearch-occur)
+;; (global-set-key (kbd "C-s") 'isearch-forward-regexp)
+;; (global-set-key (kbd "C-r") 'isearch-backward-regexp)
+;; (global-set-key (kbd "C-M-s") 'isearch-forward)
+;; (global-set-key (kbd "C-M-r") 'isearch-backward)
+;; (define-key isearch-mode-map (kbd "C-o") 'isearch-occur)
 ;; }}
 
 (setq-default buffers-menu-max-size 30
@@ -65,8 +91,11 @@
               visible-bell nil)
 
 ;; @see http://www.emacswiki.org/emacs/SavePlace
-(require 'saveplace)
-(setq-default save-place t)
+;; (require 'saveplace)
+;; (setq-default save-place t)             ; obsolete sinice 25.1
+(use-package saveplace
+  :ensure nil                           ; built-in package
+  :config (save-place-mode))
 
 
 ;; {{ find-file-in-project (ffip)
@@ -113,10 +142,6 @@
       (message "Could not find git project root."))))
 ;; }}
 
-;; {{ groovy-mode
- (add-to-list 'auto-mode-alist '("\\.groovy\\'" . groovy-mode))
- (add-to-list 'auto-mode-alist '("\\.gradle\\'" . groovy-mode))
-;; }}
 
 ;; {{ https://github.com/browse-kill-ring/browse-kill-ring
 (require 'browse-kill-ring)
@@ -153,9 +178,11 @@
 ;; }}
 
 ;; cmake
-(setq auto-mode-alist (append '(("CMakeLists\\.txt\\'" . cmake-mode))
-                              '(("\\.cmake\\'" . cmake-mode))
-                              auto-mode-alist))
+;; (setq auto-mode-alist (append '(("CMakeLists\\.txt\\'" . cmake-mode))
+;;                               '(("\\.cmake\\'" . cmake-mode))
+;;                               auto-mode-alist))
+(use-package cmake-mode
+  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
 
 (defun back-to-previous-buffer ()
   (interactive)
@@ -297,9 +324,12 @@
 (global-set-key (kbd "C-h C-f") 'find-function)
 
 ;; from RobinH, Time management
-(setq display-time-24hr-format t)
-(setq display-time-day-and-date t)
-(display-time)
+(use-package time
+  :ensure nil                           ; built-in package
+  :config
+  (setq display-time-24hr-format t)
+  (setq display-time-day-and-date t)
+  (display-time))
 
 ;;a no-op function to bind to if you want to set a keystroke to null
 (defun void () "this is a no-op" (interactive))
