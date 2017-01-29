@@ -87,7 +87,6 @@ But you may use safer HTTPS instead.")
         hydra
         define-word
         neotree
-        flx-ido
         git-link
         git-messenger
         git-gutter
