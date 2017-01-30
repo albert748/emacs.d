@@ -1,6 +1,7 @@
 ;; @see https://github.com/xuchunyang/youdao-dictionary.el
 
 (use-package youdao-dictionary
+  :bind ("C-c u" . youdao-dictionary-search-at-point)
   :config
   ;; Enable Cache
   (setq url-automatic-caching t)
@@ -14,11 +15,9 @@
   ;; Enable Chinese word segmentation support (支持中文分词)
   (setq youdao-dictionary-use-chinese-word-segmentation t)
 
-  ;; Use emacs mode for youdao buffer if use evil
+  ;; Use emacs mode for query result buffer if evil in use
   (with-eval-after-load 'evil
-    (push '("*Youdao Dictionary*" . emacs) evil-buffer-regexps))
+    (push '("^\\*Youdao Dictionary\\*" . emacs) evil-buffer-regexps)))
 
-  :bind
-  ("C-c u" . youdao-dictionary-search-at-point))
 
 (provide 'init-youdao-dictionary)

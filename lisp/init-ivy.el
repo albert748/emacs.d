@@ -6,7 +6,7 @@
     (swiper (my-use-selected-string-or-ask "")))
   ;; }}
 
-  :bind* ("C-s" . swiper))
+  :bind ("C-s" . swiper))
 
 
 ;; {{ @see http://oremacs.com/2015/04/19/git-grep-ivy/

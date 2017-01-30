@@ -1,9 +1,23 @@
-;; (add-to-list 'auto-mode-alist '("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode))
+(use-package sh-script
+  :ensure nil                           ; built-in package
+  ;; FIXME: merge all together
+  :mode (("\\.bash_profile\\'" . sh-mode)
+         ("\\.bash_history\\'" . sh-mode)
+         ("\\.sh\\'" . sh-mode)
+         ("\\.bash\\'" . sh-mode)
+         ("\\.bashrc.local\\'" . sh-mode)
+         ("\\.zsh\\'" . sh-mode)
+         ("\\.bashrc\\'" . sh-mode)))
+
+(use-package restart-emacs
+  :commands restart-emacs)
+
 (use-package yaml-mode
+  ;; (add-to-list 'auto-mode-alist '("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode))
   :defer t)
 
-;; (add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
 (use-package csharp-mode
+  ;; (add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
   :defer t)
 
 (use-package systemd

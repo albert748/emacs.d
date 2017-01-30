@@ -68,7 +68,6 @@ But you may use safer HTTPS instead.")
         org-plus-contrib
         fcitx                           ; need fcitx-remote support
         restclient
-        restart-emacs
         magit
         powershell
 
