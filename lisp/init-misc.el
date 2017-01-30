@@ -243,15 +243,13 @@
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 
 ;; {{ which-key-mode
-;; (require 'which-key)
-;; (setq which-key-allow-imprecise-window-fit t) ; performance
-;; (setq which-key-separator ":")
-;; (which-key-mode 1)
 (use-package which-key
-  :config
-  (which-key-mode t))
+  :init (which-key-mode t)
+  ;; :config
+  ;; (setq which-key-allow-imprecise-window-fit t) ; performance
+  ;; (setq which-key-separator ":")
+  )
 ;; }}
-
 
 ;; smex or counsel-M-x?
 ;; (defvar my-use-smex nil
@@ -604,7 +602,8 @@ If step is -1, go backward."
 
 (defun my-minibuffer-setup-hook ()
   (local-set-key (kbd "M-y") 'paste-from-x-clipboard)
-  (local-set-key (kbd "C-k") 'kill-line)
+  ;; comment this which conflict with ido ido-kill-buffer key binding
+  ;; (local-set-key (kbd "C-k") 'kill-line)
   (setq gc-cons-threshold most-positive-fixnum))
 
 (defun my-minibuffer-exit-hook ()

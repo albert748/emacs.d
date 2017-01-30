@@ -49,12 +49,9 @@ But you may use safer HTTPS instead.")
         bookmark+
         flymake-lua
         multi-term
-        dired+
         inflections
-        dropdown-list
         lua-mode
         tidy
-        pomodoro
         auto-compile
         packed
         gitconfig-mode
@@ -62,7 +59,6 @@ But you may use safer HTTPS instead.")
         erlang
         workgroups2
         company-c-headers
-
         go-mode
         org
         org-plus-contrib
@@ -70,12 +66,7 @@ But you may use safer HTTPS instead.")
         restclient
         magit
         powershell
-
-        ein                             ; ipython notebook support
-        ob-ipython                      ; org-babel functions for IPython evaluation
-
         use-package
-
         smex
         auto-yasnippet
         expand-region
@@ -123,17 +114,7 @@ But you may use safer HTTPS instead.")
         js2-refactor
         window-numbering
         keyfreq
-        names
-
-        evil
-        evil-escape
-        evil-exchange
-        evil-mark-replace
-        evil-matchit
-        evil-nerd-commenter
-        evil-numbers
-        evil-surround
-        evil-visualstar))
+        names))
 
 ;;; force to install latest org
 ;;; FIXME: rewrite of site-lisp package looks impossible.

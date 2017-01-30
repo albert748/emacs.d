@@ -1,3 +1,9 @@
+;; org-babel functions for IPython evaluation
+(use-package ob-ipython)
+
+;; ipython notebook support
+(use-package ein)
+
 (use-package elpy
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python[0-9.]*" . python-mode)

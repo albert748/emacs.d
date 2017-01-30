@@ -1,10 +1,14 @@
 ;;----------------------------------------------------------------------------
 ;; Navigate window layouts with "C-c <left>" and "C-c <right>"
 ;;----------------------------------------------------------------------------
-(winner-mode 1)
-;; copied from http://puntoblogspot.blogspot.com/2011/05/undo-layouts-in-emacs.html
-(global-set-key (kbd "C-x 4 u") 'winner-undo)
-(global-set-key (kbd "C-x 4 U") 'winner-redo)
+(use-package winner
+  ;; copied from http://puntoblogspot.blogspot.com/2011/05/undo-layouts-in-emacs.html
+  ;; (global-set-key (kbd "C-x 4 u") 'winner-undo)
+  ;; (global-set-key (kbd "C-x 4 U") 'winner-redo)
+  :bind (("C-x 4 u" . winner-undo)
+         ("C-x 4 U" . winner-redo))
+
+  :init (winner-mode))
 
 
 ;;----------------------------------------------------------------------------

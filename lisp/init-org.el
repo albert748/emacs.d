@@ -188,7 +188,17 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
 ;; }}
 
 (use-package org
+  :bind*
+  (("C-c a" . org-agenda)
+   ("C-c c" . org-capture))
+  :pin org
+
   :config
+  ;; org mode use truncate-lines as default, reset it to nil.
+  ;; we do not want to use word-wrap, beacause it's ugly for chinese.
+  ;; FIXME: word-wrap chinese only.
+  (setq truncate-lines nil)
+
   ;; Various preferences
   (setq org-log-done t           ; basic logging when move to DONE state
         org-log-into-drawer t      ; advanced state change logging
@@ -240,11 +250,7 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   (setq org-clock-in-switch-to-state "STARTED")
 
   ;; Removes clocked tasks with 0:00 duration
-  (setq org-clock-out-remove-zero-time-clocks t)
-
-  :bind*
-  (("C-c a" . org-agenda)
-   ("C-c c" . org-capture)))
+  (setq org-clock-out-remove-zero-time-clocks t))
 
 
 ;; setup org-download package

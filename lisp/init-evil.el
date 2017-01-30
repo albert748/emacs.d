@@ -1,6 +1,125 @@
-;; @see https://bitbucket.org/lyro/evil/issue/360/possible-evil-search-symbol-forward
-;; evil 1.0.8 search word instead of symbol
-(setq evil-symbol-word-search t)
+(use-package evil
+  :init
+  ;; globally enable evil-mode
+  (evil-mode)
+
+  :config
+  ;; @see https://bitbucket.org/lyro/evil/issue/342/evil-default-cursor-setting-should-default
+  ;; cursor is alway black because of evil
+  ;; here is the workaround
+  ;; (setq evil-default-cursor t)
+
+  ;; Move back the cursor one position when exiting insert mode
+  ;; (setq evil-move-cursor-back t)
+
+  ;; @see https://bitbucket.org/lyro/evil/issue/360/possible-evil-search-symbol-forward
+  ;; evil 1.0.8 search word instead of symbol
+  (setq evil-symbol-word-search t)
+
+  (loop for (mode . state) in
+        '((diff-mode . emacs)           ; to make 'q' take effect anyway
+          (minibuffer-inactive-mode . emacs)
+          (ggtags-global-mode . emacs)
+          (grep-mode . emacs)
+          (Info-mode . emacs)
+          (term-mode . emacs)
+          (sdcv-mode . emacs)
+          (anaconda-nav-mode . emacs)
+          (log-edit-mode . emacs)
+          (vc-log-edit-mode . emacs)
+          (magit-log-edit-mode . emacs)
+          (inf-ruby-mode . emacs)
+          (direx:direx-mode . emacs)
+          (yari-mode . emacs)
+          (erc-mode . emacs)
+          (neotree-mode . emacs)
+          (w3m-mode . emacs)
+          (gud-mode . emacs)
+          (help-mode . emacs)
+          (eshell-mode . emacs)
+          (shell-mode . emacs)
+          ;;(message-mode . emacs)
+          (fundamental-mode . emacs)
+          (weibo-timeline-mode . emacs)
+          (weibo-post-mode . emacs)
+          (sr-mode . emacs)
+          (profiler-report-mode . emacs)
+          (dired-mode . emacs)
+          (compilation-mode . emacs)
+          (speedbar-mode . emacs)
+          (ivy-occur-mode . emacs)
+          (messages-buffer-mode . normal)
+          (magit-commit-mode . normal)
+          (magit-diff-mode . normal)
+          (browse-kill-ring-mode . normal)
+          (etags-select-mode . normal)
+          (js2-error-buffer-mode . emacs)
+          (git-status-mode . emacs)
+          )
+        do (evil-set-initial-state mode state))
+
+  ;; {{ @see https://github.com/timcharper/evil-surround for tutorial
+  (use-package evil-surround
+    :init (global-evil-surround-mode)
+
+    :config
+    (defun evil-surround-prog-mode-hook-setup ()
+      (push '(47 . ("/" . "/")) evil-surround-pairs-alist)
+      (push '(40 . ("(" . ")")) evil-surround-pairs-alist)
+      (push '(41 . ("(" . ")")) evil-surround-pairs-alist))
+
+    (add-hook 'prog-mode-hook 'evil-surround-prog-mode-hook-setup)
+
+    (defun evil-surround-emacs-lisp-mode-hook-setup ()
+      (push '(?` . ("`" . "'")) evil-surround-pairs-alist))
+
+    (add-hook 'emacs-lisp-mode-hook 'evil-surround-emacs-lisp-mode-hook-setup)
+
+    (defun evil-surround-org-mode-hook-setup ()
+      (push '(?= . ("=" . "=")) evil-surround-pairs-alist))
+
+    (add-hook 'org-mode-hook 'evil-surround-org-mode-hook-setup))
+  ;; }}
+
+  ;; {{ https://github.com/syl20bnr/evil-escape
+  (use-package evil-escape
+    :init (evil-escape-mode 1)
+
+    :config
+    (setq-default evil-escape-delay 0.5)
+    (setq evil-escape-excluded-major-modes '(dired-mode))
+    (setq-default evil-escape-key-sequence "kj"))
+  ;; }}
+
+  ;; {{ For example, press `viW*`
+  (use-package evil-visualstar
+    :init (global-evil-visualstar-mode t)
+
+    :config
+    (setq evil-visualstar/persistent t))
+  ;; }}
+
+  (use-package evil-numbers
+    :bind (:map evil-normal-state-map
+                ("+" . evil-numbers/inc-at-pt)
+                ("-" . evil-numbers/dec-at-pt)))
+
+  (use-package evil-matchit
+    :init (global-evil-matchit-mode))
+
+  (use-package evil-nerd-commenter
+    :init (evilnc-default-hotkeys))
+
+  ;; {{ evil-exchange
+  (use-package evil-exchange
+    ;; press gx twice to exchange, gX to cancel
+    ;; change default key bindings (if you want) HERE
+    ;; (setq evil-exchange-key (kbd "zx"))
+    :init (evil-exchange-install))
+  ;; }}
+
+  (use-package evil-mark-replace))
+
 ;; load undo-tree and ert
 (add-to-list 'load-path "~/.emacs.d/site-lisp/evil/lib")
 
@@ -16,13 +135,6 @@
 (adjust-major-mode-keymap-with-evil "browse-kill-ring")
 (adjust-major-mode-keymap-with-evil "etags-select")
 
-(require 'evil)
-
-;; @see https://bitbucket.org/lyro/evil/issue/342/evil-default-cursor-setting-should-default
-;; cursor is alway black because of evil
-;; here is the workaround
-(setq evil-default-cursor t)
-
 ;; {{ multiple-cursors
 ;; step 1, select thing in visual-mode (OPTIONAL)
 ;; step 2, `mc/mark-all-like-dwim' or `mc/mark-all-like-this-in-defun'
@@ -36,32 +148,6 @@
 (define-key evil-visual-state-map (kbd "ms") 'ace-mc-add-single-cursor)
 ;; }}
 
-;; enable evil-mode
-(evil-mode 1)
-
-;; {{ @see https://github.com/timcharper/evil-surround for tutorial
-(require 'evil-surround)
-(global-evil-surround-mode 1)
-(defun evil-surround-prog-mode-hook-setup ()
-  (push '(47 . ("/" . "/")) evil-surround-pairs-alist)
-  (push '(40 . ("(" . ")")) evil-surround-pairs-alist)
-  (push '(41 . ("(" . ")")) evil-surround-pairs-alist))
-(add-hook 'prog-mode-hook 'evil-surround-prog-mode-hook-setup)
-(defun evil-surround-emacs-lisp-mode-hook-setup ()
-  (push '(?` . ("`" . "'")) evil-surround-pairs-alist))
-(add-hook 'emacs-lisp-mode-hook 'evil-surround-emacs-lisp-mode-hook-setup)
-(defun evil-surround-org-mode-hook-setup ()
-  (push '(?= . ("=" . "=")) evil-surround-pairs-alist))
-(add-hook 'org-mode-hook 'evil-surround-org-mode-hook-setup)
-;; }}
-
-;; {{ For example, press `viW*`
-(require 'evil-visualstar)
-(setq evil-visualstar/persistent t)
-(global-evil-visualstar-mode t)
-;; }}
-
-
 ;; ffip-diff-mode evil setup
 (defun ffip-diff-mode-hook-setup ()
     (evil-local-set-key 'normal "p" 'diff-hunk-prev)
@@ -73,7 +159,6 @@
     (evil-local-set-key 'normal "o" 'ffip-diff-find-file))
 (add-hook 'ffip-diff-mode-hook 'ffip-diff-mode-hook-setup)
 
-(require 'evil-mark-replace)
 
 ;; {{ define my own text objects, works on evil v1.0.9 using older method
 ;; @see http://stackoverflow.com/questions/18102004/emacs-evil-mode-how-to-create-a-new-text-object-to-select-words-with-any-non-sp
@@ -242,17 +327,6 @@ If the character before and after CH is space or tab, CH is NOT slash"
 (define-key evil-outer-text-objects-map "f" 'evil-filepath-outer-text-object)
 ;; }}
 
-;; {{ https://github.com/syl20bnr/evil-escape
-(require 'evil-escape)
-(setq-default evil-escape-delay 0.5)
-(setq evil-escape-excluded-major-modes '(dired-mode))
-(setq-default evil-escape-key-sequence "kj")
-(evil-escape-mode 1)
-;; }}
-
-;; Move back the cursor one position when exiting insert mode
-(setq evil-move-cursor-back t)
-
 (defun toggle-org-or-message-mode ()
   (interactive)
   (if (eq major-mode 'message-mode)
@@ -273,46 +347,6 @@ If the character before and after CH is space or tab, CH is NOT slash"
   ">" 'org-demote-or-promote ; indent
   (kbd "TAB") 'org-cycle)
 
-(loop for (mode . state) in
-      '((minibuffer-inactive-mode . emacs)
-        (ggtags-global-mode . emacs)
-        (grep-mode . emacs)
-        (Info-mode . emacs)
-        (term-mode . emacs)
-        (sdcv-mode . emacs)
-        (anaconda-nav-mode . emacs)
-        (log-edit-mode . emacs)
-        (vc-log-edit-mode . emacs)
-        (magit-log-edit-mode . emacs)
-        (inf-ruby-mode . emacs)
-        (direx:direx-mode . emacs)
-        (yari-mode . emacs)
-        (erc-mode . emacs)
-        (neotree-mode . emacs)
-        (w3m-mode . emacs)
-        (gud-mode . emacs)
-        (help-mode . emacs)
-        (eshell-mode . emacs)
-        (shell-mode . emacs)
-        ;;(message-mode . emacs)
-        (fundamental-mode . emacs)
-        (weibo-timeline-mode . emacs)
-        (weibo-post-mode . emacs)
-        (sr-mode . emacs)
-        (profiler-report-mode . emacs)
-        (dired-mode . emacs)
-        (compilation-mode . emacs)
-        (speedbar-mode . emacs)
-        (ivy-occur-mode . emacs)
-        (messages-buffer-mode . normal)
-        (magit-commit-mode . normal)
-        (magit-diff-mode . normal)
-        (browse-kill-ring-mode . normal)
-        (etags-select-mode . normal)
-        (js2-error-buffer-mode . emacs)
-        (git-status-mode . emacs)
-        )
-      do (evil-set-initial-state mode state))
 
 ;; I prefer Emacs way after pressing ":" in evil-mode
 (define-key evil-ex-completion-map (kbd "C-a") 'move-beginning-of-line)
@@ -329,12 +363,6 @@ If the character before and after CH is space or tab, CH is NOT slash"
 (define-key evil-normal-state-map (kbd "C-]") 'etags-select-find-tag-at-point)
 (define-key evil-visual-state-map (kbd "C-]") 'etags-select-find-tag-at-point)
 
-(require 'evil-numbers)
-(define-key evil-normal-state-map "+" 'evil-numbers/inc-at-pt)
-(define-key evil-normal-state-map "-" 'evil-numbers/dec-at-pt)
-
-(require 'evil-matchit)
-(global-evil-matchit-mode 1)
 
 ;; press ",xx" to expand region
 ;; then press "z" to contract, "x" to expand
@@ -710,16 +738,6 @@ If the character before and after CH is space or tab, CH is NOT slash"
                 (set-face-background 'mode-line (car color))
                 (set-face-foreground 'mode-line (cdr color))))))
 
-(require 'evil-nerd-commenter)
-(evilnc-default-hotkeys)
-
-;; {{ evil-exchange
-;; press gx twice to exchange, gX to cancel
-(require 'evil-exchange)
-;; change default key bindings (if you want) HERE
-;; (setq evil-exchange-key (kbd "zx"))
-(evil-exchange-install)
-;; }}
 
 ;; }}
 
