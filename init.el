@@ -85,7 +85,6 @@ support symbolic link.")
   ;;    (message "setup-cygwin failed, continue anyway")
   ;;    ))
 
-  (require 'idle-require)
   (require 'init-elpa)
   (require 'init-exec-path) ;; Set up $PATH
   (require 'init-frame-hooks)
@@ -140,7 +139,7 @@ support symbolic link.")
   (require 'init-web-mode)
   (require 'init-slime)
   (require 'init-company)
-  (require 'init-chinese) ;; cannot be idle-required
+  (require 'init-chinese)
   ;; need statistics of keyfreq asap
   (require 'init-keyfreq)
   (require 'init-httpd)
@@ -168,12 +167,6 @@ support symbolic link.")
   (require 'init-semantic)
 
   (require 'init-avy)
-
-  ;; {{ idle require other stuff
-  ;; (setq idle-require-idle-delay 2)
-  ;; (setq idle-require-symbols '())
-  ;; (idle-require-mode 1) ;; starts loading
-  ;; }}
 
   (when (require 'time-date nil t)
     (message "Emacs startup time: %d seconds."
