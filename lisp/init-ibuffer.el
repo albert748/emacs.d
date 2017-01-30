@@ -1,5 +1,6 @@
 (use-package ibuffer
   :ensure nil                           ; built-in package
+  :bind ("C-x C-b" . ibuffer)
   :config
 
   ;; Explicitly require ibuffer-vc to get its column definitions, which
@@ -88,9 +89,7 @@
                                  (ibuffer-vc-set-filter-groups-by-vc-root)
                                  (unless (eq ibuffer-sorting-mode 'filename/process)
                                    (ibuffer-do-sort-by-filename/process))
-                                 (ibuffer-switch-to-saved-filter-groups "default")))
-
-  :bind ("C-x C-b" . ibuffer))
+                                 (ibuffer-switch-to-saved-filter-groups "default"))))
 
 
 (provide 'init-ibuffer)

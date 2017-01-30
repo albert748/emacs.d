@@ -4,9 +4,19 @@
   :commands avy-goto-subword-1
 
   :config
-  (eval-after-load "dired"
-    '(progn
-       (define-key dired-mode-map (kbd ";") 'avy-goto-subword-1))))
+  ;; (with-eval-after-load 'dired
+  ;;   (define-key dired-mode-map (kbd ";") 'avy-goto-subword-1))
+  (use-package dired
+    :ensure nil
+    :bind (:map dired-mode-map
+                (";" . avy-goto-subword-1)))
+
+  ;; (with-eval-after-load 'ibuffer
+  ;;   (define-key ibuffer-mode-map (kbd ";") 'avy-goto-subword-1))
+  (use-package ibuffer
+    :ensure nil
+    :bind (:map ibuffer-mode-map
+                (";" . avy-goto-subword-1))))
 ;; }}
 
 ;; {{ ace-link
