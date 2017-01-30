@@ -1,3 +1,10 @@
+(use-package dired
+  :ensure nil
+  :config
+  (use-package dired+
+    ;; @see https://www.emacswiki.org/emacs/DiredReuseDirectoryBuffer
+    :init (diredp-toggle-find-file-reuse-dir 1)))
+
 (add-hook 'dired-mode-hook 'turn-on-stripe-buffer-mode)
 
 ;; search file name only when focus is over file
