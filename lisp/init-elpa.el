@@ -81,7 +81,7 @@ But you may use safer HTTPS instead.")
         git-messenger
         git-gutter
         git-timemachine
-        paredit
+        ;; paredit
         dictionary
         rvm
         nvm

@@ -1,5 +1,7 @@
+;; -*- origami-fold-style: triple-braces -*-
+
 (use-package avy
-  ;; {{ avy, jump between texts, like easymotion in vim, replace ace-jump-mode
+  ;; {{{ avy, jump between texts, like easymotion in vim, replace ace-jump-mode
   ;; @see http://emacsredux.com/blog/2015/07/19/ace-jump-mode-is-dead-long-live-avy/ for more tips
   :commands avy-goto-subword-1
 
@@ -17,12 +19,12 @@
     :ensure nil
     :bind (:map ibuffer-mode-map
                 (";" . avy-goto-subword-1))))
-;; }}
+;; }}}
 
-;; {{ ace-link
+;; {{{ ace-link
 ;; (ace-link-setup-default)
 ;; (global-set-key (kbd "M-o") 'ace-link-addr)
-;; ;; }}
+;; ;; }}}
 (use-package ace-link
   :init (ace-link-setup-default))
 

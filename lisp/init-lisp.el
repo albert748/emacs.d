@@ -25,17 +25,17 @@
 ;; A quick way to jump to the definition of a function given its key binding
 (global-set-key (kbd "C-h K") 'find-function-on-key)
 
-(eval-after-load 'paredit
-  '(progn
-     (diminish 'paredit-mode " Par")))
+;; (eval-after-load 'paredit
+;;   '(progn
+;;      (diminish 'paredit-mode " Par")))
 
 
-(defvar paredit-minibuffer-commands '(eval-expression
-                                      pp-eval-expression
-                                      eval-expression-with-eldoc
-                                      ibuffer-do-eval
-                                      ibuffer-do-view-and-eval)
-  "Interactive commands for which paredit should be enabled in the minibuffer.")
+;; (defvar paredit-minibuffer-commands '(eval-expression
+;;                                       pp-eval-expression
+;;                                       eval-expression-with-eldoc
+;;                                       ibuffer-do-eval
+;;                                       ibuffer-do-view-and-eval)
+;;   "Interactive commands for which paredit should be enabled in the minibuffer.")
 
 ;; ----------------------------------------------------------------------------
 ;; Highlight current sexp
@@ -51,7 +51,7 @@
 ;; ----------------------------------------------------------------------------
 (defun sanityinc/lisp-setup ()
   "Enable features useful in any Lisp mode."
-  (enable-paredit-mode)
+  ;; (enable-paredit-mode)
   (rainbow-delimiters-mode t)
   (turn-on-eldoc-mode))
 

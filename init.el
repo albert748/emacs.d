@@ -145,6 +145,9 @@ support symbolic link.")
   (require 'init-httpd)
 
   (require 'init-ggtags)
+
+  (require 'init-smartparens)
+  (require 'init-origami)
   ;; projectile costs 7% startup time
 
   ;; misc has some crucial tools I need immediately

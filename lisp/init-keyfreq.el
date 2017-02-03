@@ -167,13 +167,13 @@
         org-self-insert-command
         org-todo
         package-menu-execute
-        paredit-doublequote
-        paredit-backward-delete
-        paredit-backward-kill-word
-        paredit-close-round
-        paredit-newline
-        paredit-open-round
-        paredit-semicolon
+        ;; paredit-doublequote
+        ;; paredit-backward-delete
+        ;; paredit-backward-kill-word
+        ;; paredit-close-round
+        ;; paredit-newline
+        ;; paredit-open-round
+        ;; paredit-semicolon
         pcomplete
         previous-history-element
         previous-line

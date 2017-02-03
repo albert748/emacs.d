@@ -1,17 +1,8 @@
 (use-package evil
-  :init
   ;; globally enable evil-mode
-  (evil-mode)
+  :init (evil-mode)
 
   :config
-  ;; @see https://bitbucket.org/lyro/evil/issue/342/evil-default-cursor-setting-should-default
-  ;; cursor is alway black because of evil
-  ;; here is the workaround
-  ;; (setq evil-default-cursor t)
-
-  ;; Move back the cursor one position when exiting insert mode
-  ;; (setq evil-move-cursor-back t)
-
   ;; @see https://bitbucket.org/lyro/evil/issue/360/possible-evil-search-symbol-forward
   ;; evil 1.0.8 search word instead of symbol
   (setq evil-symbol-word-search t)
