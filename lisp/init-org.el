@@ -191,6 +191,8 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   :bind*
   (("C-c a" . org-agenda)
    ("C-c c" . org-capture))
+
+  ;; FIXME: package not pined to melpa instead of built-in used.
   :pin org
 
   :config

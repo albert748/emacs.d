@@ -1,6 +1,12 @@
 ;; @see https://github.com/tumashu/chinese-pyim
 
 (use-package chinese-pyim
+  :bind
+  (("M-j" . pyim-convert-code-at-point))
+
+  :init
+  (setq default-input-method "chinese-pyim")
+
   :config
   ;; 激活 basedict 拼音词库
   (use-package chinese-pyim-basedict
@@ -9,7 +15,6 @@
   (use-package chinese-pyim-greatdict
     :config (chinese-pyim-greatdict-enable))
 
-  (setq default-input-method "chinese-pyim")
   (setq pyim-default-scheme 'quanpin)
   (setq pyim-page-tooltip 'popup) ; use popup.el for drawing
   (setq pyim-page-length 5)
@@ -24,28 +29,56 @@
   (setq pyim-directory (concat my-emacs-private-directory "/pyim"))
   (setq pyim-dcache-directory (concat my-emacs-private-directory "/pyim/dcache"))
 
+  (defun my-pyim-probe-dynamic-english ()
+    "the same like pyim-probe-dynamic-english, but used to for half width punctuation.
+
+the only difference is: not only check char before the point, but
+also look back another 1 char position.  this make sense for half
+width punctuation."
+    (let ((str-before-1 (pyim-char-before-to-string 0))
+          (str-before-2 (pyim-char-before-to-string 1)))
+      (unless (string= (buffer-name) " *temp*") ; Make sure this probe can work with exim of exwm.
+        (if (<= (point) (save-excursion (back-to-indentation)
+                                        (point)))
+            (not (or (string-match-p "\\cc" (save-excursion
+                                                   ;; 查找前一个非空格字符。
+                                                   (if (re-search-backward "[^[:space:]\n]" nil t)
+                                                       (char-to-string (char-after (point))))))
+                     (string-match-p "\\cc" (save-excursion
+                                                   ;; 查找前一个非空格字符之前的字符。
+                                                   (if (re-search-backward "[^[:space:]\n]" nil t)
+                                                       (char-to-string (char-before (point))))))
+                     (> (length pyim-entered-code) 0)))
+          ;; at the middle of line
+          (cond ((string-match-p "[[:space:]]" str-before-1))
+                ((not (or (string-match-p "\\cc" str-before-1)
+                          (string-match-p "\\cc" str-before-2)
+                          (> (length pyim-entered-code) 0)))))))))
+
+
   ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
   ;; 我自己使用的中英文动态切换规则是：
   ;; 1. 光标只有在注释里面时，才可以输入中文。
   ;; 2. 光标前是汉字字符时，才能输入中文。
   ;; 3. 使用 M-j 快捷键，强制将光标前的拼音字符串转换为中文。
   (setq-default pyim-english-input-switch-functions
-                '(pyim-probe-dynamic-english
+                '(my-pyim-probe-dynamic-english
                   pyim-probe-isearch-mode
                   pyim-probe-program-mode
-                  pyim-probe-org-structure-template))
+                  pyim-probe-org-structure-template
+                  pyim-probe-evil-normal-mode))
 
-  (setq-default pyim-punctuation-half-width-functions
-                '(pyim-probe-punctuation-line-beginning
-                  pyim-probe-punctuation-after-punctuation))
+  ;; use half width style directly
+  (setq-default pyim-punctuation-translate-p '(no yes auto))
+
+  ;; or use auto detect probe functions
+  ;; (setq-default pyim-punctuation-half-width-functions
+  ;;               '(pyim-probe-punctuation-line-beginning
+  ;;                 pyim-probe-punctuation-after-punctuation))
 
   ;; 让 Emacs 启动时自动加载 pyim 词库
   (add-hook 'emacs-startup-hook
-            #'(lambda () (pyim-restart-1 t)))
-
-  :bind
-  (("M-j" . pyim-convert-code-at-point)
-   ("C-;" . pyim-delete-word-from-personal-buffer)))
+            #'(lambda () (pyim-restart-1 t))))
 
 
 ;; Init chinese pinyin
@@ -76,14 +109,12 @@
     (toggle-input-method)))
   )
 
-(defadvice evil-insert-state (around evil-insert-state-hack activate)
-  ad-do-it
-  (if current-input-method (message "IME on!")))
+;; (defadvice evil-insert-state (around evil-insert-state-hack activate)
+;;   ad-do-it
+;;   (if current-input-method (message "IME on!")))
 
-(global-set-key (kbd "C-\\") 'evil-toggle-input-method)
+;; (global-set-key (kbd "C-\\") 'evil-toggle-input-method)
 ;; }}
-
-;; (setq pyim-punctuation-translate-p nil) ;; use western punctuation (ban jiao fu hao)
 
 ;; (eval-after-load 'chinese-pyim
 ;;   '(progn
