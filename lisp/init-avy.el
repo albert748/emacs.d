@@ -3,22 +3,21 @@
 (use-package avy
   ;; {{{ avy, jump between texts, like easymotion in vim, replace ace-jump-mode
   ;; @see http://emacsredux.com/blog/2015/07/19/ace-jump-mode-is-dead-long-live-avy/ for more tips
-  :commands avy-goto-subword-1
+  :bind ("C-:" . avy-goto-char)
+
+  ;; setup the default shortcuts: bind avy-isearch to C-'
+  :init (avy-setup-default)
 
   :config
-  ;; (with-eval-after-load 'dired
-  ;;   (define-key dired-mode-map (kbd ";") 'avy-goto-subword-1))
   (use-package dired
     :ensure nil
     :bind (:map dired-mode-map
-                (";" . avy-goto-subword-1)))
+                (";" . avy-goto-char)))
 
-  ;; (with-eval-after-load 'ibuffer
-  ;;   (define-key ibuffer-mode-map (kbd ";") 'avy-goto-subword-1))
   (use-package ibuffer
     :ensure nil
     :bind (:map ibuffer-mode-map
-                (";" . avy-goto-subword-1))))
+                (";" . avy-goto-char))))
 ;; }}}
 
 ;; {{{ ace-link
