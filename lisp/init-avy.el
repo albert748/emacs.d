@@ -3,6 +3,7 @@
 (use-package avy
   ;; {{{ avy, jump between texts, like easymotion in vim, replace ace-jump-mode
   ;; @see http://emacsredux.com/blog/2015/07/19/ace-jump-mode-is-dead-long-live-avy/ for more tips
+  ;; @see source code: https://github.com/abo-abo/avy
   :bind ("C-:" . avy-goto-char)
 
   ;; setup the default shortcuts: bind avy-isearch to C-'

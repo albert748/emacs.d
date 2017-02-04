@@ -1,6 +1,17 @@
 (use-package evil
   ;; globally enable evil-mode
-  :init (evil-mode)
+  :init
+  (evil-mode)
+
+  ;; I'd perfer Emacs style rectangle instead of visual block, restore
+  ;; this key to scroll-up-command, and rebind keys.
+  (unbind-key "C-v" evil-motion-state-map)
+  (unbind-key "v" evil-motion-state-map)
+  (unbind-key "V" evil-motion-state-map)
+  (bind-keys :map evil-motion-state-map
+             ("vc" . evil-visual-char)
+             ("vl" . evil-visual-line)
+             ("vb" . evil-visual-block))
 
   :config
   ;; @see https://bitbucket.org/lyro/evil/issue/360/possible-evil-search-symbol-forward
