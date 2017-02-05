@@ -188,9 +188,12 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
 ;; }}
 
 (use-package org
+  ;; FIXME: the key bind to evilnc-copy-and-comment-lines
   :bind*
+  (("C-c c" . org-capture))
+  :bind
   (("C-c a" . org-agenda)
-   ("C-c c" . org-capture))
+   ("C-c C-x C-j" . org-clock-goto))
 
   ;; FIXME: package not pined to melpa instead of built-in used.
   :pin org
