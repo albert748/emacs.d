@@ -7,9 +7,10 @@
 (use-package elpy
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python[0-9.]*" . python-mode)
+
   :config
-  ;; run command `pip install jedi flake8 importmagic` in shell,
-  ;; or just check https://github.com/jorgenschaefer/elpy
+  ;; run command `pip install jedi flake8 importmagic autopep8 yapf` in shell,
+  ;; or check https://github.com/jorgenschaefer/elpy
   (elpy-enable)
 
   ;; there exist completion issue on rope, use jedi instead.
