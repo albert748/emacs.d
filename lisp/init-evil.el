@@ -57,6 +57,8 @@
           (etags-select-mode . normal)
           (js2-error-buffer-mode . emacs)
           (git-status-mode . emacs)
+          (rmail-mode . emacs)
+          (rmail-summary-mode . emacs)
           )
         do (evil-set-initial-state mode state))
 

@@ -83,7 +83,7 @@
       ;; emacs 24.4+ will set up eldoc automatically.
       ;; so below code is NOT needed.
       (setq-local eldoc-documentation-function #'ggtags-eldoc-function)
-      (eldoc-mode 1))
+      (eldoc-mode))
     ))
 (add-hook 'c-mode-common-hook 'c-mode-common-hook-setup)
 

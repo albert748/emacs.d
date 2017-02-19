@@ -83,11 +83,8 @@
   :ensure nil                           ; built-in package
   :defer t
   :config
-  (use-package eldoc
-    :ensure nil                         ; built-in package
-    :init (eldoc-mode)
-    :config
-    ;; (setq eldoc-echo-area-use-multiline-p t)
-    (setq eldoc-idle-delay 0.2)))
+  ;; eldoc will be setup automatically by emacs
+  ;; (setq eldoc-echo-area-use-multiline-p t)
+  (setq eldoc-idle-delay 0.2))
 
 (provide 'init-elisp)
