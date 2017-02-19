@@ -1,3 +1,16 @@
+;; {{ vimrc-mode
+;; (add-to-list 'auto-mode-alist '("\\.vim\\'" . vimrc-mode))
+;; (add-to-list 'auto-mode-alist '("[._]?g?vimrc\\'" . vimrc-mode))
+;; (add-to-list 'auto-mode-alist '("\\.exrc\\'" . vimrc-mode))
+(use-package vimrc-mode
+  :defer t)
+;; }}
+
+(use-package pdf-tools
+  ;; awesome PDF mode better then DocView, @see https://github.com/politza/pdf-tools
+  ;; you need install poppler-glib to compile the server.
+  :init (pdf-tools-install))
+
 (use-package sh-script
   :ensure nil                           ; built-in package
   ;; FIXME: merge all together
@@ -432,9 +445,6 @@ See \"Reusing passwords for several connections\" from INFO.
 ;; (when (display-graphic-p)
 ;;   (global-set-key (kbd "C-=") 'text-scale-increase)
 ;;   (global-set-key (kbd "C--") 'text-scale-decrease))
-
-;; vimrc
-(add-to-list 'auto-mode-alist '("\\.?vim\\(rc\\)?$" . vimrc-mode))
 
 ;; {{ show email sent by `git send-email' in gnus
 (eval-after-load 'gnus
