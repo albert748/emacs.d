@@ -2,7 +2,7 @@
   :ensure nil                           ; built-in package
   :init (global-linum-mode)
   :config
-  ;; updated line number every second
+  ;; update line number every second
   (setq linum-delay t)
   (defadvice linum-schedule (around my-linum-schedule () activate)
     (run-with-idle-timer 1 nil #'linum-update-current))
@@ -44,7 +44,14 @@
                                         speedbar-mode
                                         gnus-summary-mode
                                         gnus-article-mode
-                                        calendar-mode))
+                                        calendar-mode
+                                        ;; @see http://emacs.stackexchange.com/questions/5702/emacs-got-frozen-when-open-pdf-file
+                                        doc-view-mode
+                                        pdf-view-mode
+                                        image-mode
+                                        image-dired-thumbnail-mode
+                                        image-dired-display-image-mode))
+
   (defadvice linum-on (around linum-on-inhibit-for-modes)
     "Stop the load of linum-mode for some major modes."
     (unless (member major-mode linum-mode-inhibit-modes-list)
