@@ -59,6 +59,9 @@
           (git-status-mode . emacs)
           (rmail-mode . emacs)
           (rmail-summary-mode . emacs)
+          (image-mode . emacs)
+          (image-dired-thumbnail-mode . emacs)
+          (image-dired-display-image-mode . emacs)
           )
         do (evil-set-initial-state mode state))
 

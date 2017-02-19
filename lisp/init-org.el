@@ -202,7 +202,7 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   ;; org mode use truncate-lines as default, reset it to nil.
   ;; we do not want to use word-wrap, beacause it's ugly for chinese.
   ;; FIXME: word-wrap chinese only.
-  (setq truncate-lines nil)
+  (setq-default truncate-lines nil)
 
   ;; Various preferences
   (setq org-log-done t           ; basic logging when move to DONE state
