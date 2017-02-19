@@ -772,4 +772,10 @@ If step is -1, go backward."
       (message (format "%s => kill-ring&clipboard" rlt)))))
 ;; }}
 
+;; Highlight FIXME TODO BUG keywords
+(use-package fic-mode
+  :defer t
+  :init
+  (add-hook 'prog-mode-hook 'fic-mode))
+
 (provide 'init-misc)
