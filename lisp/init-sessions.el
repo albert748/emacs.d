@@ -1,10 +1,13 @@
-;; save a list of open files in ~/.emacs.d/.emacs.desktop
-;; save the desktop file automatically if it already exists
-(setq desktop-path '("~/.emacs.d"))
-(setq desktop-save 'if-exists)
-;; @see https://github.com/purcell/emacs.d/issues/352
-(setq desktop-restore-frames nil)
-(desktop-save-mode 1)
+(use-package desktop
+  :ensure nil
+  :init (desktop-save-mode)
+  :config
+  ;; save a list of open files in ~/.emacs.d/.emacs.desktop
+  ;; save the desktop file automatically if it already exists
+  (setq desktop-path '("~/.emacs.d"))
+  (setq desktop-save 'if-exists)
+  ;; @see https://github.com/purcell/emacs.d/issues/352
+  (setq desktop-restore-frames nil))
 
 ;;----------------------------------------------------------------------------
 ;; Restore histories and registers after saving

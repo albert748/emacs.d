@@ -8,11 +8,12 @@
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python[0-9.]*" . python-mode)
 
-  :config
+  :init
   ;; run command `pip install jedi flake8 importmagic autopep8 yapf` in shell,
   ;; or check https://github.com/jorgenschaefer/elpy
   (elpy-enable)
 
+  :config
   ;; there exist completion issue on rope, use jedi instead.
   ;; see https://github.com/jorgenschaefer/elpy/issues/631
   (setq elpy-rpc-backend "jedi")

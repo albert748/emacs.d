@@ -22,6 +22,16 @@
   ;; Make sure you've installed python and python-pygments from package manager.
   (setq ggtags-process-environment (list "GTAGSLABEL=pygments"))
 
+  ;; due to Gnu global DO NOT SUPPORT compressed source files.
+  ;; To enable emacs libary search (assume pwd is /usr/share/emacs)
+  ;; 1. extract all *.el.gz files: find . -type f -name "*.el.gz" -exec gunzip {} \;
+  ;; 2. prepare gtags.files: find . -type f -name "*.el" > gtags.files
+  ;; 2. create tags files on there (may take long time): gtags -v --gtagslabel pygments
+  ;; 3. do not forget to add emacs package upgrade hook and re-decompress source files.
+  ;; @see https://www.gnu.org/software/global/globaldoc_toc.html#Applied-usage
+  ;; FIXME: Add function for adding user-defined lib path
+  (push "GTAGSLIBPATH=/usr/share/emacs" ggtags-process-environment)
+
   (ggtags-mode))
 
 
