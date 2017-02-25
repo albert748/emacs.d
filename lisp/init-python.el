@@ -14,6 +14,12 @@
   (elpy-enable)
 
   :config
+  ;; enable yasnippet completion with company
+  (advice-add 'elpy-modules-buffer-init :after
+              (lambda ()
+                (if (memq 'elpy-company-backend company-backends)
+                    (setq company-backends (cons '(elpy-company-backend company-yasnippet) (delq 'elpy-company-backend company-backends))))))
+
   ;; there exist completion issue on rope, use jedi instead.
   ;; see https://github.com/jorgenschaefer/elpy/issues/631
   (setq elpy-rpc-backend "jedi")

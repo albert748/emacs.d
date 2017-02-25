@@ -1,3 +1,18 @@
+(use-package flyspell
+  :ensure nil
+  :bind ("C-c s" . flyspell-auto-correct-word)
+  ;; you can also use "M-x ispell-word" or hotkey "M-$". It pop up a multiple choice
+  ;; @see http://frequal.com/Perspectives/EmacsTip03-FlyspellAutoCorrectWord.html
+  ;; (global-set-key (kbd "C-c s") 'flyspell-auto-correct-word)
+
+  :config
+  ;; better performance
+  (setq flyspell-issue-message-flag nil)
+
+  (use-package flyspell-lazy
+    :config (flyspell-lazy-mode)))
+
+
 ;; flyspell set up for web-mode
 (defun web-mode-flyspell-verify ()
   (let ((f (get-text-property (- (point) 1) 'face))
@@ -32,13 +47,6 @@
 
 (put 'web-mode 'flyspell-mode-predicate 'web-mode-flyspell-verify)
 
-(eval-after-load 'flyspell
-  '(progn
-     (require 'flyspell-lazy)
-     (flyspell-lazy-mode 1)))
-
-;; better performance
-(setq flyspell-issue-message-flag nil)
 
 ;; if (aspell installed) { use aspell}
 ;; else if (hunspell installed) { use hunspell }
@@ -140,11 +148,6 @@ Please note RUN-TOGETHER will make aspell less capable. So it should only be use
 
 (if (can-enable-flyspell-mode)
     (add-hook 'prog-mode-hook 'flyspell-prog-mode))
-
-
-;; you can also use "M-x ispell-word" or hotkey "M-$". It pop up a multiple choice
-;; @see http://frequal.com/Perspectives/EmacsTip03-FlyspellAutoCorrectWord.html
-(global-set-key (kbd "C-c s") 'flyspell-auto-correct-word)
 
 ;; {{ avoid spell-checking doublon (double word) in certain major modes
 (defvar flyspell-check-doublon t

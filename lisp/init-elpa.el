@@ -5,19 +5,28 @@
   "By default, HTTP is used to download packages.
 But you may use safer HTTPS instead.")
 
+;; for tsinghua mirror @see https://mirror.tuna.tsinghua.edu.cn/help/elpa/
+;; and also @see https://elpa.emacs-china.org/index-en.html
+;; FIXME: enable mirror site use toggle variable
 (if melpa-use-https-repo
     (setq package-archives
           '(;; uncomment below line if you need use GNU ELPA
             ;; ("gnu" . "https://elpa.gnu.org/packages/")
-            ("org" . "http://orgmode.org/elpa/")  ; only http supported
+            ;; ("org" . "http://orgmode.org/elpa/")  ; only http supported
             ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
-            ("melpa" . "https://melpa.org/packages/")))
+            ;; ("melpa" . "https://melpa.org/packages/")
+            ("ts-org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+            ("ts-melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+	    ))
   (setq package-archives
         '(;; uncomment below line if you need use GNU ELPA
           ;; ("gnu" . "http://elpa.gnu.org/packages/")
-          ("org" . "http://orgmode.org/elpa/")
+          ;; ("org" . "http://orgmode.org/elpa/")
           ;; ("melpa-stable" . "http://stable.melpa.org/packages/")
-          ("melpa" . "http://melpa.org/packages/"))))
+          ;; ("melpa" . "http://melpa.org/packages/")
+          ("ts-org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+          ("ts-melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+	  )))
 
 (setq package-menu-hide-low-priority t)
 

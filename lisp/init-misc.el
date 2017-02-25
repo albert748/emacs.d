@@ -1,3 +1,6 @@
+(use-package powerline
+  :init (powerline-default-theme))
+
 ;; {{ vimrc-mode
 ;; (add-to-list 'auto-mode-alist '("\\.vim\\'" . vimrc-mode))
 ;; (add-to-list 'auto-mode-alist '("[._]?g?vimrc\\'" . vimrc-mode))

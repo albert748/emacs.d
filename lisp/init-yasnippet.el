@@ -17,8 +17,9 @@
   (yas-reload-all)
 
   (defun yasnippet-generic-setup-for-mode-hook ()
-    (unless (is-buffer-file-temp)
-      (yas-minor-mode 1)))
+    ;; to enable yas on scratch buffers, do not compare temp.
+    ;; (unless (is-buffer-file-temp)
+    (yas-minor-mode 1))
 
   (add-hook 'prog-mode-hook 'yasnippet-generic-setup-for-mode-hook)
   (add-hook 'text-mode-hook 'yasnippet-generic-setup-for-mode-hook)

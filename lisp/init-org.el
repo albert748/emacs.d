@@ -196,7 +196,7 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
    ("C-c C-x C-j" . org-clock-goto))
 
   ;; FIXME: package not pined to melpa instead of built-in used.
-  :pin org
+  ;; :pin org
 
   :config
   ;; org mode use truncate-lines as default, reset it to nil.

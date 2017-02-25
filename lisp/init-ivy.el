@@ -1,4 +1,5 @@
 (use-package swiper
+  :commands swiper
   :config
   ;; {{ swiper&ivy-mode
   (defun swiper-the-thing ()
@@ -6,7 +7,8 @@
     (swiper (my-use-selected-string-or-ask "")))
   ;; }}
 
-  :bind ("C-s" . swiper))
+  ;; :bind ("C-s" . swiper)
+  )
 
 
 ;; {{ @see http://oremacs.com/2015/04/19/git-grep-ivy/
