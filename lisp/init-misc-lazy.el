@@ -199,8 +199,7 @@ grab matched string, cssize them, and insert into kill ring"
                   ".git"
                   ".cvs"
                   ".svn"
-                  ".hg"
-                  "elpa"))
+                  ".hg"))
        (add-to-list 'grep-find-ignored-directories v))
      ))
 
