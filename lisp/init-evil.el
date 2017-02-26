@@ -62,6 +62,7 @@
           (image-mode . emacs)
           (image-dired-thumbnail-mode . emacs)
           (image-dired-display-image-mode . emacs)
+          (inferior-python-mode . emacs)
           )
         do (evil-set-initial-state mode state))
 

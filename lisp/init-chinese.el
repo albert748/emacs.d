@@ -16,9 +16,21 @@
     :config (chinese-pyim-greatdict-enable))
 
   (setq pyim-default-scheme 'quanpin)
-  (setq pyim-page-tooltip 'popup) ; use popup.el for drawing
+
+  ;; popup.el have performance issue, use pos-tip instead
+  ;; (setq pyim-page-tooltip 'popup) ; use popup.el for drawing
+  (setq pyim-page-tooltip 'pos-tip)
+
+  ;; temprarily disable company-mode if input chinese
+  (defun pyim-input-method-company-only-ascii (func key-or-string)
+    (if (pyim-input-chinese-p)
+        (company-cancel))
+    (funcall func key-or-string))
+  (advice-add 'pyim-input-method :around #'pyim-input-method-company-only-ascii)
+
   (setq pyim-page-length 5)
 
+  ;; enable chinese pinyin search for isearch
   (setq pyim-isearch-enable-pinyin-search t)
 
   ;; FIXME: these varables are not used by newest chiense-pyim anymore.
