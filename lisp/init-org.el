@@ -199,6 +199,7 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   ;; :pin org
 
   :config
+  ;; auto load language before evaluate
   (defadvice org-babel-execute-src-block (around load-language nil activate)
     "Load language on-demand"
     (let ((language (org-element-property :language (org-element-at-point))))
@@ -206,6 +207,15 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
         (add-to-list 'org-babel-load-languages (cons (intern language) t))
         (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
       ad-do-it))
+
+  ;; assume all files inside org-directory is safe
+  (defun org-confirm-babel-evaluate-safe-directory (lang body)
+    "Return nil if file is one of agenda files"
+    (not (member buffer-file-name (org-agenda-files))))
+  (setq org-confirm-babel-evaluate 'org-confirm-babel-evaluate-safe-directory)
+
+  ;; perfer to use bash
+  (setq org-babel-sh-command "bash")
 
   ;; org mode use truncate-lines as default, reset it to nil.
   ;; we do not want to use word-wrap, beacause it's ugly for chinese.
