@@ -1,6 +1,9 @@
 (use-package dired
   :ensure nil
   :config
+  ;; store thumbnail images to cache directory
+  (setq image-dired-dir (expand-file-name "image-dired/" my-emacs-cache-directory))
+
   (use-package dired+
     ;; @see https://www.emacswiki.org/emacs/DiredReuseDirectoryBuffer
     :init (diredp-toggle-find-file-reuse-dir 1)))

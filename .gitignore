@@ -55,6 +55,7 @@ srecode-map.el
 custom-set-variables.el
 
 # GNU Global
+ID
 GTAGS
 GPATH
 GRTAGS

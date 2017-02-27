@@ -10,14 +10,14 @@
     (string-trim (buffer-string))))
 
 (defvar my-emacs-cache-directory
-  (concat (or (getenv "XDG_CACHE_HOME") "~/.cache/") "/emacs/")
+  (expand-file-name "emacs/" (or (getenv "XDG_CACHE_HOME") "~/.cache/"))
   "Global cache directory for emacs, used to store cache files.
 useful for chinese-pyim cache.")
 
 (defvar my-emacs-private-directory
   (if (file-exists-p "~/.emacs.custom.cfg")
       (get-string-from-file "~/.emacs.custom.cfg")
-    (concat (or (getenv "XDG_CONFIG_HOME") "~/.config/") "/emacs/"))
+    (expand-file-name "emacs/" (or (getenv "XDG_CONFIG_HOME") "~/.config/")))
   "Global personal configuration directory for emacs.
 used to store sensitive personal data like input method user
 dict. If you want to specify the private synchronized directory
