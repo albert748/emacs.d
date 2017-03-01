@@ -63,6 +63,10 @@
           (image-dired-thumbnail-mode . emacs)
           (image-dired-display-image-mode . emacs)
           (inferior-python-mode . emacs)
+          (ein:notebooklist-mode . emacs)
+          ;; (ein:notebook-multilang-mode . emacs)
+          (ein:shared-output-mode . emacs)
+          (ein:traceback-mode . emacs)
           )
         do (evil-set-initial-state mode state))
 

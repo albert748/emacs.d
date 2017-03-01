@@ -2,7 +2,17 @@
 (use-package ob-ipython)
 
 ;; ipython notebook support
-(use-package ein)
+(use-package ein
+  :config
+  ;; Do not have to ask commands every time. also, don't forget to set `ein:jupyter-default-notebook-directory' as below:
+  ;; (with-eval-after-load 'ein-jupyter
+  ;;   (setq ein:jupyter-default-notebook-directory (expand-file-name "~/Sync/default/ein")))
+  (setq ein:jupyter-default-server-command (executable-find "jupyter"))
+
+  ;; you must have jupyter-console > 5.1 to make simple-prompt work.
+  ;; @see https://github.com/jupyter/jupyter_console/issues/93
+  (setq ein:console-args '("--simple-prompt"))
+  )
 
 (use-package elpy
   :mode ("\\.py\\'" . python-mode)

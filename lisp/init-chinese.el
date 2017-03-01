@@ -20,6 +20,7 @@
   ;; popup.el have performance issue, use pos-tip instead
   ;; (setq pyim-page-tooltip 'popup) ; use popup.el for drawing
   (setq pyim-page-tooltip 'pos-tip)
+  (setq x-gtk-use-system-tooltips t) ; builtin emacs implementation have performance issue.
 
   ;; temprarily disable company-mode if input chinese
   (defun pyim-input-method-company-only-ascii (func key-or-string)

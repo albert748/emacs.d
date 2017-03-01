@@ -1,7 +1,7 @@
 ;; @see https://github.com/xuchunyang/youdao-dictionary.el
 
 (use-package youdao-dictionary
-  :bind ("C-c u" . youdao-dictionary-search-at-point)
+  :bind ("C-c u" . youdao-dictionary-search-at-point+)
   :config
   ;; Enable Cache
   (setq url-automatic-caching t)

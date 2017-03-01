@@ -57,6 +57,7 @@
                              (mode . org-mode)
                              (mode . org-agenda-mode)
                              ))
+                 ("IPython Notebook" (name . "^\\*ein:*"))
                  ("emacs" (or
                            (name . "^\\*scratch\\*$")
                            (name . "^\\*Messages\\*$")))
