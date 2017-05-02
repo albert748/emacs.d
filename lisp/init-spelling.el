@@ -94,6 +94,7 @@ Please note RUN-TOGETHER will make aspell less capable. So it should only be use
   (setq ispell-program-name "aspell"))
  ((executable-find "hunspell")
   (setq ispell-program-name "hunspell")
+  ;; FIXME: Check dictionary exist or not
   (setq ispell-local-dictionary "en_US")
   (setq ispell-local-dictionary-alist
         '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8))))

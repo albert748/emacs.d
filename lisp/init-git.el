@@ -1,3 +1,23 @@
+(use-package git-gutter
+  :init
+  (global-git-gutter-mode)
+  (git-gutter:linum-setup)
+
+  :bind
+  (("C-x C-g" . git-gutter)
+   ("C-x v =" . git-gutter:popup-hunk)
+   ("C-x p" . git-gutter:previous-hunk)
+   ("C-x n" . git-gutter:next-hunk)
+   ("C-x v s" . git-gutter:stage-hunk)
+   ("C-x v r" . git-gutter:revert-hunk)
+   ("C-x v SPC" . git-gutter:mark-hunk))
+
+  :config
+
+  ;; update by idle time
+  (setq git-gutter:update-interval 2)
+  (setq git-gutter:handled-backends '(git svn)))
+
 ;; Solution 1: disable all vc backends
 ;; @see http://stackoverflow.com/questions/5748814/how-does-one-disable-vc-git-in-emacs
 ;; (setq vc-handled-backends ())
@@ -29,7 +49,7 @@
 ;; (add-hook 'c-mode-hook 'my-setup-develop-environment)
 
 ;; {{ git-gutter
-(require 'git-gutter)
+;; (require 'git-gutter)
 
 (defun git-gutter-reset-to-head-parent()
   (interactive)
@@ -47,22 +67,22 @@
 
 
 ;; If you enable global minor mode
-(global-git-gutter-mode t)
+;; (global-git-gutter-mode t)
 
 ;; nobody use bzr
 ;; people are forced use subversion or hg, so they take priority
-(custom-set-variables '(git-gutter:handled-backends '(svn hg git)))
+;; (custom-set-variables '(git-gutter:handled-backends '(svn hg git)))
 
-(git-gutter:linum-setup)
+;; (git-gutter:linum-setup)
 
 ;; git-gutter:toggle is obsolete since 0.86
 ;; (global-set-key (kbd "C-x C-g") 'git-gutter:toggle)
-(global-set-key (kbd "C-x C-g") 'git-gutter-mode)
-(global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
+;; (global-set-key (kbd "C-x C-g") 'git-gutter-mode)
+;; (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
 ;; Stage current hunk
-(global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
+;; (global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
 ;; Revert current hunk
-(global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
+;; (global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
 ;; }}
 
 ;; {{ git-timemachine
