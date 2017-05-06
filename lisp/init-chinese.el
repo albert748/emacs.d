@@ -12,15 +12,19 @@
   (use-package chinese-pyim-basedict
     :config (chinese-pyim-basedict-enable))
 
+  ;; use greatdict under MacOS may hang up the system
   (use-package chinese-pyim-greatdict
+    :if (eq window-system 'x)
     :config (chinese-pyim-greatdict-enable))
 
   (setq pyim-default-scheme 'quanpin)
 
-  ;; popup.el have performance issue, use pos-tip instead
+  ;; popup.el not perform as quick as pos-tip, but It's little ugly
+  ;; under MacOS
   ;; (setq pyim-page-tooltip 'popup) ; use popup.el for drawing
   (setq pyim-page-tooltip 'pos-tip)
-  (setq x-gtk-use-system-tooltips t) ; builtin emacs implementation have performance issue.
+  ;; builtin emacs implementation have performance issue.
+  (setq x-gtk-use-system-tooltips t)
 
   ;; temprarily disable company-mode if input chinese
   (defun pyim-input-method-company-only-ascii (func key-or-string)

@@ -68,6 +68,7 @@
           (ein:shared-output-mode . emacs)
           (ein:traceback-mode . emacs)
           (pdf-occur-buffer-mode . emacs)
+          (pyim-dicts-manager . emacs)
           )
         do (evil-set-initial-state mode state))
 
