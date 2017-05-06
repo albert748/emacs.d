@@ -245,7 +245,7 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
         ;; {{ org 8.2.6 has some performance issue. Here is the workaround.
         ;; @see http://punchagan.muse-amuse.in/posts/how-i-learnt-to-use-emacs-profiler.html
         org-agenda-inhibit-startup t ;; ~50x speedup
-        org-agenda-use-tag-inheritance nil ;; 3-4x speedup
+        ;; org-agenda-use-tag-inheritance nil ;; 3-4x speedup
         ;; }}
         )
 
