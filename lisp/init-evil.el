@@ -67,6 +67,7 @@
           ;; (ein:notebook-multilang-mode . emacs)
           (ein:shared-output-mode . emacs)
           (ein:traceback-mode . emacs)
+          (pdf-occur-buffer-mode . emacs)
           )
         do (evil-set-initial-state mode state))
 
