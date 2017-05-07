@@ -31,14 +31,82 @@ But you may use safer HTTPS instead.")
 (setq package-menu-hide-low-priority t)
 
 (setq package-selected-packages
-      '(ace-mc
+      '(
+        ;; essential pacakges
+        use-package
+        company
+        yasnippet
+        restart-emacs
+        dired+
+        which-key
+        smartparens
+        origami
+
+        ;; themes
+        zenburn-theme
+        molokai-theme
+
+        ;; variety of editing modes
+        vimrc-mode
+        markdown-mode
+        yaml-mode
+        cmake-mode
+        js2-mode
+        crontab-mode
+        pkgbuild-mode
+        lua-mode
+        systemd
+        go-mode
+        ;; groovy-mode
+        ;; csharp-mode
+        ;; powershell
+
+        ;; functional helper modes
+        fic-mode
+        artbollocks-mode
+        textile-mode
+
+        ;; python
+        ein
+        elpy
+        ob-ipython
+
+        ;; evils
+        evil
+        evil-matchit
+        evil-visualstar
+        evil-surround
+        evil-exchange
+        evil-mark-replace
+        evil-escape
+        evil-numbers
+        evil-nerd-commenter
+
+        counsel
+        flx-ido
+
+        avy
+        ace-link
+
+        ace-mc
+        ace-window
+        ace-pinyin
+        chinese-pyim
+        chinese-pyim-basedict
+        chinese-pyim-greatdict
+        chinese-fonts-setup
+        youdao-dictionary
+        fcitx                           ; need fcitx-remote support
+
+        ggtags
+        pdf-tools
+        powerline
+
         bbdb
         wgrep
         robe
         inf-ruby
-        company ; I won't wait another 2 years for stable
         simple-httpd
-        dsvn
         move-text
         string-edit ; looks magnars don't update stable tag frequently
         findr
@@ -59,37 +127,40 @@ But you may use safer HTTPS instead.")
         flymake-lua
         multi-term
         inflections
-        lua-mode
         tidy
         auto-compile
         packed
-        gitconfig-mode
         w3m
-        erlang
+        ;; erlang
         workgroups2
         company-c-headers
-        go-mode
+
         org
         org-plus-contrib
-        fcitx                           ; need fcitx-remote support
-        restclient
+        org-download
+
+
+        ;; version control
         magit
-        powershell
-        use-package
-        smex
-        auto-yasnippet
-        expand-region
-        fringe-helper
-        gitignore-mode
-        request
-        rinari
-        hydra
-        define-word
-        neotree
         git-link
         git-messenger
         git-gutter
         git-timemachine
+        gitconfig-mode
+        gitignore-mode
+        yagist
+        ibuffer-vc
+        dsvn
+
+        restclient
+        smex
+        auto-yasnippet
+        expand-region
+        fringe-helper
+        rinari
+        hydra
+        define-word
+        neotree
         ;; paredit
         dictionary
         rvm
@@ -99,22 +170,18 @@ But you may use safer HTTPS instead.")
         flymake-jslint
         flymake-coffee
         ;; coffee-mode
-        yasnippet
         cliphist
         tagedit
-        yagist
         writeroom-mode
         haml-mode
         scss-mode
         rainbow-delimiters
-        js2-mode
         flyspell-lazy
         cpputils-cmake
         unfill
         emmet-mode
         page-break-lines
         less-css-mode
-        ibuffer-vc
         hl-sexp
         find-file-in-project
         exec-path-from-shell
