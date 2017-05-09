@@ -18,6 +18,9 @@
   ;; evil 1.0.8 search word instead of symbol
   (setq evil-symbol-word-search t)
 
+  ;; need to work with smartparens
+  (setq evil-move-beyond-eol t)
+
   (loop for (mode . state) in
         '((diff-mode . emacs)           ; to make 'q' take effect anyway
           (minibuffer-inactive-mode . emacs)

@@ -309,9 +309,10 @@
     ;; enable for all programming modes
     ;; http://emacsredux.com/blog/2013/04/21/camelcase-aware-editing/
     (subword-mode)
+
     ;; setting this may conflict with smartparens, which insert another double quotes.
     ;; (setq-default electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
-    (electric-pair-mode 1)
+    ;; (electric-pair-mode 1)
 
     ;; eldoc, show API doc in minibuffer echo area
     ;; (turn-on-eldoc-mode)

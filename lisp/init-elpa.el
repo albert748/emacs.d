@@ -73,6 +73,7 @@ But you may use safer HTTPS instead.")
 
         ;; evils
         evil
+        evil-smartparens
         evil-matchit
         evil-visualstar
         evil-surround
