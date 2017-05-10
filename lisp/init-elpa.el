@@ -91,6 +91,8 @@ But you may use safer HTTPS instead.")
 
         ace-mc
         ace-window
+
+        ;; chinese
         ace-pinyin
         chinese-pyim
         chinese-pyim-basedict
@@ -98,6 +100,8 @@ But you may use safer HTTPS instead.")
         chinese-fonts-setup
         youdao-dictionary
         fcitx                           ; need fcitx-remote support
+
+        projectile
 
         ggtags
         pdf-tools
