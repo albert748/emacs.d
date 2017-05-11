@@ -200,16 +200,18 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
 
   :config
 
+  ;; new or refiled headings always insert from the beginning
   (setq org-reverse-note-order t)
 
   ;; auto load language before evaluate
-  (defadvice org-babel-execute-src-block (around load-language nil activate)
+  (defun org-babel-execute-src-block-load-lang (&optional arg info params)
     "Load language on-demand"
-    (let ((language (org-element-property :language (org-element-at-point))))
+    (let* ((info (if info (copy-tree info) (org-babel-get-src-block-info)))
+           (language (nth 0 info)))
       (unless (cdr (assoc (intern language) org-babel-load-languages))
         (add-to-list 'org-babel-load-languages (cons (intern language) t))
-        (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
-      ad-do-it))
+        (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))))
+  (advice-add 'org-babel-execute-src-block :before #'org-babel-execute-src-block-load-lang)
 
   ;; assume all files inside org-directory is safe
   (defun org-confirm-babel-evaluate-safe-directory (lang body)
