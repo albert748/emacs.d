@@ -199,6 +199,9 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   ;; :pin org
 
   :config
+
+  (setq org-reverse-note-order t)
+
   ;; auto load language before evaluate
   (defadvice org-babel-execute-src-block (around load-language nil activate)
     "Load language on-demand"
