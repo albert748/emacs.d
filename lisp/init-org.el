@@ -213,6 +213,13 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
         (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))))
   (advice-add 'org-babel-execute-src-block :before #'org-babel-execute-src-block-load-lang)
 
+  ;; make it possible to execute code block asyncly, use :async keyword.
+  ;; refer to: https://github.com/astahlman/ob-async
+  (use-package ob-async
+    :config
+    (add-to-list 'org-ctrl-c-ctrl-c-hook 'ob-async-org-babel-execute-src-block)
+    (advice-add 'ob-async-org-babel-execute-src-block :before #'org-babel-execute-src-block-load-lang))
+
   ;; assume all files inside org-directory is safe
   (defun org-confirm-babel-evaluate-safe-directory (lang body)
     "Return nil if file is one of agenda files"

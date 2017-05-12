@@ -143,7 +143,7 @@ But you may use safer HTTPS instead.")
         org
         org-plus-contrib
         org-download
-
+        ob-async
 
         ;; version control
         magit
