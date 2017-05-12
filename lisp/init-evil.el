@@ -71,7 +71,7 @@
           (ein:shared-output-mode . emacs)
           (ein:traceback-mode . emacs)
           (pdf-occur-buffer-mode . emacs)
-          (pyim-dicts-manager . emacs)
+          (pyim-dm-mode . emacs)
           )
         do (evil-set-initial-state mode state))
 
@@ -125,7 +125,21 @@
     :init (global-evil-matchit-mode))
 
   (use-package evil-nerd-commenter
-    :init (evilnc-default-hotkeys))
+    ;; still want to use inline comment, so try not use the default
+    ;; key bindings provided.
+
+    ;; :init (evilnc-default-hotkeys)
+
+    :config
+    (eval-after-load 'evil
+      '(progn
+         (define-key evil-normal-state-map ",ci" 'evilnc-comment-or-uncomment-lines)
+         (define-key evil-normal-state-map ",cl" 'evilnc-quick-comment-or-uncomment-to-the-line)
+         (define-key evil-normal-state-map ",ll" 'evilnc-quick-comment-or-uncomment-to-the-line)
+         (define-key evil-normal-state-map ",cc" 'evilnc-copy-and-comment-lines)
+         (define-key evil-normal-state-map ",cp" 'evilnc-comment-or-uncomment-paragraphs)
+         (define-key evil-normal-state-map ",cr" 'comment-or-uncomment-region)
+         (define-key evil-normal-state-map ",cv" 'evilnc-toggle-invert-comment-line-by-line))))
 
   ;; {{ evil-exchange
   (use-package evil-exchange
