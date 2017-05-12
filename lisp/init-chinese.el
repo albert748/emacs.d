@@ -12,10 +12,13 @@
   (use-package chinese-pyim-basedict
     :config (chinese-pyim-basedict-enable))
 
+  ;; greatdict have polyphony issue, disable for safe for a while.
+  ;; refer to: https://github.com/tumashu/chinese-pyim/issues/163
+
   ;; use greatdict under MacOS may hang up the system
-  (use-package chinese-pyim-greatdict
-    :if (eq window-system 'x)
-    :config (chinese-pyim-greatdict-enable))
+  ;; (use-package chinese-pyim-greatdict
+  ;;   :if (eq window-system 'x)
+  ;;   :config (chinese-pyim-greatdict-enable))
 
   (setq pyim-default-scheme 'quanpin)
 
