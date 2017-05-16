@@ -24,15 +24,23 @@
   (elpy-enable)
 
   :config
+  ;; there exist completion issue on rope, use jedi instead.
+  ;; refer: https://github.com/jorgenschaefer/elpy/issues/631
+  (setq elpy-rpc-backend "jedi")
+
+  ;; yapf always timeout when format large source, set timeout much
+  ;; more bigger is safe.
+  (setq elpy-rpc-timeout 10)
+
+  ;; MacOS use python2 as default, set python version explicitly.
+  (if (eq system-type 'darwin)
+      (setq elpy-rpc-python-command "python3"))
+
   ;; enable yasnippet completion with company
   (advice-add 'elpy-modules-buffer-init :after
               (lambda ()
                 (if (memq 'elpy-company-backend company-backends)
                     (setq company-backends (cons '(elpy-company-backend company-yasnippet) (delq 'elpy-company-backend company-backends))))))
-
-  ;; there exist completion issue on rope, use jedi instead.
-  ;; see https://github.com/jorgenschaefer/elpy/issues/631
-  (setq elpy-rpc-backend "jedi")
 
   (defun elpy-try-use-ipython ()
     (if (not (executable-find "ipython"))
@@ -41,23 +49,25 @@
 
       ;; Fix ansi color issue (CSI codes) for ipython.
       ;; @see https://lists.gnu.org/archive/html/bug-gnu-emacs/2016-09/msg00043.html
-      (setq python-shell-interpreter-args "--simple-prompt -i")))
+      (setq python-shell-interpreter-args "--simple-prompt -i")
+      ))
 
   (elpy-try-use-ipython)
 
+  ;; looks like the issue already fixed with emacs 25.2.1
   ;;; Fix issue completion issue of interactive shell for python 3.5.2
   ;; https://bugs.python.org/issue25660
   ;; https://github.com/jorgenschaefer/elpy/issues/887
   ;; https://github.com/emacs-mirror/emacs/commit/dbb341022870ecad4c9177485a6770a355633cc0
-  (defun ad-python-shell-completion-native-try ()
-    "Return non-nil if can trigger native completion."
-    (let ((python-shell-completion-native-enable t)
-          (python-shell-completion-native-output-timeout
-           python-shell-completion-native-try-output-timeout))
-      (python-shell-completion-native-get-completions
-       (get-buffer-process (current-buffer))
-       nil "_")))
-  (advice-add 'python-shell-completion-native-try :after-until #'ad-python-shell-completion-native-try)
+  ;; (defun ad-python-shell-completion-native-try ()
+  ;;   "Return non-nil if can trigger native completion."
+  ;;   (let ((python-shell-completion-native-enable t)
+  ;;         (python-shell-completion-native-output-timeout
+  ;;          python-shell-completion-native-try-output-timeout))
+  ;;     (python-shell-completion-native-get-completions
+  ;;      (get-buffer-process (current-buffer))
+  ;;      nil "_")))
+  ;; (advice-add 'python-shell-completion-native-try :after-until #'ad-python-shell-completion-native-try)
 
   (defun python-mode-hook-setup ()
     (unless (is-buffer-file-temp)
