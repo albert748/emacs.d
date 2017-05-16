@@ -66,10 +66,18 @@
   (term-send-raw-string "\C-k"))
 
 
-;;; Only test default shell and show message
-(if (not (string= "zsh" (file-name-nondirectory (getenv "SHELL"))))
-    (message "You need install zsh for multi-term"))
-;; (setq multi-term-program "/bin/bash")
+;; zsh is a little sluggish under macos, disable it for safe until I
+;; have found a way to fix this.
+(if (and (eq system-type 'gnu/linux)
+         (not (string= "zsh" (file-name-nondirectory (getenv "SHELL")))))
+    (message "You need install zsh for multi-term")
+  (setq multi-term-program "/bin/bash"))
+
+(defun term-send-C-x ()
+  "Type C-x in term-mode
+useful if occasionally enter nano use visudo, exit use C-x is need."
+  (interactive)
+  (term-send-raw-string "\C-x"))
 
 ;; (setq term-unbind-key-list '("C-x" "<ESC>"))
 ;; (setq term-bind-key-alist

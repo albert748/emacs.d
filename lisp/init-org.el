@@ -218,7 +218,8 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   (use-package ob-async
     :config
     (add-to-list 'org-ctrl-c-ctrl-c-hook 'ob-async-org-babel-execute-src-block)
-    (advice-add 'ob-async-org-babel-execute-src-block :before #'org-babel-execute-src-block-load-lang))
+    ;; (advice-add 'ob-async-org-babel-execute-src-block :before #'org-babel-execute-src-block-load-lang)
+    )
 
   ;; assume all files inside org-directory is safe
   (defun org-confirm-babel-evaluate-safe-directory (lang body)

@@ -26,8 +26,11 @@ useful feature found in paredit but missing from smartparens"
   (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
   (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
 
-  (use-package evil-smartparens
-    :config
-    (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)))
+  ;; not work as expected, disable for safe
+  ;; (use-package evil-smartparens
+  ;;   :config
+  ;;   (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
+
+  )
 
 (provide 'init-smartparens)
