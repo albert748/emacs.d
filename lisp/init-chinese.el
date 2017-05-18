@@ -178,8 +178,13 @@ width punctuation."
 ;; Init chinese fonts
 (use-package chinese-fonts-setup
   :config
-  (setq cfs-profiles-directory (concat my-emacs-private-directory "/chinese-fonts-setup/"))
+  (setq cfs-directory (concat my-emacs-private-directory "/chinese-fonts-setup/"))
   (setq cfs-use-system-type t)
+
+  ;; use seperate config file to avoid confliction
+  (if (eq system-type 'darwin)
+      (setq cfs-config-filename "cfs-darwin.conf"))
+
   (chinese-fonts-setup-enable))
 
 
