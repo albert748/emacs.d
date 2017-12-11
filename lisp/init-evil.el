@@ -129,6 +129,10 @@
     ;; key bindings provided.
 
     ;; :init (evilnc-default-hotkeys)
+    :bind (("M-;" . evilnc-comment-or-uncomment-lines)
+           ("C-c l" . evilnc-quick-comment-or-uncomment-to-the-line)
+           ;; ("C-c c" . evilnc-copy-and-comment-lines)
+           ("C-c p" . evilnc-comment-or-uncomment-paragraphs))
 
     :config
     (eval-after-load 'evil
