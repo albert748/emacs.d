@@ -67,3 +67,6 @@ emacs-src
 
 # Emacs internal cache
 games/
+
+/bookmarks
+/smex-items
