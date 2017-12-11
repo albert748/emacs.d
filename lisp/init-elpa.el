@@ -12,20 +12,20 @@ But you may use safer HTTPS instead.")
     (setq package-archives
           '(;; uncomment below line if you need use GNU ELPA
             ;; ("gnu" . "https://elpa.gnu.org/packages/")
-            ;; ("org" . "http://orgmode.org/elpa/")  ; only http supported
+            ("org" . "http://orgmode.org/elpa/")  ; only http supported
             ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
-            ;; ("melpa" . "https://melpa.org/packages/")
-            ("ts-org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-            ("ts-melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+            ("melpa" . "https://melpa.org/packages/")
+            ;; ("ts-org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+            ;; ("ts-melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
 	    ))
   (setq package-archives
         '(;; uncomment below line if you need use GNU ELPA
           ;; ("gnu" . "http://elpa.gnu.org/packages/")
-          ;; ("org" . "http://orgmode.org/elpa/")
+          ("org" . "http://orgmode.org/elpa/")
           ;; ("melpa-stable" . "http://stable.melpa.org/packages/")
-          ;; ("melpa" . "http://melpa.org/packages/")
-          ("ts-org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-          ("ts-melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+          ("melpa" . "http://melpa.org/packages/")
+          ;; ("ts-org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+          ;; ("ts-melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
 	  )))
 
 (setq package-menu-hide-low-priority t)
