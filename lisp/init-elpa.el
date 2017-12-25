@@ -42,6 +42,8 @@ But you may use safer HTTPS instead.")
         smartparens
         origami
 
+        slime
+
         ;; themes
         zenburn-theme
         molokai-theme
