@@ -72,6 +72,9 @@
           (ein:traceback-mode . emacs)
           (pdf-occur-buffer-mode . emacs)
           (pyim-dm-mode . emacs)
+          (xref--xref-buffer-mode . emacs)
+          (cnfonts-ui-mode . emacs)
+          (process-menu-mode . emacs)
           )
         do (evil-set-initial-state mode state))
 
