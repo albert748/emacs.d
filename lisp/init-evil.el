@@ -780,3 +780,4 @@ If the character before and after CH is space or tab, CH is NOT slash"
 ;; }}
 
 (provide 'init-evil)
+;;; init-evil.el ends here

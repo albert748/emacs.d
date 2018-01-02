@@ -1,32 +1,6 @@
-(require 'package)
-
-;; You can set it to `t' to use safer HTTPS to download packages
-(defvar melpa-use-https-repo nil
-  "By default, HTTP is used to download packages.
-But you may use safer HTTPS instead.")
-
-;; for tsinghua mirror @see https://mirror.tuna.tsinghua.edu.cn/help/elpa/
-;; and also @see https://elpa.emacs-china.org/index-en.html
-;; FIXME: enable mirror site use toggle variable
-(if melpa-use-https-repo
-    (setq package-archives
-          '(;; uncomment below line if you need use GNU ELPA
-            ;; ("gnu" . "https://elpa.gnu.org/packages/")
-            ("org" . "http://orgmode.org/elpa/")  ; only http supported
-            ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
-            ("melpa" . "https://melpa.org/packages/")
-            ;; ("ts-org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-            ;; ("ts-melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-	    ))
-  (setq package-archives
-        '(;; uncomment below line if you need use GNU ELPA
-          ;; ("gnu" . "http://elpa.gnu.org/packages/")
-          ("org" . "http://orgmode.org/elpa/")
-          ;; ("melpa-stable" . "http://stable.melpa.org/packages/")
-          ("melpa" . "http://melpa.org/packages/")
-          ;; ("ts-org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-          ;; ("ts-melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-	  )))
+(setq package-archives
+      '(("melpa" . "https://melpa.org/packages/")
+        ("org" . "http://orgmode.org/elpa/")))
 
 (setq package-menu-hide-low-priority t)
 
@@ -36,9 +10,11 @@ But you may use safer HTTPS instead.")
         use-package
         company
         yasnippet
+        dropdown-list
         restart-emacs
         dired+
         which-key
+        ;; paredit
         smartparens
         origami
 
@@ -59,14 +35,16 @@ But you may use safer HTTPS instead.")
         lua-mode
         systemd
         go-mode
-        ;; groovy-mode
-        ;; csharp-mode
+        groovy-mode
+        csharp-mode
         ;; powershell
 
         ;; functional helper modes
         fic-mode
         artbollocks-mode
         textile-mode
+
+        pomodoro
 
         ;; python
         ein
@@ -96,10 +74,9 @@ But you may use safer HTTPS instead.")
 
         ;; chinese
         ace-pinyin
-        chinese-pyim
-        chinese-pyim-basedict
-        chinese-pyim-greatdict
-        chinese-fonts-setup
+        pyim
+        pyim-basedict
+        cnfonts
         youdao-dictionary
         fcitx                           ; need fcitx-remote support
 
@@ -151,7 +128,8 @@ But you may use safer HTTPS instead.")
         magit
         git-link
         git-messenger
-        git-gutter
+        git-gutter+
+        git-gutter-fringe+
         git-timemachine
         gitconfig-mode
         gitignore-mode
@@ -159,6 +137,7 @@ But you may use safer HTTPS instead.")
         ibuffer-vc
         dsvn
 
+        dockerfile-mode
         restclient
         smex
         auto-yasnippet
@@ -168,7 +147,6 @@ But you may use safer HTTPS instead.")
         hydra
         define-word
         neotree
-        ;; paredit
         dictionary
         rvm
         nvm

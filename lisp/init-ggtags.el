@@ -1,6 +1,8 @@
 ;; @see https://github.com/leoliu/ggtags
 
 (use-package ggtags
+  :disabled t
+
   ;; DO NOT enable gtags globally which is not usable under windows from msys2
   :if (not (eq system-type 'windows-nt))
 

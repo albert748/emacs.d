@@ -86,6 +86,7 @@ support symbolic link.")
   ;;    ))
 
   (require 'init-elpa)
+  (require 'init-grep)
   (require 'init-exec-path) ;; Set up $PATH
   (require 'init-frame-hooks)
 
@@ -120,7 +121,8 @@ support symbolic link.")
   (require 'init-zencoding-mode)
   (require 'init-cc-mode)
   (require 'init-gud)
-  (require 'init-linum-mode)
+  ;; (require 'init-linum-mode)
+  (require 'init-display-line-numbers)
   ;; (require 'init-gist)
   (require 'init-moz)
   (require 'init-gtags)

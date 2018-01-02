@@ -1,13 +1,8 @@
 (use-package powerline
   :init (powerline-default-theme))
 
-;; {{ vimrc-mode
-;; (add-to-list 'auto-mode-alist '("\\.vim\\'" . vimrc-mode))
-;; (add-to-list 'auto-mode-alist '("[._]?g?vimrc\\'" . vimrc-mode))
-;; (add-to-list 'auto-mode-alist '("\\.exrc\\'" . vimrc-mode))
 (use-package vimrc-mode
   :defer t)
-;; }}
 
 (use-package pdf-tools
   ;; awesome PDF mode better then DocView, @see https://github.com/politza/pdf-tools
@@ -29,11 +24,9 @@
   :commands restart-emacs)
 
 (use-package yaml-mode
-  ;; (add-to-list 'auto-mode-alist '("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode))
   :defer t)
 
 (use-package csharp-mode
-  ;; (add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
   :defer t)
 
 (use-package systemd
@@ -44,12 +37,8 @@
 (use-package pkgbuild-mode
   :defer t)
 
-;; {{ groovy-mode
-;; (add-to-list 'auto-mode-alist '("\\.g\\(?:ant\\|roovy\\|radle\\)\\'" . groovy-mode))
-;; (add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
 (use-package groovy-mode
   :defer t)
-;; }}
 
 ;; {{ shell and conf
 ;; (add-to-list 'auto-mode-alist '("\\.[^b][^a][a-zA-Z]*rc$" . conf-mode))
@@ -78,9 +67,6 @@
 (global-set-key (kbd "C-q") #'aya-open-line)
 ;; }}
 
-;; open header file under cursor
-(global-set-key (kbd "C-x C-o") 'ffap)
-
 ;; {{ support MY packages which are not included in melpa
 (setq org2nikola-use-verbose-metadata t) ; for nikola 7.7+
 ;; }}
@@ -105,8 +91,6 @@
               ediff-split-window-function 'split-window-horizontally
               ediff-window-setup-function 'ediff-setup-windows-plain
               save-interprogram-paste-before-kill t
-              grep-highlight-matches t
-              grep-scroll-output t
               indent-tabs-mode nil
               ;; line-spacing 0.2
               mouse-yank-at-point t
@@ -323,13 +307,6 @@
 ;; some major-modes NOT inherited from prog-mode
 (add-hook 'css-mode-hook 'generic-prog-mode-hook-setup)
 
-;; {{ display long lines in truncated style (end line with $)
-(defun truncate-lines-setup ()
-  (toggle-truncate-lines 1))
-(add-hook 'grep-mode-hook 'truncate-lines-setup)
-;; (add-hook 'org-mode-hook 'truncate-lines-setup)
-;; }}
-
 ;; turns on auto-fill-mode, don't use text-mode-hook because for some
 ;; mode (org-mode for example), this will make the exported document
 ;; ugly!
@@ -363,8 +340,6 @@
 
 ;;a no-op function to bind to if you want to set a keystroke to null
 (defun void () "this is a no-op" (interactive))
-
-(defalias 'list-buffers 'ibuffer)
 
 ;effective emacs item 7; no scrollbar, no menubar, no toolbar
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))

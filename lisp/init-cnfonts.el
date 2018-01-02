@@ -4,7 +4,7 @@
 
   (setq cnfonts-directory (concat my-emacs-private-directory "/cnfonts/"))
 
-  ;; use seperate config file to avoid confliction
+  ;; use separate config file to avoid confliction
   (if (eq system-type 'darwin)
       (setq cnfonts-config-filename "cfs-darwin.conf"))
 
