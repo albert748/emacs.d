@@ -1,22 +1,20 @@
-(use-package git-gutter
-  :init
-  (global-git-gutter-mode)
-  (git-gutter:linum-setup)
-
-  :bind
-  (("C-x C-g" . git-gutter)
-   ("C-x v =" . git-gutter:popup-hunk)
-   ("C-x p" . git-gutter:previous-hunk)
-   ("C-x n" . git-gutter:next-hunk)
-   ("C-x v s" . git-gutter:stage-hunk)
-   ("C-x v r" . git-gutter:revert-hunk)
-   ("C-x v SPC" . git-gutter:mark-hunk))
-
+(use-package git-gutter+
+  :init (global-git-gutter+-mode)
   :config
 
-  ;; update by idle time
-  (setq git-gutter:update-interval 2)
-  (setq git-gutter:handled-backends '(git svn)))
+  ;; FIXME: add key bindings use general.el
+  ;; (define-key git-gutter+-mode-map (kbd "C-x n") 'git-gutter+-next-hunk)
+  ;; (define-key git-gutter+-mode-map (kbd "C-x p") 'git-gutter+-previous-hunk)
+  ;; (define-key git-gutter+-mode-map (kbd "C-x v =") 'git-gutter+-show-hunk)
+  ;; (define-key git-gutter+-mode-map (kbd "C-x r") 'git-gutter+-revert-hunks)
+  ;; (define-key git-gutter+-mode-map (kbd "C-x t") 'git-gutter+-stage-hunks)
+  ;; (define-key git-gutter+-mode-map (kbd "C-x c") 'git-gutter+-commit)
+  ;; (define-key git-gutter+-mode-map (kbd "C-x C") 'git-gutter+-stage-and-commit)
+  ;; (define-key git-gutter+-mode-map (kbd "C-x C-y") 'git-gutter+-stage-and-commit-whole-buffer)
+  ;; (define-key git-gutter+-mode-map (kbd "C-x U") 'git-gutter+-unstage-whole-buffer)
+
+  ;; FIXME: activate fringe only on graphic display
+  (use-package git-gutter-fringe+))
 
 ;; Solution 1: disable all vc backends
 ;; @see http://stackoverflow.com/questions/5748814/how-does-one-disable-vc-git-in-emacs
@@ -232,4 +230,4 @@
 
 
 (provide 'init-git)
-
+;;; init-git.el ends here
