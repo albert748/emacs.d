@@ -199,6 +199,17 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   ;; :pin org
 
   :config
+  ;; ob-async enables asynchronous execution of org-babel src blocks.
+  ;; simply add the keyword :async to header args of src block and invoke ob-async-org-babel-execute-src-block
+  ;; @see https://github.com/astahlman/ob-async
+  (use-package ob-async)
+
+  ;; facilitates images download from browser and screenshots
+  ;; @see https://github.com/abo-abo/org-download
+  (use-package org-download
+    :config
+    ;; FIXME: download to special directory within org dir.
+    (setq org-download-method 'attach))
 
   ;; new or refiled headings always insert from the beginning
   (setq org-reverse-note-order t)
@@ -281,16 +292,5 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   (setq org-clock-out-remove-zero-time-clocks t))
 
 
-;; ob-async enables asynchronous execution of org-babel src blocks.
-;; simply add the keyword :async to header args of src block and invoke ob-async-org-babel-execute-src-block
-;; @see https://github.com/astahlman/ob-async
-(use-package ob-async
-  :defer t)
-
-;; setup org-download package
-;; @see https://github.com/abo-abo/org-download
-(use-package org-download
-  :config
-  (setq org-download-method 'attach))
 
 (provide 'init-org)

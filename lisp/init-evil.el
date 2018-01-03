@@ -3,17 +3,15 @@
   :init
   (evil-mode)
 
-  ;; I'd perfer Emacs style rectangle instead of visual block, restore
-  ;; this key to scroll-up-command, and rebind keys.
-  (unbind-key "C-v" evil-motion-state-map)
-  (unbind-key "v" evil-motion-state-map)
-  (unbind-key "V" evil-motion-state-map)
-  (bind-keys :map evil-motion-state-map
-             ("vc" . evil-visual-char)
-             ("vl" . evil-visual-line)
-             ("vb" . evil-visual-block))
-
   :config
+  ;; evil bind C-v to evil-visual-block, v/V for visual char/line
+  ;; still works, but I'd like to use emacs style rectangle for visual
+  ;; block instead.
+  (unbind-key "C-v" evil-motion-state-map)
+
+  ;; evil bind C-e to evil-scroll-line-down
+  (unbind-key "C-e" evil-motion-state-map)
+
   ;; @see https://bitbucket.org/lyro/evil/issue/360/possible-evil-search-symbol-forward
   ;; evil 1.0.8 search word instead of symbol
   (setq evil-symbol-word-search t)
