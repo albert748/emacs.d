@@ -1,3 +1,12 @@
+(use-package multi-term
+  :commands (multi-term)
+  :config
+  (setq multi-term-program "/usr/bin/bash")
+
+  ;; fix display issue
+  (add-hook 'term-mode-hook #'(lambda () (display-line-numbers-mode -1))))
+
+
 ;; @see http://stackoverflow.com/questions/2886184/copy-paste-in-emacs-ansi-term-shell/2886539#2886539
 (defun ash-term-hooks ()
   ;; dabbrev-expand in term
@@ -68,10 +77,10 @@
 
 ;; zsh is a little sluggish under macos, disable it for safe until I
 ;; have found a way to fix this.
-(if (and (eq system-type 'gnu/linux)
-         (not (string= "zsh" (file-name-nondirectory (getenv "SHELL")))))
-    (message "You need install zsh for multi-term")
-  (setq multi-term-program "/bin/bash"))
+;; (if (and (eq system-type 'gnu/linux)
+;;          (not (string= "zsh" (file-name-nondirectory (getenv "SHELL")))))
+;;     (message "You need install zsh for multi-term")
+;;   (setq multi-term-program "/bin/bash"))
 
 (defun term-send-C-x ()
   "Type C-x in term-mode
