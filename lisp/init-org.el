@@ -211,6 +211,8 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
     ;; FIXME: download to special directory within org dir.
     (setq org-download-method 'attach))
 
+  (add-hook 'org-mode-hook #'(lambda () (setq show-trailing-whitespace t)))
+
   ;; new or refiled headings always insert from the beginning
   (setq org-reverse-note-order t)
 

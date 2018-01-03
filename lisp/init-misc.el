@@ -1,5 +1,3 @@
-(setq-default show-trailing-whitespace t)
-
 (use-package powerline
   :init (powerline-default-theme))
 
