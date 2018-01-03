@@ -1,3 +1,6 @@
+;; apropos result sort match with scores.
+(setq apropos-sort-by-scores 'verbose)
+
 (use-package powerline
   :init (powerline-default-theme))
 
