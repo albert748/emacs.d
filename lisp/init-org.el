@@ -211,6 +211,21 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
     ;; FIXME: download to special directory within org dir.
     (setq org-download-method 'attach))
 
+
+  ;; Create graphviz directed graphs from org-mode files
+  ;; @ see https://github.com/theodorewiles/org-mind-map
+
+  ;; FIXME: when start emacs and execute export right now, error
+  ;; comes: "byte-code: Symbol’s function definition is void:
+  ;; org-export-define-derived-backend", the command can be executed
+  ;; after few seconds delay, why?
+  (use-package org-mind-map
+    :commands (org-mind-map-write)
+    :if (if (executable-find "unflatten")
+            t
+          (message "[Missing] Install graphviz to enable org-mind-map")
+          nil))
+
   (add-hook 'org-mode-hook #'(lambda () (setq show-trailing-whitespace t)))
 
   ;; new or refiled headings always insert from the beginning

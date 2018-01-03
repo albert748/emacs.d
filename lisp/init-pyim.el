@@ -1,8 +1,6 @@
 (use-package pyim
   :bind
-  (("M-j" . pyim-convert-code-at-point)
-   ;; FIXME: this function not work for me
-   ("C-;" . pyim-delete-word-from-personal-buffer))
+  (("M-j" . pyim-convert-code-at-point))
 
   :init
   (setq pyim-directory (concat my-emacs-private-directory "pyim"))

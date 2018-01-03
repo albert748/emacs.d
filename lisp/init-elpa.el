@@ -1,5 +1,5 @@
 (setq package-archives
-      '(("melpa" . "https://melpa.org/packages/")
+      '(("melpa" . "http://melpa.org/packages/")
         ("org" . "http://orgmode.org/elpa/")))
 
 (setq package-menu-hide-low-priority t)
@@ -122,6 +122,7 @@
         org
         org-plus-contrib
         org-download
+        org-mind-map
         ob-async
 
         ;; version control
