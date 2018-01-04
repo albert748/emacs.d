@@ -9,6 +9,12 @@
   ;; block instead.
   (unbind-key "C-v" evil-motion-state-map)
 
+  ;; evil-paste-last-insertion
+  (unbind-key "C-a" evil-insert-state-map)
+
+  ;; evil-shift-left-line
+  (unbind-key "C-d" evil-insert-state-map)
+
   ;; evil bind C-e to evil-scroll-line-down
   (unbind-key "C-e" evil-motion-state-map)
 

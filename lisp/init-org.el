@@ -213,7 +213,7 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
 
 
   ;; Create graphviz directed graphs from org-mode files
-  ;; @ see https://github.com/theodorewiles/org-mind-map
+  ;; @see https://github.com/theodorewiles/org-mind-map
 
   ;; FIXME: when start emacs and execute export right now, error
   ;; comes: "byte-code: Symbol’s function definition is void:
@@ -225,6 +225,23 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
             t
           (message "[Missing] Install graphviz to enable org-mind-map")
           nil))
+
+  ;; Add very basic support for pomodoro technique
+  ;; @see https://github.com/lolownia/org-pomodoro/
+  (use-package org-pomodoro
+    :commands (org-pomodoro)
+
+    :config
+    ;; there's a bug on alert which state to accept quoted category
+    ;; type, but it's not! we should use string type instead.
+    (defun org-pomodoro-notify (title message)
+      "Send a notification with TITLE and MESSAGE using `alert'."
+      (alert message :title title :category "org-pomodoro"))
+
+    ;; org-pomodoro use alert package for alert, Use libnotify is more
+    ;; clear obviously.
+    (alert-add-rule :category "org-pomodoro"
+                    :style 'libnotify))
 
   (add-hook 'org-mode-hook #'(lambda () (setq show-trailing-whitespace t)))
 

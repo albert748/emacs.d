@@ -123,6 +123,7 @@
         org-plus-contrib
         org-download
         org-mind-map
+        org-pomodoro
         ob-async
 
         ;; version control
