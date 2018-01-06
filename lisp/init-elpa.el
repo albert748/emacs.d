@@ -108,7 +108,6 @@
         scratch
         session
         bookmark+
-        flymake-lua
         multi-term
         inflections
         tidy
@@ -152,10 +151,14 @@
         dictionary
         rvm
         nvm
+
+        flycheck
+        flymake-lua
         flymake-css
         flymake-ruby
         flymake-jslint
         flymake-coffee
+
         ;; coffee-mode
         cliphist
         tagedit

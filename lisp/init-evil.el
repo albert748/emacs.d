@@ -79,6 +79,7 @@
           (xref--xref-buffer-mode . emacs)
           (cnfonts-ui-mode . emacs)
           (process-menu-mode . emacs)
+          (flycheck-error-list-mode . emacs)
           )
         do (evil-set-initial-state mode state))
 

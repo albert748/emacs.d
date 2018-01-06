@@ -7,8 +7,7 @@
     (require 'rinari)
     (robe-mode)
     (push 'company-robe company-backends)
-    (setq compile-command "rake ")
-    (flymake-ruby-load)))
+    (setq compile-command "rake ")))
 (add-hook 'ruby-mode-hook 'ruby-mode-hook-setup)
 
 (defun update-rails-ctags ()
