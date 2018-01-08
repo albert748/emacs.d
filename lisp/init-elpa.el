@@ -61,7 +61,7 @@
         evil-mark-replace
         evil-escape
         evil-numbers
-        evil-nerd-commenter
+        ;; evil-nerd-commenter
 
         counsel
         flx-ido

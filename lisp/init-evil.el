@@ -132,7 +132,9 @@
   (use-package evil-matchit
     :init (global-evil-matchit-mode))
 
+  ;; Emacs's internal newcomment.el functionality is enough for me
   (use-package evil-nerd-commenter
+    :disabled
     ;; still want to use inline comment, so try not use the default
     ;; key bindings provided.
 
@@ -651,37 +653,37 @@ If the character before and after CH is space or tab, CH is NOT slash"
 
 ;; {{ Use `SPC` as leader key
 ;; all keywords arguments are still supported
-(nvmap :prefix "SPC"
-       "ss" 'wg-create-workgroup ; save windows layout
-       "ll" 'my-wg-switch-workgroup ; load windows layout
-       "kk" 'scroll-other-window
-       "jj" 'scroll-other-window-up
-       "yy" 'hydra-launcher/body
-       "hh" 'multiple-cursors-hydra/body
-       "tt" 'my-toggle-indentation
-       "gs" 'git-gutter:set-start-revision
-       "gh" 'git-gutter-reset-to-head-parent
-       "gr" 'git-gutter-reset-to-default
-       "ps" 'profiler-start
-       "pr" 'profiler-report
-       "ud" 'my-gud-gdb
-       "uk" 'gud-kill-yes
-       "ur" 'gud-remove
-       "ub" 'gud-break
-       "uu" 'gud-run
-       "up" 'gud-print
-       "ue" 'gud-cls
-       "un" 'gud-next
-       "us" 'gud-step
-       "ui" 'gud-stepi
-       "uc" 'gud-cont
-       "uf" 'gud-finish
-       "ma" 'mc/mark-all-like-this-dwim
-       "md" 'mc/mark-all-like-this-in-defun
-       "mm" 'ace-mc-add-multiple-cursors
-       "mn" 'mc/mark-next-like-this
-       "ms" 'mc/skip-to-next-like-this
-       "me" 'mc/edit-lines)
+;; (nvmap :prefix "SPC"
+;;        "ss" 'wg-create-workgroup ; save windows layout
+;;        "ll" 'my-wg-switch-workgroup ; load windows layout
+;;        "kk" 'scroll-other-window
+;;        "jj" 'scroll-other-window-up
+;;        "yy" 'hydra-launcher/body
+;;        "hh" 'multiple-cursors-hydra/body
+;;        "tt" 'my-toggle-indentation
+;;        "gs" 'git-gutter:set-start-revision
+;;        "gh" 'git-gutter-reset-to-head-parent
+;;        "gr" 'git-gutter-reset-to-default
+;;        "ps" 'profiler-start
+;;        "pr" 'profiler-report
+;;        "ud" 'my-gud-gdb
+;;        "uk" 'gud-kill-yes
+;;        "ur" 'gud-remove
+;;        "ub" 'gud-break
+;;        "uu" 'gud-run
+;;        "up" 'gud-print
+;;        "ue" 'gud-cls
+;;        "un" 'gud-next
+;;        "us" 'gud-step
+;;        "ui" 'gud-stepi
+;;        "uc" 'gud-cont
+;;        "uf" 'gud-finish
+;;        "ma" 'mc/mark-all-like-this-dwim
+;;        "md" 'mc/mark-all-like-this-in-defun
+;;        "mm" 'ace-mc-add-multiple-cursors
+;;        "mn" 'mc/mark-next-like-this
+;;        "ms" 'mc/skip-to-next-like-this
+;;        "me" 'mc/edit-lines)
 
 ;; per-major-mode leader setup
 (general-define-key :states '(normal motion insert emacs)

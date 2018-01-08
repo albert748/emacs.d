@@ -6,3 +6,4 @@
   (global-display-line-numbers-mode))
 
 (provide 'init-display-line-numbers)
+;;; init-display-line-numbers ends here
