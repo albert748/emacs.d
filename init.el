@@ -126,7 +126,6 @@ support symbolic link.")
   (require 'init-display-line-numbers)
   ;; (require 'init-gist)
   (require 'init-moz)
-  (require 'init-gtags)
   ;; init-evil dependent on init-clipboard
   (require 'init-clipboard)
   ;; use evil mode (vi key binding)
