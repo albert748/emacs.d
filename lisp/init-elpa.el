@@ -12,6 +12,7 @@
         yasnippet
         dropdown-list
         restart-emacs
+        sudo-edit
         dired+
         which-key
         ;; paredit

@@ -45,7 +45,6 @@
   (defun elpy-try-use-ipython ()
     (if (not (executable-find "ipython"))
         (message "Your need install ipython or Anaconda for elpy")
-      (elpy-use-ipython)
 
       ;; Fix ansi color issue (CSI codes) for ipython.
       ;; @see https://lists.gnu.org/archive/html/bug-gnu-emacs/2016-09/msg00043.html

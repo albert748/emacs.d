@@ -1,6 +1,9 @@
 ;; apropos result sort match with scores.
 (setq apropos-sort-by-scores 'verbose)
 
+(use-package sudo-edit
+  :commands (sudo-edit))
+
 (use-package powerline
   :init (powerline-default-theme))
 
@@ -24,7 +27,7 @@
          ("\\.bashrc\\'" . sh-mode)))
 
 (use-package restart-emacs
-  :commands restart-emacs)
+  :commands (restart-emacs))
 
 (use-package yaml-mode
   :defer t)
@@ -351,34 +354,6 @@
 (defun my-download-subtitles ()
   (interactive)
   (shell-command "periscope.py -l en *.mkv *.mp4 *.avi &"))
-
-
-;; {{ @see http://emacsredux.com/blog/2013/04/21/edit-files-as-root/
-(defun sudo-edit (&optional arg)
-  "Edit currently visited file as root.
-With a prefix ARG prompt for a file to visit.
-Will also prompt for a file to visit if current
-buffer is not visiting a file.
-You may insert below line into ~/.authinfo.gpg to type less:
-machine 127.0.0.1 login root password ****** port sudo
-See \"Reusing passwords for several connections\" from INFO.
-"
-  (interactive "P")
-  (if (or arg (not buffer-file-name))
-      (find-file (concat "/sudo:root@localhost:"
-                         (read-file-name "Find file(as root): ")))
-    (find-alternate-file (concat "/sudo:root@localhost:"
-                                 buffer-file-name))))
-
-;;; Comment this advice because it has bug.
-;;; Prompt always pop out when use tramp.
-;; (defadvice ido-find-file (after find-file-sudo activate)
-;;   "Find file as root if necessary."
-;;   (unless (and buffer-file-name
-;;                (file-writable-p buffer-file-name))
-;;     (find-alternate-file (concat "/sudo:root@127.0.0.1:"
-;;                                  buffer-file-name))))
-;; }}
 
 ;; edit confluence wiki
 (add-to-list 'auto-mode-alist '("\\.wiki\\'" . confluence-edit-mode))
