@@ -1,3 +1,9 @@
+;;; init-org.el --- init org mode
+
+;;; Commentary:
+
+;;; Code:
+
 ;; some cool org tricks
 ;; @see http://emacs.stackexchange.com/questions/13820/inline-verbatim-and-code-with-quotes-in-org-mode
 
@@ -31,9 +37,6 @@
         (setq run-spellcheck nil))))
     (setq ad-return-value run-spellcheck)))
 ;; }}
-
-;; Org v8 change log:
-;; @see http://orgmode.org/worg/org-8.0.html
 
 ;; {{ export org-mode in Chinese into PDF
 ;; @see http://freizl.github.io/posts/tech/2012-04-06-export-orgmode-file-in-Chinese.html
@@ -128,7 +131,6 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   (flyspell-mode -1)
 
   ;; for some reason, org8 disable odt export by default
-  (add-to-list 'org-export-backends 'odt)
   (add-to-list 'org-export-backends 'org) ; for org-mime
 
   ;; org-mime setup, run this command in org-file, than yank in `message-mode'
@@ -138,15 +140,6 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   (setq flyspell-check-doublon nil))
 
 (add-hook 'org-mode-hook 'org-mode-hook-setup)
-
-(defadvice org-open-at-point (around org-open-at-point-choose-browser activate)
-  (let ((browse-url-browser-function
-         (cond
-          ;; open with external browser
-          ((equal (ad-get-arg 0) '(4)) 'browse-url-generic)
-          ;; open with w3m
-          (t 'w3m-browse-url))))
-    ad-do-it))
 
 (defadvice org-publish (around org-publish-advice activate)
   "Stop running major-mode hook when org-publish"
@@ -188,14 +181,13 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
 ;; }}
 
 (use-package org
-  ;; FIXME: the key bind to evilnc-copy-and-comment-lines
-  :bind*
-  (("C-c c" . org-capture))
   :bind
-  (("C-c a" . org-agenda)
+  (("C-c c" . org-capture)
+   ("C-c a" . org-agenda)
+   ("C-c l" . org-store-link)
    ("C-c C-x C-j" . org-clock-goto))
 
-  ;; FIXME: package not pined to melpa instead of built-in used.
+  ;; FIXME: package not pined to melpa, instead, built-in version used.
   ;; :pin org
 
   :config
@@ -210,7 +202,6 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
     :config
     ;; FIXME: download to special directory within org dir.
     (setq org-download-method 'attach))
-
 
   ;; Create graphviz directed graphs from org-mode files
   ;; @see https://github.com/theodorewiles/org-mind-map
@@ -232,69 +223,118 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
     :commands (org-pomodoro)
 
     :config
+    (setq org-pomodoro-audio-player (executable-find "mpg123"))
+    (setq org-pomodoro-start-sound (concat (file-name-directory user-init-file) "resources/bell.mp3"))
+    (setq org-pomodoro-finished-sound (concat (file-name-directory user-init-file) "resources/bell.mp3"))
+
     ;; there's a bug on alert which state to accept quoted category
     ;; type, but it's not! we should use string type instead.
     (defun org-pomodoro-notify (title message)
       "Send a notification with TITLE and MESSAGE using `alert'."
-      (alert message :title title :category "org-pomodoro"))
+      (alert message :title title :category "org-pomodoro" :severity 'high))
 
     ;; org-pomodoro use alert package for alert, Use libnotify is more
     ;; clear obviously.
+    ;; FIXME: libnotify not handle this variable
+    ;; (setq alert-fade-time 180)
     (alert-add-rule :category "org-pomodoro"
-                    :style 'libnotify))
+                    :style 'libnotify
+                    ;; continue to next rule if not match
+                    :continue t))
 
-  (add-hook 'org-mode-hook #'(lambda () (setq show-trailing-whitespace t)))
+  (defun org-open-at-point-choose-browser (func &optional arg reference-buffer)
+    "Change the behavior of org-open-at-point
+
+if no prefix ARG specified, use the default behavior of
+`browse-url-at-point' (which use the default system browser, see
+`browse-url-browser-function').
+
+with one prefix ARG, use `w3m-browse-url'.
+
+use two prefix ARG, the `browse-url-generic' will be used
+instead."
+    (let ((browse-url-browser-function (cond
+                                        ;; open with external browser
+                                        ((equal arg '(4)) 'w3m-browse-url)
+                                        ((equal arg '(16)) 'browse-url-generic)
+                                        (t 'browse-url-default-browser))))
+      (funcall func arg reference-buffer)))
+  (advice-add 'org-open-at-point :around #'org-open-at-point-choose-browser)
+
+  (defun org-mode-hook-setup-1 ()
+    ;; Disable global-flycheck-mode on orgmode
+    (if (boundp 'flycheck-mode-map)
+        (flycheck-mode -1))
+    (setq show-trailing-whitespace t))
+
+  (add-hook 'org-mode-hook #'org-mode-hook-setup-1)
+
+  ;;;; Useful settings
+  (setq org-cycle-include-plain-lists 'integrate)
+
+  ;; Allow maximum of 3 lines of emphasis
+  ;; @see https://emacs.stackexchange.com/questions/13820/inline-verbatim-and-code-with-quotes-in-org-mode
+  (setcar (nthcdr 4 org-emphasis-regexp-components) 3)
 
   ;; new or refiled headings always insert from the beginning
   (setq org-reverse-note-order t)
 
   ;; auto load language before evaluate
-  (defun org-babel-execute-src-block-load-lang (&optional arg info params)
-    "Load language on-demand"
-    (let* ((info (if info (copy-tree info) (org-babel-get-src-block-info)))
-           (language (nth 0 info)))
-      (unless (cdr (assoc (intern language) org-babel-load-languages))
-        (add-to-list 'org-babel-load-languages (cons (intern language) t))
-        (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))))
-  (advice-add 'org-babel-execute-src-block :before #'org-babel-execute-src-block-load-lang)
+  ;; (defun org-babel-execute-src-block-load-lang (&optional arg info params)
+  ;;   "Load language on-demand"
+  ;;   (let* ((info (if info (copy-tree info) (org-babel-get-src-block-info)))
+  ;;          (language (nth 0 info)))
+  ;;     (unless (cdr (assoc (intern language) org-babel-load-languages))
+  ;;       (add-to-list 'org-babel-load-languages (cons (intern language) t))
+  ;;       (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))))
+  ;; (advice-add 'org-babel-execute-src-block :before #'org-babel-execute-src-block-load-lang)
 
-  ;; assume all files inside org-directory is safe
-  (defun org-confirm-babel-evaluate-safe-directory (lang body)
-    "Return nil if file is one of agenda files"
-    (not (member buffer-file-name (org-agenda-files))))
-  (setq org-confirm-babel-evaluate 'org-confirm-babel-evaluate-safe-directory)
+  (setq org-babel-load-languages '((emacs-lisp . t)
+                                   (shell . t)
+                                   (python . t)))
 
-  ;; perfer to use bash
-  (setq org-babel-sh-command "bash")
+  ;; We need explicitly call this, why? otherwise sh/bash invoke may
+  ;; fail with error message: ob-async-org-babel-execute-src-block: No
+  ;; org-babel-execute function for bash!
+  (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
+
+  (defun org-confirm-babel-evaluate-safe-p (lang body)
+    "Return a non-nil value if the user should be prompted for execution."
+    (let ((dirs nil))
+      (dolist (dir (org-agenda-files))
+        (setq dirs (cons (file-name-directory dir) dirs)))
+      (if (member (file-name-directory buffer-file-name) dirs)
+          nil
+        t)))
+  (setq org-confirm-babel-evaluate 'org-confirm-babel-evaluate-safe-p)
 
   ;; org mode use truncate-lines as default, reset it to nil.
   ;; we do not want to use word-wrap, beacause it's ugly for chinese.
   ;; FIXME: word-wrap chinese only.
   (setq org-startup-truncated nil)
 
+  ;; FIXME: aganda count windows width not correct with display-line-numbers-mode enabled.
+  (add-hook 'org-agenda-mode-hook #'(lambda () (display-line-numbers-mode -1)))
+
   ;; Various preferences
   (setq org-log-done t           ; basic logging when move to DONE state
-        org-log-into-drawer t      ; advanced state change logging
-        ;; org-clock-into-drawer t    ; default, save clock data to LOGBOOK
+        org-log-into-drawer t      ; insert state change notes and time stamps into drawer
         org-tags-column 0      ; place tags directly after headline text
         ;; org-agenda-window-setup 'current-window ; use default reorganize-frame
         org-agenda-restore-windows-after-quit t ; restore old state with 'q' or 'x'
         ;; org-agenda-span 14                ; default: week, expand to 2 weeks
         org-agenda-start-on-weekday nil   ; for weekly agendas, start on the current day
         ;; org-agenda-include-diary t        ; default: nil
-        org-completion-use-ido t
         org-edit-src-content-indentation 0
         org-edit-timestamp-down-means-later t
         org-fast-tag-selection-single-key 'expert
-        org-export-kill-product-buffer-when-displayed t
-        ;; org v7
-        ;; org-export-odt-preferred-output-format "doc"
+
         ;; org v8
         ;; org-odt-preferred-output-format "doc"
         ;; org-startup-indented t
         ;; {{ org 8.2.6 has some performance issue. Here is the workaround.
         ;; @see http://punchagan.muse-amuse.in/posts/how-i-learnt-to-use-emacs-profiler.html
-        org-agenda-inhibit-startup t ;; ~50x speedup
+        ;; org-agenda-inhibit-startup t ;; ~50x speedup
         ;; org-agenda-use-tag-inheritance nil ;; 3-4x speedup
         ;; }}
         )
@@ -325,6 +365,5 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
   ;; Removes clocked tasks with 0:00 duration
   (setq org-clock-out-remove-zero-time-clocks t))
 
-
-
 (provide 'init-org)
+;;; init-org.el ends here
