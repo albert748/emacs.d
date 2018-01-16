@@ -593,8 +593,9 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "fb" 'flyspell-buffer
        "fe" 'flyspell-goto-next-error
        "fa" 'flyspell-auto-correct-word
-       "pe" 'flymake-goto-prev-error
-       "ne" 'flymake-goto-next-error
+       "pe" '(lambda () (interactive) (if (fboundp 'flycheck-previous-error) (flycheck-previous-error) (flymake-goto-prev-error)))
+       "ne" '(lambda () (interactive) (if (fboundp 'flycheck-next-error) (flycheck-next-error) (flymake-goto-next-error)))
+       "le" 'flycheck-list-errors
        "pb" 'previous-buffer
        "nb" 'next-buffer
        "fw" 'ispell-word

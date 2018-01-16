@@ -1,5 +1,9 @@
 ;;; init-misc-lazy.el --- misc setup loaded later
 
+;;; Commentary:
+
+;;; Code:
+
 (use-package textile-mode
   :mode "\\.textile\\'")
 
@@ -470,4 +474,3 @@ Including indent-buffer, which should not be called automatically on save."
 
 (provide 'init-misc-lazy)
 ;;; init-misc-lazy.el ends here
-

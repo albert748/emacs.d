@@ -97,7 +97,7 @@
               ediff-split-window-function 'split-window-horizontally
               ediff-window-setup-function 'ediff-setup-windows-plain
               save-interprogram-paste-before-kill t
-              indent-tabs-mode nil
+              indent-tabs-mode nil      ; disable TAB
               ;; line-spacing 0.2
               mouse-yank-at-point t
               set-mark-command-repeat-pop t

@@ -1,3 +1,9 @@
+;;; init-ido.el --- init ido for minibuffer
+
+;;; Commentary:
+
+;;; Code:
+
 (use-package ido
   :ensure nil                           ; built-in pacakge
   :init
@@ -100,3 +106,4 @@ Symbols matching the text at point are put first in the completion list."
 
 
 (provide 'init-ido)
+;;; init-ido.el ends here

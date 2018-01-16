@@ -46,12 +46,12 @@
   ("q" nil))
 
 ;; Because in message-mode/article-mode we've already use `y' as hotkey
-(global-set-key (kbd "C-c C-y") 'hydra-launcher/body)
-(global-set-key (kbd "C-c C-h") 'multiple-cursors-hydra/body)
+;; (global-set-key (kbd "C-c C-y") 'hydra-launcher/body)
+;; (global-set-key (kbd "C-c C-h") 'multiple-cursors-hydra/body)
 (defun org-mode-hook-hydra-setup ()
   (local-set-key (kbd "C-c C-y") 'hydra-launcher/body)
   (local-set-key (kbd "C-c C-h") 'multiple-cursors-hydra/body))
-(add-hook 'org-mode-hook 'org-mode-hook-hydra-setup)
+;; (add-hook 'org-mode-hook 'org-mode-hook-hydra-setup)
 
 ;; {{ mail
 ;; @see https://github.com/redguardtoo/mastering-emacs-in-one-year-guide/blob/master/gnus-guide-en.org
