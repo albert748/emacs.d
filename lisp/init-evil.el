@@ -15,6 +15,9 @@
   ;; evil-shift-left-line
   (unbind-key "C-d" evil-insert-state-map)
 
+  ;; evil-execute-in-normal-state
+  (unbind-key "C-o" evil-insert-state-map)
+
   ;; evil bind C-e to evil-scroll-line-down
   (unbind-key "C-e" evil-motion-state-map)
 
