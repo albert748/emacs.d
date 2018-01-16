@@ -20,34 +20,19 @@
   ;; ido is more clear for snippets selection
   (setq yas-prompt-functions '(yas-maybe-ido-prompt
                                yas-dropdown-prompt
-                               yas-completing-prompt
+                               yas-completing-prompt ; classic emacs completion method
                                yas-no-prompt))
-
-  ;; (use-package dropdown-list
-  ;;   :config
-  ;;   ;; default hotkey `C-c C-s` is still valid
-  ;;   ;; give yas-dropdown-prompt in yas/prompt-functions a chance
-  ;;   (setq yas-prompt-functions '(yas-dropdown-prompt
-  ;;                                yas-ido-prompt
-  ;;                                yas-completing-prompt)))
 
   ;; my private snippets, should be placed before enabling yasnippet
   ;; (setq my-yasnippets (expand-file-name "~/my-yasnippets"))
   ;; (if (and  (file-exists-p my-yasnippets) (not (member my-yasnippets yas-snippet-dirs)))
   ;;     (add-to-list 'yas-snippet-dirs my-yasnippets))
 
-  (add-to-list 'auto-mode-alist '("\\.yasnippet\\'" . snippet-mode))
+  ;; (add-to-list 'auto-mode-alist '("\\.yasnippet\\'" . snippet-mode))
 
   ;; http://stackoverflow.com/questions/7619640/emacs-latex-yasnippet-why-are-newlines-inserted-after-a-snippet
   (setq-default mode-require-final-newline nil)
   ;; (message "yas-snippet-dirs=%s" (mapconcat 'identity yas-snippet-dirs ":"))
-
-  ;; use yas-completing-prompt when ONLY when `M-x yas-insert-snippet'
-  ;; thanks to capitaomorte for providing the trick.
-  ;; (defadvice yas-insert-snippet (around use-completing-prompt activate)
-  ;;   "Use `yas-completing-prompt' for `yas-prompt-functions' but only here..."
-  ;;   (let ((yas-prompt-functions '(yas-completing-prompt)))
-  ;;     ad-do-it))
 
   ;; (defun my-yas-reload-all ()
   ;;   (interactive)
