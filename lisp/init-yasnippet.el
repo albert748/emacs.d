@@ -1,32 +1,40 @@
+;;; init-yasnippet.el --- https://github.com/joaotavora/yasnippet
+
+;;; Commentary:
+
+;;; Code:
+
 (use-package yasnippet
-  :config
-
-  (use-package dropdown-list
-    :config
-    ;; default hotkey `C-c C-s` is still valid
-    ;; give yas-dropdown-prompt in yas/prompt-functions a chance
-    (setq yas-prompt-functions '(yas-dropdown-prompt
-                                 yas-ido-prompt
-                                 yas-completing-prompt)))
-
-  ;; my private snippets, should be placed before enabling yasnippet
-  (setq my-yasnippets (expand-file-name "~/my-yasnippets"))
-  (if (and  (file-exists-p my-yasnippets) (not (member my-yasnippets yas-snippet-dirs)))
-      (add-to-list 'yas-snippet-dirs my-yasnippets))
-
-  (yas-reload-all)
-
-  (defun yasnippet-generic-setup-for-mode-hook ()
-    ;; to enable yas on scratch buffers, do not compare temp.
-    ;; (unless (is-buffer-file-temp)
+  :defer t
+  :init
+  (defun yas-minor-mode-hook-setup ()
     (yas-minor-mode 1))
 
-  (add-hook 'prog-mode-hook 'yasnippet-generic-setup-for-mode-hook)
-  (add-hook 'text-mode-hook 'yasnippet-generic-setup-for-mode-hook)
-  ;; below modes does NOT inherit from prog-mode
-  (add-hook 'cmake-mode-hook 'yasnippet-generic-setup-for-mode-hook)
-  (add-hook 'web-mode-hook 'yasnippet-generic-setup-for-mode-hook)
-  (add-hook 'scss-mode-hook 'yasnippet-generic-setup-for-mode-hook)
+  (add-hook 'prog-mode-hook #'yas-minor-mode-hook-setup)
+  (add-hook 'org-mode-hook #'yas-minor-mode-hook-setup)
+
+  :config
+  ;; Must exist for per-buffer basis
+  (yas-reload-all)
+
+  ;; ido is more clear for snippets selection
+  (setq yas-prompt-functions '(yas-maybe-ido-prompt
+                               yas-dropdown-prompt
+                               yas-completing-prompt
+                               yas-no-prompt))
+
+  ;; (use-package dropdown-list
+  ;;   :config
+  ;;   ;; default hotkey `C-c C-s` is still valid
+  ;;   ;; give yas-dropdown-prompt in yas/prompt-functions a chance
+  ;;   (setq yas-prompt-functions '(yas-dropdown-prompt
+  ;;                                yas-ido-prompt
+  ;;                                yas-completing-prompt)))
+
+  ;; my private snippets, should be placed before enabling yasnippet
+  ;; (setq my-yasnippets (expand-file-name "~/my-yasnippets"))
+  ;; (if (and  (file-exists-p my-yasnippets) (not (member my-yasnippets yas-snippet-dirs)))
+  ;;     (add-to-list 'yas-snippet-dirs my-yasnippets))
 
   (add-to-list 'auto-mode-alist '("\\.yasnippet\\'" . snippet-mode))
 
@@ -34,18 +42,17 @@
   (setq-default mode-require-final-newline nil)
   ;; (message "yas-snippet-dirs=%s" (mapconcat 'identity yas-snippet-dirs ":"))
 
-
   ;; use yas-completing-prompt when ONLY when `M-x yas-insert-snippet'
   ;; thanks to capitaomorte for providing the trick.
-  (defadvice yas-insert-snippet (around use-completing-prompt activate)
-    "Use `yas-completing-prompt' for `yas-prompt-functions' but only here..."
-    (let ((yas-prompt-functions '(yas-completing-prompt)))
-      ad-do-it))
+  ;; (defadvice yas-insert-snippet (around use-completing-prompt activate)
+  ;;   "Use `yas-completing-prompt' for `yas-prompt-functions' but only here..."
+  ;;   (let ((yas-prompt-functions '(yas-completing-prompt)))
+  ;;     ad-do-it))
 
-  (defun my-yas-reload-all ()
-    (interactive)
-    (yas-compile-directory (file-truename "~/.emacs.d/snippets"))
-    (yas-reload-all))
+  ;; (defun my-yas-reload-all ()
+  ;;   (interactive)
+  ;;   (yas-compile-directory (file-truename "~/.emacs.d/snippets"))
+  ;;   (yas-reload-all))
 
   (defun my-yas-field-to-statement(str sep)
     "If STR=='a.b.c' and SEP=' && ',
@@ -123,3 +130,4 @@
 
 
 (provide 'init-yasnippet)
+;;; init-yasnippet.el ends here
