@@ -1,10 +1,15 @@
+;;; init-pyim.el --- see https://github.com/tumashu/pyim
+
+;;; Commentary:
+
+;;; Code:
+
 (use-package pyim
   :bind
   (("M-j" . pyim-convert-code-at-point))
 
   :init
-  (setq pyim-directory (concat my-emacs-private-directory "pyim"))
-  (setq pyim-dcache-directory (concat my-emacs-cache-directory "pyim/dcache"))
+  (setq pyim-dcache-directory (expand-file-name "pyim/dcache" my-emacs-cache-directory))
 
   :config
   (use-package pyim-basedict
@@ -65,7 +70,22 @@ width punctuation."
 
   ;; (pyim-isearch-mode 1)
 
-  (setq pyim-page-length 5))
+  (setq pyim-page-length 5)
+
+  (defun pyim-dcache-export-personal-dcache-2 (file &optional confirm)
+    "将 ‘pyim-dcache-icode2word’ 导出为 pyim 词库文件.
+
+如果 FILE 为 nil, 提示用户指定导出文件位置, 如果 CONFIRM 为
+non-nil，文件存在时将会提示用户是否覆盖，默认为覆盖模式"
+    (interactive "F将个人缓存中的词条导出到文件：")
+    (with-temp-buffer
+      (insert ";;; -*- coding: utf-8-unix -*-\n")
+      (maphash
+       #'(lambda (key value)
+           (insert (concat key " " (mapconcat #'identity value " ") "\n")))
+       pyim-dcache-icode2word)
+      (write-file file confirm)))
+  (advice-add 'pyim-dcache-export-personal-dcache :override #'pyim-dcache-export-personal-dcache-2))
 
 
 (provide 'init-pyim)
