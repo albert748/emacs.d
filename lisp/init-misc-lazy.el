@@ -19,14 +19,6 @@
 (setq global-auto-revert-non-file-buffers t
       auto-revert-verbose nil)
 
-;; {{ csv
-;;; FIXME: remove this package with elpa
-(use-package csv-mode
-  :ensure nil                           ; site-lisp package
-  :mode "\\.[Cc][Ss][Vv]\\'"
-  :config (setq csv-separators '("," ";" "|" " ")))
-;; }}
-
 
 ;;----------------------------------------------------------------------------
 ;; Don't disable narrowing commands

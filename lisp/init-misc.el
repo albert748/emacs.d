@@ -1,3 +1,9 @@
+;;; init-misc.el --- Misc pacakges setup
+
+;;; Commentary:
+
+;;; Code:
+
 ;; apropos result sort match with scores.
 (setq apropos-sort-by-scores 'verbose)
 
@@ -9,6 +15,10 @@
 
 (use-package vimrc-mode
   :defer t)
+
+(use-package csv-mode
+  :defer t
+  :config (setq csv-separators '("," ";" "|" " ")))
 
 (use-package pdf-tools
   ;; awesome PDF mode better then DocView, @see https://github.com/politza/pdf-tools
@@ -746,3 +756,4 @@ If step is -1, go backward."
   (add-hook 'prog-mode-hook 'fic-mode))
 
 (provide 'init-misc)
+;;; init-misc.el ends here

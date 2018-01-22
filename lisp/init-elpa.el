@@ -1,12 +1,19 @@
+;;; init-elpa.el --- initialize packages
+
+;;; Commentary:
+
+;;; Code:
+
 (setq package-archives
       '(("melpa" . "http://melpa.org/packages/")
+        ("elpa" . "http://elpa.gnu.org/packages/")
         ("org" . "http://orgmode.org/elpa/")))
 
 (setq package-menu-hide-low-priority t)
 
 (setq package-selected-packages
       '(
-        ;; essential pacakges
+        ;; essential packages
         use-package
         company
         yasnippet
@@ -38,6 +45,7 @@
         go-mode
         groovy-mode
         csharp-mode
+        csv-mode
         ;; powershell
 
         ;; functional helper modes
@@ -261,3 +269,4 @@ ARCHIVE is the string name of the package archive.")
 
 
 (provide 'init-elpa)
+;;; init-elpa.el ends here
