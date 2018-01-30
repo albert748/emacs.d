@@ -169,6 +169,7 @@ support symbolic link.")
   (require 'init-emacspeak)
   (require 'init-artbollocks-mode)
   (require 'init-semantic)
+  (require 'init-emms)
 
   (require 'init-avy)
 
