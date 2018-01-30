@@ -121,26 +121,6 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
      (define-key org-clock-mode-line-map [header-line mouse-2] 'org-clock-goto)
      (define-key org-clock-mode-line-map [header-line mouse-1] 'org-clock-menu)))
 
-(defun org-mode-hook-setup ()
-  (setq evil-auto-indent nil)
-  ;; org-mode's own flycheck will be loaded
-  (enable-flyspell-mode-conditionally)
-
-  ;; but I don't want to auto spell check when typing,
-  ;; please comment out `(flyspell-mode -1)` if you prefer auto spell check
-  (flyspell-mode -1)
-
-  ;; for some reason, org8 disable odt export by default
-  (add-to-list 'org-export-backends 'org) ; for org-mime
-
-  ;; org-mime setup, run this command in org-file, than yank in `message-mode'
-  (local-set-key (kbd "C-c M-o") 'org-mime-org-buffer-htmlize)
-
-  ;; don't spell check double words
-  (setq flyspell-check-doublon nil))
-
-(add-hook 'org-mode-hook 'org-mode-hook-setup)
-
 (defadvice org-publish (around org-publish-advice activate)
   "Stop running major-mode hook when org-publish"
   (let ((old load-user-customized-major-mode-hook))
@@ -261,13 +241,23 @@ instead."
       (funcall func arg reference-buffer)))
   (advice-add 'org-open-at-point :around #'org-open-at-point-choose-browser)
 
-  (defun org-mode-hook-setup-1 ()
-    ;; Disable global-flycheck-mode on orgmode
+  (defun org-mode-hook-setup ()
+    ;; for some reason, org8 disable odt export by default
+    ;; (add-to-list 'org-export-backends 'org) ; for org-mime
+
+    ;; org-mime setup, run this command in org-file, than yank in `message-mode'
+    ;; (local-set-key (kbd "C-c M-o") 'org-mime-org-buffer-htmlize)
+
+    (setq evil-auto-indent nil)
+
+    (flyspell-mode -1)
+
+    ;; Disable flycheck-mode on orgmode
     (if (boundp 'flycheck-mode-map)
         (flycheck-mode -1))
     (setq show-trailing-whitespace t))
 
-  (add-hook 'org-mode-hook #'org-mode-hook-setup-1)
+  (add-hook 'org-mode-hook #'org-mode-hook-setup)
 
   ;;;; Useful settings
   (setq org-cycle-include-plain-lists 'integrate)
@@ -317,9 +307,10 @@ instead."
   (add-hook 'org-agenda-mode-hook #'(lambda () (display-line-numbers-mode -1)))
 
   ;; Various preferences
-  (setq org-log-done t           ; basic logging when move to DONE state
-        org-log-into-drawer t      ; insert state change notes and time stamps into drawer
-        org-tags-column 0      ; place tags directly after headline text
+  (setq org-log-done 'time     ; Add a timestamp when task move to DONE state
+        org-log-into-drawer t ; insert state change notes and time stamps into drawer
+        org-clock-idle-time 15 ; resolve open clocks after 15 minutes idle
+        org-tags-column 0    ; place tags directly after headline text
         ;; org-agenda-window-setup 'current-window ; use default reorganize-frame
         org-agenda-restore-windows-after-quit t ; restore old state with 'q' or 'x'
         ;; org-agenda-span 14                ; default: week, expand to 2 weeks
