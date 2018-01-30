@@ -443,7 +443,7 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "bb" 'back-to-previous-buffer
        "ef" 'end-of-defun
        "mf" 'mark-defun
-       "em" 'erase-message-buffer
+       ;; "em" 'erase-message-buffer
        "eb" 'eval-buffer
        "sd" 'sudo-edit
        "sc" 'shell-command
@@ -601,6 +601,12 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "le" 'flycheck-list-errors
        "pb" 'previous-buffer
        "nb" 'next-buffer
+       "emm" 'emms
+       "ems" 'emms-stop
+       "emp" 'emms-pause
+       "eml" 'emms-volume-lower
+       "emr" 'emms-volume-raise
+       "emn" 'emms-next
        "fw" 'ispell-word
        "bc" '(lambda () (interactive) (wxhelp-browse-class-or-api (thing-at-point 'symbol)))
        "oag" 'org-agenda
