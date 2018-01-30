@@ -1,4 +1,11 @@
+;;; init-git.el --- initialize git
+
+;;; Commentary:
+
+;;; Code:
+
 (use-package git-gutter+
+  :diminish "GitG"
   :init (global-git-gutter+-mode)
   :config
 

@@ -4,8 +4,15 @@
 
 ;;; Code:
 
-;; apropos result sort match with scores.
-(setq apropos-sort-by-scores 'verbose)
+(use-package apropos
+  :ensure nil
+  :defer t
+  :config
+  ;; apropos result sort match with scores.
+  (setq apropos-sort-by-scores 'verbose))
+
+(use-package undo-tree
+  :diminish "UndoT")
 
 (use-package sudo-edit
   :commands (sudo-edit))
