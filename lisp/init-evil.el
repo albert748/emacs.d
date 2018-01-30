@@ -481,8 +481,8 @@ If the character before and after CH is space or tab, CH is NOT slash"
        ;; "cl" 'evilnc-comment-or-uncomment-to-the-line
        ;; "cc" 'evilnc-copy-and-comment-lines
        ;; "cp" 'evilnc-comment-or-uncomment-paragraphs
-       "epy" 'emmet-expand-yas
-       "epl" 'emmet-expand-line
+       ;; "epy" 'emmet-expand-yas
+       ;; "epl" 'emmet-expand-line
        "rd" 'evilmr-replace-in-defun
        "rb" 'evilmr-replace-in-buffer
        "ts" 'evilmr-tag-selected-region ;; recommended
@@ -596,9 +596,9 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "fb" 'flyspell-buffer
        "fe" 'flyspell-goto-next-error
        "fa" 'flyspell-auto-correct-word
-       "pe" '(lambda () (interactive) (if (fboundp 'flycheck-previous-error) (flycheck-previous-error) (flymake-goto-prev-error)))
-       "ne" '(lambda () (interactive) (if (fboundp 'flycheck-next-error) (flycheck-next-error) (flymake-goto-next-error)))
-       "le" 'flycheck-list-errors
+       "ep" '(lambda () (interactive) (if (fboundp 'flycheck-previous-error) (flycheck-previous-error) (flymake-goto-prev-error)))
+       "en" '(lambda () (interactive) (if (fboundp 'flycheck-next-error) (flycheck-next-error) (flymake-goto-next-error)))
+       "el" 'flycheck-list-errors
        "pb" 'previous-buffer
        "nb" 'next-buffer
        "emm" 'emms
