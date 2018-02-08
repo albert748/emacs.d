@@ -32,12 +32,12 @@
   :config
   (if (or (not (executable-find "flake8"))
           (not (executable-find "pylint")))
-      (message "You need install flake8 and python-pylint to enable flycheck for python"))
+      (message "[Missing] You need install flake8 and python-pylint to enable flycheck for python"))
 
   ;; Jupyter console is recommended instead of ipython or default python shell
   ;; refer: https://elpy.readthedocs.io/en/latest/ide.html?highlight=rope#interactive-python
   (if (not (executable-find "jupyter"))
-      (message "You need install jupyter to enable better interactive support on python")
+      (message "[Missing] You need install jupyter to enable better interactive support on python")
     (setq python-shell-interpreter "jupyter"
           python-shell-interpreter-args "console --simple-prompt"))
 
