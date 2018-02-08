@@ -1,3 +1,9 @@
+;;; init-python.el --- initialize elpy for python-mode
+
+;;; Commentary:
+
+;;; Code:
+
 ;; org-babel functions for IPython evaluation
 (use-package ob-ipython)
 
@@ -24,13 +30,25 @@
   (elpy-enable)
 
   :config
+  (if (or (not (executable-find "flake8"))
+          (not (executable-find "pylint")))
+      (message "You need install flake8 and python-pylint to enable flycheck for python"))
+
+  ;; Jupyter console is recommended instead of ipython or default python shell
+  ;; refer: https://elpy.readthedocs.io/en/latest/ide.html?highlight=rope#interactive-python
+  (if (not (executable-find "jupyter"))
+      (message "You need install jupyter to enable better interactive support on python")
+    (setq python-shell-interpreter "jupyter"
+          python-shell-interpreter-args "console --simple-prompt"))
+
   ;; there exist completion issue on rope, use jedi instead.
   ;; refer: https://github.com/jorgenschaefer/elpy/issues/631
-  (setq elpy-rpc-backend "jedi")
+  ;; rope have been removed from backend, elpy 1.17 only use jedi as backend
+  ;; (setq elpy-rpc-backend "jedi")
 
   ;; yapf always timeout when format large source, set timeout much
   ;; more bigger is safe.
-  (setq elpy-rpc-timeout 10)
+  (setq elpy-rpc-timeout 3)
 
   ;; MacOS use python2 as default, set python version explicitly.
   (if (eq system-type 'darwin)
@@ -42,16 +60,16 @@
                 (if (memq 'elpy-company-backend company-backends)
                     (setq company-backends (cons '(elpy-company-backend company-yasnippet) (delq 'elpy-company-backend company-backends))))))
 
-  (defun elpy-try-use-ipython ()
-    (if (not (executable-find "ipython"))
-        (message "Your need install ipython or Anaconda for elpy")
+  ;; (defun elpy-try-use-ipython ()
+  ;;   (if (not (executable-find "ipython"))
+  ;;       (message "Your need install ipython or Anaconda for elpy")
 
-      ;; Fix ansi color issue (CSI codes) for ipython.
-      ;; @see https://lists.gnu.org/archive/html/bug-gnu-emacs/2016-09/msg00043.html
-      (setq python-shell-interpreter-args "--simple-prompt -i")
-      ))
+  ;;     ;; Fix ansi color issue (CSI codes) for ipython.
+  ;;     ;; @see https://lists.gnu.org/archive/html/bug-gnu-emacs/2016-09/msg00043.html
+  ;;     (setq python-shell-interpreter-args "--simple-prompt -i")
+  ;;     ))
 
-  (elpy-try-use-ipython)
+  ;; (elpy-try-use-ipython)
 
   ;; looks like the issue already fixed with emacs 25.2.1
   ;;; Fix issue completion issue of interactive shell for python 3.5.2
@@ -77,3 +95,4 @@
   (add-hook 'python-mode-hook 'python-mode-hook-setup))
 
 (provide 'init-python)
+;;; init-python.el ends here

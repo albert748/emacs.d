@@ -426,7 +426,6 @@ If the character before and after CH is space or tab, CH is NOT slash"
 (define-key evil-insert-state-map (kbd "C-k") 'kill-line)
 ;; (define-key evil-insert-state-map (kbd "M-j") 'yas-expand)
 ;; (define-key evil-emacs-state-map (kbd "M-j") 'yas-expand)
-(global-set-key (kbd "C-r") 'undo-tree-redo)
 
 ;; My frequently used commands are listed here
 ;; For example, for line like `"ef" 'end-of-defun`

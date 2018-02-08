@@ -9,6 +9,8 @@
 (use-package emms
   :defer t
   :config
+  (setq emms-directory (file-name-as-directory (expand-file-name "emms" my-emacs-private-directory)))
+
   (emms-all)
 
   ;; mpg321 do not support mp3 seek, so do not use the default

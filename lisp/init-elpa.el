@@ -95,6 +95,9 @@
         pdf-tools
         powerline
 
+        emms
+        diminish
+
         bbdb
         wgrep
         robe

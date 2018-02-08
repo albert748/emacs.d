@@ -1,13 +1,21 @@
+;;; init-sessions.el --- initialize desktop and session
+
+;;; Commentary:
+
+;;; Code:
+
 (use-package desktop
   :ensure nil
   :init (desktop-save-mode)
   :config
   ;; save a list of open files in ~/.emacs.d/.emacs.desktop
   ;; save the desktop file automatically if it already exists
-  (setq desktop-path '("~/.emacs.d"))
+  ;; (setq desktop-path '("~/.emacs.d"))
+  (add-to-list 'desktop-path my-emacs-cache-directory)
   (setq desktop-save 'if-exists)
   ;; @see https://github.com/purcell/emacs.d/issues/352
-  (setq desktop-restore-frames nil))
+  ;; (setq desktop-restore-frames nil)
+  (setq desktop-restore-in-current-display nil))
 
 ;;----------------------------------------------------------------------------
 ;; Restore histories and registers after saving
@@ -38,3 +46,4 @@
                 register-alist)))
 
 (provide 'init-sessions)
+;;; init-sessions.el ends here

@@ -1,9 +1,12 @@
 ;; -*- coding: utf-8 -*-
 ;(defvar best-gc-cons-threshold gc-cons-threshold "Best default gc threshold value. Should't be too big.")
 
+
+;;; Code:
+
 ;; Helper method
 (defun get-string-from-file (filePath)
-  "Return filePath's file content."
+  "Return FILEPATH's file content."
   (with-temp-buffer
     (insert-file-contents filePath)
     (require 'subr-x)
@@ -11,18 +14,20 @@
 
 (defvar my-emacs-cache-directory
   (expand-file-name "emacs/" (or (getenv "XDG_CACHE_HOME") "~/.cache/"))
-  "Global cache directory for emacs, used to store cache files.
+  "Global cache directory for Emacs, used to store cache files.
+
 useful for chinese-pyim cache.")
 
 (defvar my-emacs-private-directory
   (if (file-exists-p "~/.emacs.custom.cfg")
       (get-string-from-file "~/.emacs.custom.cfg")
     (expand-file-name "emacs/" (or (getenv "XDG_CONFIG_HOME") "~/.config/")))
-  "Global personal configuration directory for emacs.
+  "Global personal configuration directory for Emacs.
+
 used to store sensitive personal data like input method user
-dict. If you want to specify the private synchronized directory
+dict.  If you want to specify the private synchronized directory
 yourself, touch the file to ~/.emacs.custom.cfg and put your dir
-name there. This method is useful under windows which do not
+name there.  This method is useful under windows which do not
 support symbolic link.")
 
 ;; Added by Package.el.  This must come before configurations of
@@ -195,3 +200,5 @@ support symbolic link.")
 ;;; no-byte-compile: t
 ;;; End:
 (put 'erase-buffer 'disabled nil)
+
+;;; init.el ends here

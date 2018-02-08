@@ -1,37 +1,57 @@
-(setq w3m-quick-start nil
-      w3m-coding-system 'utf-8
-      w3m-file-coding-system 'utf-8
-      w3m-file-name-coding-system 'utf-8
-      w3m-input-coding-system 'utf-8
-      w3m-output-coding-system 'utf-8
-      ;; emacs-w3m will test the ImageMagick support for png32
-      ;; and create files named "png32:-" everywhere
-      w3m-imagick-convert-program nil
-      w3m-terminal-coding-system 'utf-8
-      w3m-use-cookies t
-      w3m-cookie-accept-bad-cookies t
-      w3m-home-page "https://www.google.com/ncr"
-      w3m-command-arguments       '("-F" "-cookie")
-      w3m-mailto-url-function     'compose-mail
-      browse-url-browser-function 'w3m-browse-url
-      ;; use shr to view html mail, but if libxml NOT available
-      ;; use w3m isntead. That's Emacs 24.3+ default logic
-      ;; mm-text-html-renderer 'shr
-      w3m-use-toolbar t
-      ;; show images in the browser
-      ;; setq w3m-default-display-inline-images t
-      ;; w3m-use-tab     nil
-      w3m-confirm-leaving-secure-page nil
-      w3m-search-default-engine "g"
-      w3m-key-binding 'info)
+;;; init-emacs-w3m.el --- initialize w3m
 
-(defun w3m-get-url-from-search-engine-alist (k l)
-  (let (rlt)
+;;; Commentary:
+
+;;; Code:
+
+(use-package w3m
+  :config
+  (setq w3m-quick-start nil
+        w3m-coding-system 'utf-8
+        w3m-file-coding-system 'utf-8
+        w3m-file-name-coding-system 'utf-8
+        w3m-input-coding-system 'utf-8
+        w3m-output-coding-system 'utf-8
+        ;; emacs-w3m will test the ImageMagick support for png32
+        ;; and create files named "png32:-" everywhere
+        w3m-imagick-convert-program nil
+        w3m-terminal-coding-system 'utf-8
+        w3m-use-cookies t
+        w3m-cookie-accept-bad-cookies t
+        w3m-home-page "https://www.google.com/ncr"
+        w3m-command-arguments       '("-F" "-cookie")
+        w3m-mailto-url-function     'compose-mail
+        ;; browse-url-browser-function 'w3m-browse-url
+        ;; use shr to view html mail, but if libxml NOT available
+        ;; use w3m isntead. That's Emacs 24.3+ default logic
+        ;; mm-text-html-renderer 'shr
+        w3m-use-toolbar t
+        ;; show images in the browser
+        ;; setq w3m-default-display-inline-images t
+        ;; w3m-use-tab     nil
+        w3m-confirm-leaving-secure-page nil
+        ;; w3m-search-default-engine "g"
+        w3m-key-binding 'info)
+
+  (defun w3m-get-url-from-search-engine-alist (k l)
+    (let (rlt)
+      (if (listp l)
+          (if (string= k (caar l))
+              (setq rlt (nth 1 (car l)))
+            (setq rlt (w3m-get-url-from-search-engine-alist k (cdr l)))))
+      rlt))
+
+  (defun w3m-set-url-from-search-engine-alist (k l url)
     (if (listp l)
-      (if (string= k (caar l))
-          (setq rlt (nth 1 (car l)))
-        (setq rlt (w3m-get-url-from-search-engine-alist k (cdr l)))))
-    rlt))
+        (if (string= k (caar l))
+            (setcdr (car l) (list url))
+          (w3m-set-url-from-search-engine-alist k (cdr l) url))))
+  )
+
+
+
+
+
 
 ;; C-u S g RET <search term> RET in w3m
 (setq w3m-search-engine-alist
@@ -51,11 +71,7 @@
         ;; javascript search on mozilla.org
         ("j" "http://www.google.com.au/search?q=%s+site:developer.mozilla.org" utf-8)))
 
-(defun w3m-set-url-from-search-engine-alist (k l url)
-    (if (listp l)
-      (if (string= k (caar l))
-          (setcdr (car l) (list url))
-        (w3m-set-url-from-search-engine-alist k (cdr l) url))))
+
 
 (defvar w3m-global-keyword nil
   "`w3m-display-hook' must search current buffer with this keyword twice if not nil")
@@ -119,12 +135,12 @@
 (add-hook 'w3m-mode-hook 'w3m-mode-hook-setup)
 
 ; {{ Search using external browser
-(setq browse-url-generic-program
-      (cond
-       (*is-a-mac* "open")
-       (*linux* (executable-find "chromium"))
-       (*linux* (executable-find "firefox"))
-       ))
+;; (setq browse-url-generic-program
+;;       (cond
+;;        (*is-a-mac* "open")
+;;        (*linux* (executable-find "chromium"))
+;;        (*linux* (executable-find "firefox"))
+;;        ))
 
 ;; use external browser to search programming stuff
 (defun w3mext-hacker-search ()
@@ -228,4 +244,6 @@
                    (rename-buffer
                     (format "*w3m: %s*"
                             (substring title 0 (min 50 (length title)))) t))))))
+
 (provide 'init-emacs-w3m)
+;;; init-emacs-w3m.el ends here
