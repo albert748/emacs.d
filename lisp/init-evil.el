@@ -529,6 +529,7 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "ov" 'my-overview-of-current-buffer
        "or" 'open-readme-in-git-root-directory
        "oo" 'compile
+       "od" 'org-decrypt-entries
        "c$" 'org-archive-subtree ; `C-c $'
        ;; org-do-demote/org-do-premote support selected region
        "c<" 'org-do-promote ; `C-c C-<'

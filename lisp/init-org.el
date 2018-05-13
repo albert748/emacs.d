@@ -262,6 +262,17 @@ instead."
   ;;;; Useful settings
   (setq org-cycle-include-plain-lists 'integrate)
 
+  ;; @see https://orgmode.org/worg/org-tutorials/encrypting-files.html
+  (use-package org-crypt
+    :ensure nil
+    :config
+    ;; Add tag :crypt: to headline for automatic encryption
+    (org-crypt-use-before-save-magic)
+    ;; Preventing tag inheritance stops you having encrypted text inside encrypted text
+    (setq org-tags-exclude-from-inheritance '("crypt"))
+    ;; leave auto save is not safe
+    (setq org-crypt-disable-auto-save t))
+
   ;; Allow maximum of 3 lines of emphasis
   ;; @see https://emacs.stackexchange.com/questions/13820/inline-verbatim-and-code-with-quotes-in-org-mode
   (setcar (nthcdr 4 org-emphasis-regexp-components) 3)
