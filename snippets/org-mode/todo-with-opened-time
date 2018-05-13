@@ -3,7 +3,11 @@
 # key: <t
 # contributor: Albert.Zhou (albert748@gmail.com)
 # --
-`(if (org-find-top-headline) (make-string (car (org-heading-components)) ?*) "*")` TODO $0
+`(progn
+    (require 'org-agenda)
+    (if (org-find-top-headline)
+        (make-string (car (org-heading-components)) ?*)
+      "*"))` TODO $0
   :PROPERTIES:
   :Opened:    `(format-time-string (org-time-stamp-format 'long 'inactive))`
   :END:
