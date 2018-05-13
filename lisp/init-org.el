@@ -194,7 +194,7 @@ If use-indirect-buffer is not nil, use `indirect-buffer' to hold the widen conte
     :commands (org-mind-map-write)
     :if (if (executable-find "unflatten")
             t
-          (message "[Missing] Install graphviz to enable org-mind-map")
+          (message "[Missing] You need install graphviz to enable org-mind-map")
           nil))
 
   ;; Add very basic support for pomodoro technique
