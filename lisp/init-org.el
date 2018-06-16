@@ -291,6 +291,7 @@ instead."
   ;; (advice-add 'org-babel-execute-src-block :before #'org-babel-execute-src-block-load-lang)
 
   (setq org-babel-load-languages '((emacs-lisp . t)
+                                   (lisp . t)
                                    (shell . t)
                                    (python . t)))
 

@@ -84,6 +84,7 @@
         ;; chinese
         ace-pinyin
         pyim
+        posframe
         pyim-basedict
         cnfonts
         youdao-dictionary
@@ -131,6 +132,7 @@
         company-c-headers
 
         org
+        org2blog
         org-plus-contrib
         org-download
         org-mind-map
