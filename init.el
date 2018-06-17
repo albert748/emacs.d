@@ -4,31 +4,22 @@
 
 ;;; Code:
 
-;; Helper method
-(defun get-string-from-file (filePath)
-  "Return FILEPATH's file content."
-  (with-temp-buffer
-    (insert-file-contents filePath)
-    (require 'subr-x)
-    (string-trim (buffer-string))))
-
 (defvar my-emacs-cache-directory
-  (expand-file-name "emacs/" (or (getenv "XDG_CACHE_HOME") "~/.cache/"))
+  (or (getenv "MY_EMACS_CACHE_DIRECTORY")
+      (expand-file-name "emacs/" (or (getenv "XDG_CACHE_HOME") "~/.cache/")))
   "Global cache directory for Emacs, used to store cache files.
 
-useful for chinese-pyim cache.")
+useful for chinese-pyim cache, keyfreq lock file etc.")
 
 (defvar my-emacs-private-directory
-  (if (file-exists-p "~/.emacs.custom.cfg")
-      (get-string-from-file "~/.emacs.custom.cfg")
-    (expand-file-name "emacs/" (or (getenv "XDG_CONFIG_HOME") "~/.config/")))
+  (or (getenv "MY_EMACS_PRIVATE_DIRECTORY")
+      (expand-file-name "emacs/" (or (getenv "XDG_CONFIG_HOME") "~/.config/")))
   "Global personal configuration directory for Emacs.
 
 used to store sensitive personal data like input method user
-dict.  If you want to specify the private synchronized directory
-yourself, touch the file to ~/.emacs.custom.cfg and put your dir
-name there.  This method is useful under windows which do not
-support symbolic link.")
+dict.")
+
+(message "Use %s as cache directory.\nUse %s as private directory." my-emacs-cache-directory my-emacs-private-directory)
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -185,15 +176,14 @@ support symbolic link.")
 
   ;; my personal setup, other major-mode specific setup need it.
   ;; It's dependent on init-site-lisp.el
-  (let ((my-custom-config (concat my-emacs-private-directory "/custom.el")))
+  (let ((my-custom-config (expand-file-name "custom.el" my-emacs-private-directory)))
     (if (file-exists-p my-custom-config)
-        (load-file my-custom-config)))
-  ;; (if (file-exists-p "~/.custom.el") (load-file "~/.custom.el"))
-  )
+        (load-file my-custom-config)
+      (message "[Error]Could not find custom.el file, use wrong private directory?"))))
 
 ;; @see https://www.reddit.com/r/emacs/comments/4q4ixw/how_to_forbid_emacs_to_touch_configuration_files/
 ;; (setq custom-file (concat user-emacs-directory "custom-set-variables.el"))
-(setq custom-file (concat my-emacs-private-directory "/custom-set-variables.el"))
+(setq custom-file (expand-file-name "custom-set-variables.el" my-emacs-private-directory))
 (load custom-file 'noerror)
 
 (setq gc-cons-threshold best-gc-cons-threshold)
