@@ -44,8 +44,8 @@
         systemd
         go-mode
         groovy-mode
-        csharp-mode
         csv-mode
+        omnisharp
         ;; powershell
 
         ;; functional helper modes

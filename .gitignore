@@ -1,4 +1,5 @@
 /.emacs.keyfreq*
+/.cache/
 .depend
 pyim/
 anaconda-mode/

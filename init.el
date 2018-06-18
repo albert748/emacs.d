@@ -118,6 +118,7 @@ dict.")
   ;; Use bookmark instead
   (require 'init-zencoding-mode)
   (require 'init-cc-mode)
+  (require 'init-csharp)
   (require 'init-gud)
   ;; (require 'init-linum-mode)
   (require 'init-display-line-numbers)
