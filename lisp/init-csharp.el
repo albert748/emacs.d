@@ -10,8 +10,11 @@
   :init
   (defun my-csharp-mode-setup ()
     (omnisharp-mode)
+    (projectile-mode)
     (company-mode)
     (flycheck-mode)
+
+    (setq projectile-indexing-method 'alien)
 
     (setq indent-tabs-mode nil)
     (setq c-syntactic-indentation t)
