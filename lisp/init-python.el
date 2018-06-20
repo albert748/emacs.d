@@ -5,7 +5,8 @@
 ;;; Code:
 
 ;; org-babel functions for IPython evaluation
-(use-package ob-ipython)
+(use-package ob-ipython
+  :if (not (eq system-type 'windows-nt)))
 
 ;; ipython notebook support
 (use-package ein
