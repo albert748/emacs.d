@@ -501,6 +501,20 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "ga" 'counsel-git-grep-by-author
        "gm" 'counsel-git-find-my-file
        "gs" 'ffip-show-diff ; find-file-in-project 5.0+
+       "gt" 'ggtags-find-tag-dwim
+       "gr" 'ggtags-find-reference
+       "gu" 'omnisharp-find-usages
+       "gi" 'omnisharp-find-implementations
+       "gd" 'omnisharp-go-to-definition
+       "gR" 'omnisharp-rename
+       ",i" 'omnisharp-current-type-information
+       ",I" 'omnisharp-current-type-documentation
+       ",." 'omnisharp-show-overloads-at-point
+       ",m" 'omnisharp-navigate-to-current-file-member
+       ",s" 'omnisharp-navigate-to-solution-member
+       ",o" 'projectile-compile-project
+       ",u" 'projectile-run-project
+       ",r" 'recompile
        "sf" 'counsel-git-show-file
        "sh" 'my-select-from-search-text-history
        "df" 'counsel-git-diff-file
@@ -528,7 +542,6 @@ If the character before and after CH is space or tab, CH is NOT slash"
        ;; toggle overview,  @see http://emacs.wordpress.com/2007/01/16/quick-and-dirty-code-folding/
        "ov" 'my-overview-of-current-buffer
        "or" 'open-readme-in-git-root-directory
-       "oo" 'compile
        "od" 'org-decrypt-entries
        "c$" 'org-archive-subtree ; `C-c $'
        ;; org-do-demote/org-do-premote support selected region
@@ -591,8 +604,6 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "hf" 'find-function
        "hk" 'describe-key
        "hv" 'describe-variable
-       "gt" 'ggtags-find-tag-dwim
-       "gr" 'ggtags-find-reference
        "fb" 'flyspell-buffer
        "fe" 'flyspell-goto-next-error
        "fa" 'flyspell-auto-correct-word

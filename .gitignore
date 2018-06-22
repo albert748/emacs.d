@@ -1,3 +1,5 @@
+# omnisharp server
+/server/
 /.emacs.keyfreq*
 /.cache/
 .depend
