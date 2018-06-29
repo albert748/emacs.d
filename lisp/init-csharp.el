@@ -30,7 +30,12 @@
     )
 
   (add-hook 'csharp-mode-hook 'my-csharp-mode-setup t)
-  (add-to-list 'company-backends #'company-omnisharp))
+  (add-to-list 'company-backends #'company-omnisharp)
+
+  (defun omnisharp-restart-server ()
+    (interactive)
+    (omnisharp-stop-server)
+    (omnisharp-start-omnisharp-server)))
 
 (provide 'init-csharp)
 ;;; init-csharp.el ends here
