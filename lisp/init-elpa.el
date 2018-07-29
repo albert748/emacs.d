@@ -196,13 +196,6 @@
         keyfreq
         names))
 
-;;; force to install latest org
-;;; FIXME: rewrite of site-lisp package looks impossible.
-;;; So, please download org from http://orgmode.org/elpa/ manually for initial usage.
-;;; extract the tarball to ~/.emacs.d/elpa/
-(setq package-pinned-packages '((org . "org")
-                               (org-plus-contrib . "org")))
-
 (package-initialize)
 
 (if (eq package-archive-contents nil)
