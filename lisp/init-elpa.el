@@ -45,6 +45,7 @@
         go-mode
         groovy-mode
         csv-mode
+        ssh-config-mode
         omnisharp
         ;; powershell
 
