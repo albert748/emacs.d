@@ -1,3 +1,9 @@
+;;; init-lua-mode.el --- lua mode setups
+
+;;; Commentary:
+
+;;; Code:
+
 (defun my-lua-mode-setup ()
   (interactive)
   (unless (is-buffer-file-temp)
@@ -7,9 +13,10 @@
                                            ("Variable" "^ *local +\\([^ ]+\\).*$" 1)))))
 
 ;; @see http://lua-users.org/wiki/LuaStyleGuide
-;; indent 2 spaces by default
-(setq-default lua-indent-level 2)
+;; others use indent 2 spaces by default, to make it more pythonic, use 4 instead.
+(setq-default lua-indent-level 4)
 
 (add-hook 'lua-mode-hook 'my-lua-mode-setup)
 
 (provide 'init-lua-mode)
+;;; init-lua-mode.el ends here
