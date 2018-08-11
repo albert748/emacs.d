@@ -293,7 +293,8 @@ instead."
   (setq org-babel-load-languages '((emacs-lisp . t)
                                    (lisp . t)
                                    (shell . t)
-                                   (python . t)))
+                                   (python . t)
+                                   (lua . t)))
 
   ;; We need explicitly call this, why? otherwise sh/bash invoke may
   ;; fail with error message: ob-async-org-babel-execute-src-block: No
