@@ -40,7 +40,6 @@
         js2-mode
         crontab-mode
         pkgbuild-mode
-        lua-mode
         systemd
         go-mode
         groovy-mode
@@ -168,11 +167,14 @@
         nvm
 
         flycheck
-        flymake-lua
         flymake-css
         flymake-ruby
         flymake-jslint
         flymake-coffee
+
+        lua-mode
+        company-lua
+        flymake-lua
 
         ;; coffee-mode
         cliphist
