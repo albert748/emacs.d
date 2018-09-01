@@ -1,3 +1,9 @@
+;;; package -- init company mode
+
+;;; Commentary:
+
+;;; Code:
+
 (use-package company
   :init
   (add-hook 'after-init-hook 'global-company-mode)
@@ -72,7 +78,7 @@
         nil
       (funcall func command arg ignored)))
 
-  (eval-after-load 'chinese-pyim-core
+  (eval-after-load 'pyim
     '(progn
        (advice-add 'company-dabbrev :around #'company-backend-nozh)
        (advice-add 'company-ispell :around #'company-backend-nozh)))
