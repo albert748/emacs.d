@@ -17,10 +17,8 @@
         use-package
         company
         yasnippet
-        dropdown-list
         restart-emacs
         sudo-edit
-        dired+
         which-key
         ;; paredit
         smartparens
@@ -38,7 +36,6 @@
         yaml-mode
         cmake-mode
         js2-mode
-        crontab-mode
         pkgbuild-mode
         systemd
         go-mode
@@ -107,7 +104,6 @@
         move-text
         string-edit ; looks magnars don't update stable tag frequently
         findr
-        mwe-log-commands
         noflet
         db
         creole
@@ -115,15 +111,12 @@
         idomenu
         buffer-move
         regex-tool
-        quack
         legalese
         htmlize
         scratch
         session
-        bookmark+
         multi-term
         inflections
-        tidy
         auto-compile
         packed
         w3m
@@ -189,7 +182,6 @@
         emmet-mode
         page-break-lines
         less-css-mode
-        hl-sexp
         find-file-in-project
         exec-path-from-shell
         js-doc
