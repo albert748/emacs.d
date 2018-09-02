@@ -211,6 +211,7 @@
 ;; (add-to-list 'auto-mode-alist '("\\.cron\\(tab\\)?\\'" . crontab-mode))
 ;; (add-to-list 'auto-mode-alist '("cron\\(tab\\)?\\."    . crontab-mode))
 (use-package crontab-mode
+  :ensure nil
   :mode ("\\.cron\\(tab\\)?\\'" "cron\\(tab\\)?\\."))
 ;; }}
 

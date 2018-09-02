@@ -5,8 +5,9 @@
   (setq image-dired-dir (expand-file-name "image-dired/" my-emacs-cache-directory))
 
   (use-package dired+
+    :ensure nil
     ;; @see https://www.emacswiki.org/emacs/DiredReuseDirectoryBuffer
-    :init (diredp-toggle-find-file-reuse-dir 1)))
+    :config (diredp-toggle-find-file-reuse-dir 1)))
 
 (add-hook 'dired-mode-hook 'turn-on-stripe-buffer-mode)
 
