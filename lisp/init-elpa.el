@@ -31,6 +31,7 @@
         molokai-theme
 
         ;; variety of editing modes
+        nginx-mode
         vimrc-mode
         markdown-mode
         yaml-mode
