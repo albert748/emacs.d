@@ -82,6 +82,7 @@ dict.")
   ;;    ))
 
   (require 'init-elpa)
+  (require 'init-elpa-mirror)
   (require 'init-grep)
   (require 'init-exec-path) ;; Set up $PATH
   (require 'init-frame-hooks)
