@@ -6,11 +6,9 @@
 ;;; Code:
 
 (use-package omnisharp
-  :after (company flycheck)
   :init
   (defun my-csharp-mode-setup ()
     (omnisharp-mode)
-    (projectile-mode)
     (company-mode)
     (flycheck-mode)
 
@@ -24,13 +22,15 @@
     (setq tab-width 4)
     (setq evil-shift-width 4)
 
+    (eval-after-load 'company
+      '(setq-local company-backends (cons #'company-omnisharp company-backends)))
+
     ;; csharp-mode README.md recommends this too
     ;; (electric-pair-mode 1)       ;; Emacs 24
     ;; (electric-pair-local-mode 1) ;; Emacs 25
     )
 
-  (add-hook 'csharp-mode-hook 'my-csharp-mode-setup t)
-  (add-to-list 'company-backends #'company-omnisharp)
+  (add-hook 'csharp-mode-hook #'my-csharp-mode-setup)
 
   (defun omnisharp-restart-server ()
     (interactive)

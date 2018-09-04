@@ -24,7 +24,11 @@
 (use-package company-lua
   :init
   (defun my-lua-setup-company ()
-    (setq-local company-backends (cons 'company-lua company-backends)))
+    (setq-local company-backends (cons '(company-lua
+                                         company-gtags
+                                         company-dabbrev-code
+                                         company-keywords
+                                         company-etags) company-backends)))
   (add-hook 'lua-mode-hook 'my-lua-setup-company))
 
 
