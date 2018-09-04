@@ -137,6 +137,7 @@ dict.")
   (require 'init-web-mode)
   (require 'init-slime)
   (require 'init-company)
+  (require 'init-projectile)
   (require 'init-pyim)
   (require 'init-cnfonts)
   ;; need statistics of keyfreq asap
