@@ -5,7 +5,8 @@
 ;;; Code:
 
 (use-package flycheck
-  :init (global-flycheck-mode)
+  :init
+  (add-hook 'prog-mode-hook #'flycheck-mode-on-safe)
 
   :config
   (defun flycheck-mode-org-setup ()

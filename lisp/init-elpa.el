@@ -15,16 +15,49 @@
       '(
         ;; essential packages
         use-package
-        company
         yasnippet
         restart-emacs
         sudo-edit
         which-key
+
+        org
+        org-plus-contrib
+        org2blog
+        org-download
+        org-mind-map
+        org-pomodoro
+        ob-async
+
+        company
+        company-lua
+        company-anaconda
+        company-c-headers
+
         ;; paredit
         smartparens
         origami
+        projectile
+        flycheck
+        flymake-css
+        flymake-ruby
+        flymake-jslint
+        flymake-coffee
+        flymake-lua
 
+        ggtags
+
+        ;; languages
         slime
+        lua-mode
+        go-mode
+        groovy-mode
+        js2-mode
+        omnisharp
+        ;; python
+        ein
+        elpy
+        ob-ipython
+        anaconda-mode
 
         ;; themes
         zenburn-theme
@@ -36,27 +69,16 @@
         markdown-mode
         yaml-mode
         cmake-mode
-        js2-mode
         pkgbuild-mode
         systemd
-        go-mode
-        groovy-mode
         csv-mode
         ssh-config-mode
-        omnisharp
-        ;; powershell
 
         ;; functional helper modes
         fic-mode
         artbollocks-mode
         textile-mode
-
         pomodoro
-
-        ;; python
-        ein
-        elpy
-        ob-ipython
 
         ;; evils
         evil
@@ -88,9 +110,6 @@
         youdao-dictionary
         fcitx                           ; need fcitx-remote support
 
-        projectile
-
-        ggtags
         pdf-tools
         powerline
 
@@ -123,15 +142,6 @@
         w3m
         ;; erlang
         workgroups2
-        company-c-headers
-
-        org
-        org2blog
-        org-plus-contrib
-        org-download
-        org-mind-map
-        org-pomodoro
-        ob-async
 
         ;; version control
         magit
@@ -159,16 +169,6 @@
         dictionary
         rvm
         nvm
-
-        flycheck
-        flymake-css
-        flymake-ruby
-        flymake-jslint
-        flymake-coffee
-
-        lua-mode
-        company-lua
-        flymake-lua
 
         ;; coffee-mode
         cliphist

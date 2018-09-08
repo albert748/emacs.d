@@ -23,13 +23,13 @@
   ;; (setq company-backends (delete 'company-capf company-backends))
 
   (if (fboundp 'evil-declare-change-repeat)
-    (mapc #'evil-declare-change-repeat
-          '(company-complete-common
-            company-select-next
-            company-select-previous
-            company-complete-selection
-            company-complete-number
-            )))
+      (mapc #'evil-declare-change-repeat
+            '(company-complete-common
+              company-select-next
+              company-select-previous
+              company-complete-selection
+              company-complete-number
+              )))
 
   ;; I don't like the downcase word in company-dabbrev!
   (setq company-dabbrev-downcase nil
@@ -118,12 +118,5 @@
              eshell-mode comint-mode erc-mode gud-mode rcirc-mode
              minibuffer-inactive-mode))))
 
-
-(eval-after-load 'company-etags
-  '(progn
-     ;; insert major-mode not inherited from prog-mode
-     ;; to make company-etags work
-     (add-to-list 'company-etags-modes 'web-mode)
-     (add-to-list 'company-etags-modes 'lua-mode)))
-
 (provide 'init-company)
+;;; init-company.el ends here
