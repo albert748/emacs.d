@@ -2,6 +2,11 @@
 
 ;;; Commentary:
 
+;; To make company and eldoc work, virtualenv MUST be used for python.
+;; It's recommended to use anaconda instead of origin python to manage
+;; different python versions and different environments and use pip
+;; for basic package management.
+
 ;;; Code:
 
 (use-package python
@@ -20,6 +25,26 @@
       (message "[Missing] Jupyter console is recommended, Try to install: pip install --user jupyter"))
 
   :config
+  (defun my-elpy-company-setup ()
+    (setq-local company-backends
+                (cons '(elpy-company-backend company-yasnippet)
+                      (delq 'elpy-company-backend company-backends))))
+
+  (add-hook 'elpy-mode-hook #'my-elpy-company-setup)
+
+  ;; anaconda-mode is not very useful. all features are covered by elpy.
+  ;; also, there's bug which can not work with jupyter console
+  (use-package anaconda-mode
+    :disabled
+    :init
+    (add-hook 'python-mode-hook #'anaconda-mode)
+    (add-hook 'python-mode-hook #'anaconda-eldoc-mode)
+
+    :config
+    (use-package company-anaconda
+      :config
+      (setq company-anaconda-case-insensitive nil)))
+
   (use-package elpy
     :init
     ;; run command `pip install --user jedi autopep8 yapf black flake8` in shell,
@@ -74,25 +99,6 @@
     ;; (advice-add 'python-shell-completion-native-try :after-until #'ad-python-shell-completion-native-try)
 
     )
-
-  (use-package anaconda-mode
-    :init
-    (add-hook 'python-mode-hook #'anaconda-mode)
-    (add-hook 'python-mode-hook #'anaconda-eldoc-mode)
-
-    :config
-    (use-package company-anaconda
-      :init
-
-      (defun my-elpy-mode-setup ()
-        (setq-local company-backends
-                    (cons '(elpy-company-backend company-anaconda company-yasnippet)
-                          (delq 'elpy-company-backend company-backends))))
-
-      (add-hook 'elpy-mode-hook #'my-elpy-mode-setup)
-
-      :config
-      (setq company-anaconda-case-insensitive nil)))
 
   ;; org-babel functions for IPython evaluation
   (use-package ob-ipython)

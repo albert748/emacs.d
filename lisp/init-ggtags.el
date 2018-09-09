@@ -91,12 +91,12 @@ source trees. See Info node `(global)gtags' for details."
     ;; 3. with this GTAGSLIBPATH variable, you can find all definitions from within emacs.
 
     ;; ctags and universal-ctags can't find references, use pygments instead.
-    (setq ggtags-process-environment (list "GTAGSLIBPATH=/usr/share/emacs" "GTAGSLABEL=pygments"))
+    (setq-local ggtags-process-environment (list "GTAGSLIBPATH=/usr/share/emacs" "GTAGSLABEL=pygments"))
 
     (ggtags-mode))
 
   (defun ggtags-mode-python-setup ()
-    (setq ggtags-process-environment (list "GTAGSLABEL=pygments"))
+    (setq-local ggtags-process-environment (add-to-list 'ggtags-process-environment "GTAGSLABEL=pygments"))
     (ggtags-mode))
 
   (add-hook 'emacs-lisp-mode-hook #'ggtags-mode-elisp-setup)

@@ -9,9 +9,9 @@
   (add-hook 'after-init-hook 'global-company-mode)
 
   :config
-
   (add-to-list 'company-backends 'company-cmake)
   (add-to-list 'company-backends 'company-c-headers)
+  (add-to-list 'company-backends 'company-gtags)
 
   ;; @see https://github.com/company-mode/company-mode/issues/348
   (unless (featurep 'company-statistics)
