@@ -75,31 +75,10 @@ source trees. See Info node `(global)gtags' for details."
       (message "GTAGS generated in `%s'" root)
       root))
 
-  (defun ggtags-mode-elisp-setup ()
-    "ggtags mode setup for lisp"
-
-    ;; because to Gnu global DO NOT SUPPORT compressed source files.
-
-    ;; 1. you need decompress gziped source files under
-    ;; /usr/share/emacs (or just create package for your own by
-    ;; --without-compress-install)
-
-    ;; 2. create tags file under emacs install path above (again,
-    ;; create this step from your own package, oh, God thanks to
-    ;; Arch!)
-
-    ;; 3. with this GTAGSLIBPATH variable, you can find all definitions from within emacs.
-
-    ;; ctags and universal-ctags can't find references, use pygments instead.
-    (setq-local ggtags-process-environment (list "GTAGSLIBPATH=/usr/share/emacs" "GTAGSLABEL=pygments"))
-
-    (ggtags-mode))
-
   (defun ggtags-mode-python-setup ()
     (setq-local ggtags-process-environment (add-to-list 'ggtags-process-environment "GTAGSLABEL=pygments"))
     (ggtags-mode))
 
-  (add-hook 'emacs-lisp-mode-hook #'ggtags-mode-elisp-setup)
   (add-hook 'python-mode-hook #'ggtags-mode-python-setup))
 
 

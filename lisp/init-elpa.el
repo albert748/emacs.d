@@ -44,6 +44,7 @@
         flymake-coffee
         flymake-lua
 
+        elisp-def
         ggtags
 
         ;; languages

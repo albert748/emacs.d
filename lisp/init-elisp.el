@@ -27,4 +27,9 @@
   ;; (setq eldoc-echo-area-use-multiline-p t)
   (setq eldoc-idle-delay 0.2))
 
+(use-package elisp-def
+  :init
+  (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+    (add-hook hook #'elisp-def-mode)))
+
 (provide 'init-elisp)
