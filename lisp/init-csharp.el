@@ -30,12 +30,7 @@
     ;; (electric-pair-local-mode 1) ;; Emacs 25
     )
 
-  (add-hook 'csharp-mode-hook #'my-csharp-mode-setup)
-
-  (defun omnisharp-restart-server ()
-    (interactive)
-    (omnisharp-stop-server)
-    (omnisharp-start-omnisharp-server)))
+  (add-hook 'csharp-mode-hook #'my-csharp-mode-setup))
 
 (provide 'init-csharp)
 ;;; init-csharp.el ends here
