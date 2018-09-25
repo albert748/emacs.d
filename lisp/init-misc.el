@@ -769,5 +769,11 @@ If step is -1, go backward."
         (message "[Missing] try to install grep replacement \"ag\": pacman -S the_silver_searcher")
         nil))
 
+(use-package auto-save-buffers-enhanced
+  :init
+  ;; FIXME: ignore files of .gitignore
+  (auto-save-buffers-enhanced-include-only-checkout-path t)
+  (auto-save-buffers-enhanced t))
+
 (provide 'init-misc)
 ;;; init-misc.el ends here
