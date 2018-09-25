@@ -20,6 +20,9 @@
         sudo-edit
         which-key
 
+        ;; front-end for the_silver_searcher, replacement of grep
+        ag
+
         org
         org-plus-contrib
         org2blog

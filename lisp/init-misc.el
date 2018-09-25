@@ -763,5 +763,11 @@ If step is -1, go backward."
   :init
   (add-hook 'prog-mode-hook 'fic-mode))
 
+(use-package ag
+  :if (if (executable-find "ag")
+          t
+        (message "[Missing] try to install grep replacement \"ag\": pacman -S the_silver_searcher")
+        nil))
+
 (provide 'init-misc)
 ;;; init-misc.el ends here
