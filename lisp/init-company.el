@@ -9,6 +9,10 @@
   (add-hook 'after-init-hook 'global-company-mode)
 
   :config
+  (defun my-company-elisp-setup ()
+    (setq-local company-backends (cons 'company-capf company-backends)))
+  (add-hook 'emacs-lisp-mode-hook #'my-company-elisp-setup)
+
   (add-to-list 'company-backends 'company-cmake)
   (add-to-list 'company-backends 'company-c-headers)
   (add-to-list 'company-backends 'company-gtags)
