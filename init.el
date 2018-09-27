@@ -5,6 +5,7 @@
 ;;; Code:
 
 ;; timestamp messages
+;; refer (with modifications): https://emacs.stackexchange.com/questions/32150/how-to-add-a-timestamp-to-each-entry-in-emacs-messages-buffer
 (defun my-current-time-microseconds ()
   "Return the current time formatted to include microseconds."
   (let* ((nowtime (current-time))

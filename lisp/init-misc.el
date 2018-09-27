@@ -771,16 +771,59 @@ If step is -1, go backward."
 
 (use-package auto-save-buffers-enhanced
   :init
-  ;; FIXME: ignore files of .gitignore
-  (auto-save-buffers-enhanced-include-only-checkout-path t)
+  (setq auto-save-buffers-enhanced-quiet-save-p t)
   (auto-save-buffers-enhanced t)
 
   :config
-  (setq auto-save-buffers-enhanced-quiet-save-p t)
   (defun my-auto-save-buffers-enhanced-quiet-save-buffer ()
     (let ((save-silently t))
       (save-buffer)))
-  (advice-add 'auto-save-buffers-enhanced-quiet-save-buffer :override #'my-auto-save-buffers-enhanced-quiet-save-buffer))
+
+  (advice-add 'auto-save-buffers-enhanced-quiet-save-buffer
+              :override #'my-auto-save-buffers-enhanced-quiet-save-buffer)
+
+  ;; first version, the default method, add git directories to auto-save-buffers-enhanced-include-regexps, also include untracked files.
+  ;; (auto-save-buffers-enhanced-include-only-checkout-path t)
+  (defun my-auto-save-buffers-enhanced-add-checkout-path-into-include-regexps ()
+    "fix duplicates issue of origin function"
+    (let ((current-dir default-directory)
+          (checkout-path nil))
+      (catch 'root
+        (while t
+          (if (or (file-exists-p ".svn")
+                  (file-exists-p ".cvs")
+                  (file-exists-p ".git"))
+              (setq checkout-path (expand-file-name default-directory)))
+          (cd "..")
+          (when (equal "/" default-directory)
+            (throw 'root t))))
+
+      (when checkout-path
+        (let ((path (concat "^" (regexp-quote checkout-path))))
+          ;; use member instead of memq here
+          (if (not (member path auto-save-buffers-enhanced-include-regexps))
+              (setq auto-save-buffers-enhanced-include-regexps
+                    (cons path auto-save-buffers-enhanced-include-regexps)))))
+      (cd current-dir)))
+
+  (advice-add 'auto-save-buffers-enhanced-add-checkout-path-into-include-regexps
+              :override #'my-auto-save-buffers-enhanced-add-checkout-path-into-include-regexps)
+
+  ;; second version, auto save only git tracked files.
+  (defun my-auto-save-buffers-enhanced-add-checkout-path-exclude-untracked ()
+    (setq auto-save-buffers-enhanced-include-regexps nil)
+    (dolist (buf (buffer-list))
+      (let ((file (buffer-file-name buf))
+            code)
+        (when file
+          (let ((default-directory (file-name-directory file)))
+            (setq code (call-process "git" nil nil nil "ls-files" "--error-unmatch" file))
+            (if (and (eq code 0)
+                     (not (member file auto-save-buffers-enhanced-include-regexps)))
+                (setq auto-save-buffers-enhanced-include-regexps
+                      (cons file auto-save-buffers-enhanced-include-regexps))))))))
+  (add-hook 'find-file-hook #'my-auto-save-buffers-enhanced-add-checkout-path-exclude-untracked)
+  )
 
 (provide 'init-misc)
 ;;; init-misc.el ends here
