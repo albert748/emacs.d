@@ -4,6 +4,34 @@
 
 ;;; Code:
 
+;; timestamp messages
+(defun my-current-time-microseconds ()
+  "Return the current time formatted to include microseconds."
+  (let* ((nowtime (current-time))
+         (now-ms (nth 2 nowtime)))
+    (concat (format-time-string "[%Y-%m-%dT%T" nowtime) (format ".%d]" now-ms))))
+
+(defun my-ad-timestamp-message (format-string &rest args)
+  "Advice to run before `message' that prepend a timestamp to each message.
+
+format the FORMAT-STRING with ARGS.
+
+Activate this advice with: (advice-add 'message :before 'my-ad-timestamp-message)"
+  (unless (not message-log-max)
+    (unless (or (not format-string)
+                (string= format-string "")
+                (string= (apply #'format-message format-string args) ""))
+      (let ((deactivate-mark nil)
+            (inhibit-read-only t))
+        (with-current-buffer "*Messages*"
+          (goto-char (point-max))
+          (if (not (bolp))
+              (newline))
+          (insert (my-current-time-microseconds) " "))))))
+
+(advice-add 'message :before 'my-ad-timestamp-message)
+
+;; org directory setup
 (defvar my-emacs-cache-directory
   (or (getenv "MY_EMACS_CACHE_DIRECTORY")
       (expand-file-name "emacs/" (or (getenv "XDG_CACHE_HOME") "~/.cache/")))

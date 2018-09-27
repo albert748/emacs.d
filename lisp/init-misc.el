@@ -776,13 +776,11 @@ If step is -1, go backward."
   (auto-save-buffers-enhanced t)
 
   :config
-  (defun auto-save-buffers-enhanced-quiet-save-buffer-v2 ()
+  (setq auto-save-buffers-enhanced-quiet-save-p t)
+  (defun my-auto-save-buffers-enhanced-quiet-save-buffer ()
     (let ((save-silently t))
       (save-buffer)))
-  (defun auto-save-buffers-enhanced-quiet-save-buffer-v3 ()
-    (basic-save-buffer nil))
-  (advice-add 'auto-save-buffers-enhanced-quiet-save-buffer :override #'auto-save-buffers-enhanced-quiet-save-buffer-v3)
-  )
+  (advice-add 'auto-save-buffers-enhanced-quiet-save-buffer :override #'my-auto-save-buffers-enhanced-quiet-save-buffer))
 
 (provide 'init-misc)
 ;;; init-misc.el ends here
