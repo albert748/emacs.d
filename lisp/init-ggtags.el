@@ -5,18 +5,14 @@
 ;;; Code:
 
 (use-package ggtags
-  :if (if (executable-find "gtags")
-          t
-        (message "You need install gtags(also universal ctags and pygements) to enable ggtags.el package")
-        nil)
+  :if (or (executable-find "gtags")
+          (progn (message "[Missing] You need install gtags, try: yay -S global universal-ctags-git python-pygments") nil))
 
   :init
-  (defcustom ggtags-default-gtagslabel 'pygments
-    "the default label used to generate gtags index.
-The value passed as --gtagslabel option to gtags command. The
-value maybe default, native, user, ctags, new-ctags, pygments,
-see man page of gtags.conf.")
+  (add-hook 'prog-mode-hook #'ggtags-mode)
 
+  :config
+  (add-to-list 'ggtags-process-environment "GTAGSLABEL=pygments")
   (setq ggtags-extra-args '("-v" "--statistics"))
 
   (defun ggtags-process-string-with-output (program &rest args)
@@ -74,12 +70,7 @@ source trees. See Info node `(global)gtags' for details."
       (ggtags-invalidate-buffer-project-root (file-truename root))
       (message "GTAGS generated in `%s'" root)
       root))
-
-  (defun ggtags-mode-python-setup ()
-    (setq-local ggtags-process-environment (add-to-list 'ggtags-process-environment "GTAGSLABEL=pygments"))
-    (ggtags-mode))
-
-  (add-hook 'python-mode-hook #'ggtags-mode-python-setup))
+  )
 
 
 (provide 'init-ggtags)
