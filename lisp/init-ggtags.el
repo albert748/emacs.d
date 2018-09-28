@@ -9,7 +9,16 @@
           (progn (message "[Missing] You need install gtags, try: yay -S global universal-ctags-git python-pygments") nil))
 
   :init
-  (add-hook 'prog-mode-hook #'ggtags-mode)
+  (defun ggtags-prog-mode-hook-setup ()
+    (ggtags-mode)
+    ;; ggtags-find-tag-dwim
+    (define-key ggtags-mode-map (kbd "M-.") nil)
+    ;; ggtags-find-reference
+    (define-key ggtags-mode-map (kbd "M-]") nil)
+    ;; ggtags-find-tag-regexp
+    (define-key ggtags-mode-map (kbd "C-M-.") nil))
+
+  (add-hook 'prog-mode-hook #'ggtags-prog-mode-hook-setup)
 
   :config
   (add-to-list 'ggtags-process-environment "GTAGSLABEL=pygments")
