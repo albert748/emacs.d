@@ -20,6 +20,8 @@
     (setenv "WORKON_HOME" "~/anaconda3/envs"))
 
   :config
+  (setq python-indent-guess-indent-offset nil)
+
   (use-package elpy
     :init
     (defun elpy-mode-hook-company-setup ()
