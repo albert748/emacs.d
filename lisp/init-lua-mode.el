@@ -20,17 +20,5 @@
 
   (add-hook 'lua-mode-hook 'my-lua-mode-setup))
 
-
-(use-package company-lua
-  :init
-  (defun my-lua-setup-company ()
-    (setq-local company-backends (cons '(company-lua
-                                         company-gtags
-                                         company-dabbrev-code
-                                         company-keywords
-                                         company-etags) company-backends)))
-  (add-hook 'lua-mode-hook 'my-lua-setup-company))
-
-
 (provide 'init-lua-mode)
 ;;; init-lua-mode.el ends here

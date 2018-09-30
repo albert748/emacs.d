@@ -9,13 +9,31 @@
   (add-hook 'after-init-hook 'global-company-mode)
 
   :config
-  (defun my-company-elisp-setup ()
-    (setq-local company-backends (cons 'company-capf company-backends)))
-  (add-hook 'emacs-lisp-mode-hook #'my-company-elisp-setup)
+  (use-package company-lua
+    :init
+    (defun company-lua-mode-hook-setup ()
+      (setq-local company-backends (cons '(company-lua
+                                           company-gtags
+                                           company-dabbrev-code
+                                           company-yasnippet) company-backends)))
+    (add-hook 'lua-mode-hook 'company-lua-mode-hook-setup))
 
-  (add-to-list 'company-backends 'company-cmake)
-  (add-to-list 'company-backends 'company-c-headers)
-  (add-to-list 'company-backends 'company-gtags)
+  (defun company-elisp-mode-hook-setup ()
+    (setq-local company-backends (cons 'company-capf company-backends)))
+  (add-hook 'emacs-lisp-mode-hook #'company-elisp-mode-hook-setup)
+
+  (defun company-css-mode-hook-setup ()
+    (setq-local company-backends (cons 'company-capf company-backends)))
+  (add-hook 'css-mode-hook #'company-css-mode-hook-setup)
+
+  (defun company-cmake-mode-hook-setup ()
+    (setq-local company-backends (cons 'company-cmake company-backends)))
+  (add-hook 'cmake-mode #'company-cmake-mode-hook-setup)
+
+  (defun company-prog-mode-hook-setup ()
+    (setq-local company-backends (cons 'company-gtags company-backends))
+    (setq-local company-backends (cons 'company-c-headers company-backends)))
+  (add-hook 'prog-mode-hook #'company-prog-mode-hook-setup)
 
   ;; @see https://github.com/company-mode/company-mode/issues/348
   (unless (featurep 'company-statistics)
@@ -24,7 +42,6 @@
 
   ;; can't work with TRAMP
   (setq company-backends (delete 'company-ropemacs company-backends))
-  ;; (setq company-backends (delete 'company-capf company-backends))
 
   (if (fboundp 'evil-declare-change-repeat)
       (mapc #'evil-declare-change-repeat
