@@ -822,8 +822,20 @@ If step is -1, go backward."
                      (not (member file auto-save-buffers-enhanced-include-regexps)))
                 (setq auto-save-buffers-enhanced-include-regexps
                       (cons file auto-save-buffers-enhanced-include-regexps))))))))
-  (add-hook 'find-file-hook #'my-auto-save-buffers-enhanced-add-checkout-path-exclude-untracked)
-  )
+  (add-hook 'find-file-hook #'my-auto-save-buffers-enhanced-add-checkout-path-exclude-untracked))
+
+
+(defun diff-no-select-gpg (func old new &optional switches no-async buf)
+  "View the differences between BUFFER and its associated file.
+
+See `diff-buffer-with-file', the function is very useful for viewing the difference before save to disk, and this advice used to supplement the gpg differentiate when the file name is .gpg suffixed."
+  (unless (bufferp old)
+    (if (string-suffix-p ".gpg" old)
+        (let ((tempfile (make-temp-file "buffer-content-")))
+          (epa-decrypt-file old tempfile)
+          (funcall func tempfile new switches no-async buf))
+      (funcall func old new switches no-async buf))))
+(advice-add 'diff-no-select :around #'diff-no-select-gpg)
 
 (provide 'init-misc)
 ;;; init-misc.el ends here
