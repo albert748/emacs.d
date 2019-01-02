@@ -457,16 +457,14 @@ Including indent-buffer, which should not be called automatically on save."
   (cleanup-buffer-safe)
   (indent-buffer))
 
-;; {{ save history
-;; On Corp machines, I don't have permission to access history,
-;; so safe-wrap is used
-;; (safe-wrap
-(when (file-writable-p (file-truename "~/.emacs.d/history"))
+(use-package savehist
+  :init
+  (setq savehist-file (expand-file-name "history" my-emacs-cache-directory))
+
   (setq history-length 8000)
   (setq savehist-additional-variables '(search-ring regexp-search-ring kill-ring))
-  (savehist-mode 1))
- ;; (message "Failed to access ~/.emacs.d/history"))
-;; }}
+
+  :config (savehist-mode))
 
 (provide 'init-misc-lazy)
 ;;; init-misc-lazy.el ends here
