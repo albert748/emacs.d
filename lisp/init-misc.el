@@ -774,6 +774,8 @@ If step is -1, go backward."
   (setq auto-save-buffers-enhanced-quiet-save-p t)
   (auto-save-buffers-enhanced t)
 
+  (setq auto-save-buffers-enhanced-exclude-regexps '(".gpg"))
+
   :config
   (defun my-auto-save-buffers-enhanced-quiet-save-buffer ()
     (let ((save-silently t))

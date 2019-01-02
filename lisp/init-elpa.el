@@ -20,6 +20,9 @@
         sudo-edit
         which-key
 
+        auto-save-buffers-enhanced
+        elpa-mirror
+
         ;; front-end for the_silver_searcher, replacement of grep
         ag
 
