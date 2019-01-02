@@ -28,7 +28,8 @@
 
   (if (version< emacs-version "26.0")
       (setq pyim-page-tooltip 'popup)
-    (setq pyim-page-tooltip 'child-frame))
+    ;; need installed package posframe manually
+    (setq pyim-page-tooltip 'posframe))
 
   ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
   ;; 我自己使用的中英文动态切换规则是：
