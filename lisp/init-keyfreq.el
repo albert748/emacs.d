@@ -4,10 +4,12 @@
 
 ;;; Code:
 
+(eval-when-compile (defvar my-emacs-cache-directory)) ; defined in ~/.init.el
+
 (use-package keyfreq
   :init
-  (setq keyfreq-file "~/.emacs.d/.emacs.keyfreq")
-  (setq keyfreq-file-lock "~/.emacs.d/.emacs.keyfreq.lock")
+  (setq keyfreq-file (expand-file-name "emacs.keyfreq" my-emacs-cache-directory))
+  (setq keyfreq-file-lock (expand-file-name "emacs.keyfreq.lock" my-emacs-cache-directory))
 
   (unless (file-exists-p (file-truename keyfreq-file))
     (with-temp-buffer

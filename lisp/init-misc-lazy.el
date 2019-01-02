@@ -4,6 +4,8 @@
 
 ;;; Code:
 
+(eval-when-compile (defvar my-emacs-cache-directory))
+
 (use-package textile-mode
   :mode "\\.textile\\'")
 
@@ -13,6 +15,8 @@
 ;;; FIXME: defer this package as long as menu is used
 (use-package recentf
   :ensure nil                           ; built-in package
+  :init
+  (setq recentf-save-file (expand-file-name "recentf" my-emacs-cache-directory))
   :config (recentf-mode))
 
 (global-auto-revert-mode)
