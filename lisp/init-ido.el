@@ -4,9 +4,13 @@
 
 ;;; Code:
 
+(eval-when-compile (defvar my-emacs-cache-directory))
+
 (use-package ido
   :ensure nil                           ; built-in pacakge
   :init
+  (setq ido-save-directory-list-file (expand-file-name "ido.last" my-emacs-cache-directory))
+
   ;; However, if ARG arg equals ‘files’, remap only commands for
   ;; files, or if it equals ‘buffers’, remap only commands for buffer
   ;; switching. Here we remap keybindings for both 'find-files' and

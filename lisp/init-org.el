@@ -366,6 +366,12 @@ instead."
   (setq org-clock-persist-file (expand-file-name "org-clock-save.el" my-emacs-cache-directory))
   (org-clock-persistence-insinuate)
 
+  (use-package org-id
+    :ensure nil
+    :defer t
+    :init
+    (setq org-id-locations-file (expand-file-name "org-id-locations" my-emacs-cache-directory)))
+
   ;; Change task state to STARTED when clocking in
   (setq org-clock-in-switch-to-state "STARTED")
 
