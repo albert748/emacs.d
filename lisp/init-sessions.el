@@ -9,6 +9,8 @@
 (use-package desktop
   :ensure nil
 
+  :init (desktop-save-mode)
+
   :config
   (setq desktop-base-file-name "emacs.desktop"
         desktop-base-lock-name "emacs.desktop.lock"
@@ -38,9 +40,7 @@
                   (shell-command-history    . 128)
                   (evil-ex                  . 128)
                   desktop-missing-file-warning
-                  register-alist)))
-
-  (desktop-save-mode))
+                  register-alist))))
 
 
 ;;----------------------------------------------------------------------------
@@ -49,10 +49,12 @@
 (use-package session
   :ensure nil
 
+  :init (add-hook 'after-init-hook 'session-initialize)
+
   :config
   (setq session-save-file (expand-file-name "emacs.session" my-emacs-cache-directory))
 
-  (add-hook 'after-init-hook 'session-initialize))
+  )
 
 (provide 'init-sessions)
 ;;; init-sessions.el ends here

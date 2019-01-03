@@ -288,6 +288,10 @@
 (use-package counsel
   :bind ("M-x" . counsel-M-x))
 
+(use-package smex
+  :config
+  (setq smex-save-file (expand-file-name "smex-items" my-emacs-cache-directory)))
+
 (defun compilation-finish-hide-buffer-on-success (buf str)
   "Could be reused by other major-mode after compilation."
   (if (string-match "exited abnormally" str)

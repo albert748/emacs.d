@@ -4,6 +4,8 @@
 
 ;;; Code:
 
+(eval-when-compile (defvar my-emacs-cache-directory))
+
 (use-package company
   :init
   (add-hook 'after-init-hook 'global-company-mode)
@@ -36,9 +38,11 @@
   (add-hook 'prog-mode-hook #'company-prog-mode-hook-setup)
 
   ;; @see https://github.com/company-mode/company-mode/issues/348
-  (unless (featurep 'company-statistics)
-    (require 'company-statistics))
-  (company-statistics-mode)
+  (use-package company-statistics
+    :init (company-statistics-mode)
+
+    :config
+    (setq company-statistics-file (expand-file-name "company-statistics-cache.el" my-emacs-cache-directory)))
 
   ;; can't work with TRAMP
   (setq company-backends (delete 'company-ropemacs company-backends))
