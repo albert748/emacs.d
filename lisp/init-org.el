@@ -4,6 +4,8 @@
 
 ;;; Code:
 
+(eval-when-compile (defvar my-emacs-cache-directory))
+
 ;; some cool org tricks
 ;; @see http://emacs.stackexchange.com/questions/13820/inline-verbatim-and-code-with-quotes-in-org-mode
 
@@ -359,8 +361,9 @@ instead."
   ;; @see http://irreal.org/blog/1
   (setq org-src-fontify-natively t)
 
-  ;; save all clock history to ~/.emacs.d/org-clock-save.el
+  ;; save all clock history to ~/.cache/emacs/org-clock-save.el
   (setq org-clock-persist t)
+  (setq org-clock-persist-file (expand-file-name "org-clock-save.el" my-emacs-cache-directory))
   (org-clock-persistence-insinuate)
 
   ;; Change task state to STARTED when clocking in
