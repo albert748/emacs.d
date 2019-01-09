@@ -93,6 +93,11 @@ if no files marked, always operate on current line in dired-mode
 ;; }}
 
 ;; {{ tramp setup
+(use-package tramp-cache
+  :ensure nil
+  :init
+  (setq tramp-persistency-file-name (expand-file-name "tramp" my-emacs-cache-directory)))
+
 (add-to-list 'backup-directory-alist
              (cons tramp-file-name-regexp nil))
 (setq tramp-chunksize 8192)
