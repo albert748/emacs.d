@@ -132,7 +132,9 @@
 ;; (setq-default save-place t)             ; obsolete sinice 25.1
 (use-package saveplace
   :ensure nil                           ; built-in package
-  :config (save-place-mode))
+  :config
+  (setq save-place-file (expand-file-name "places" my-emacs-cache-directory))
+  (save-place-mode))
 
 
 ;; {{ find-file-in-project (ffip)
