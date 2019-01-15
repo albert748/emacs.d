@@ -1,14 +1,36 @@
+;;; init-linum-mode.el --- line number mode initialization
+
+;;; Commentary:
+
+;; display-line-numbers-mode available since Emacs 26, replacement of linum-mode
+
+;;; Code:
+
+(use-package display-line-numbers
+  :if (>= emacs-major-version 26)
+  :ensure nil
+  :init
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+  (add-hook 'org-mode-hook #'display-line-numbers-mode)
+
+  :config
+  ;; what's the difference between 'relative and 'visual?
+  (setq display-line-numbers-type t))
+
 (use-package linum
+  :if (< emacs-major-version 26)
   :ensure nil                           ; built-in package
   :init (global-linum-mode)
+
   :config
   ;; update line number every second
   (setq linum-delay t)
+
   (defadvice linum-schedule (around my-linum-schedule () activate)
     (run-with-idle-timer 1 nil #'linum-update-current))
 
   ;; http://stackoverflow.com/questions/3875213/turning-on-linum-mode-when-in-python-c-mode
-  (setq linum-mode-inhibit-modes-list '(eshell-mode
+  (defvar linum-mode-inhibit-modes-list '(eshell-mode
                                         shell-mode
                                         profiler-report-mode
                                         ffip-diff-mode
@@ -60,3 +82,4 @@
 
 
 (provide 'init-linum-mode)
+;;; init-linum-mode ends here
