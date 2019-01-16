@@ -184,7 +184,8 @@
     "hk" 'describe-key
     "hv" 'describe-variable
     "fb" 'flyspell-buffer
-    "fe" 'flyspell-goto-next-error
+    "fn" 'flyspell-goto-next-error
+    "fp" 'flyspell-goto-previous-error
     "fa" 'flyspell-auto-correct-word
     "ep" '(lambda () (interactive) (if (fboundp 'flycheck-previous-error) (flycheck-previous-error) (flymake-goto-prev-error)))
     "en" '(lambda () (interactive) (if (fboundp 'flycheck-next-error) (flycheck-next-error) (flymake-goto-next-error)))

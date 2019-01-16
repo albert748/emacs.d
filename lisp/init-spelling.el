@@ -32,6 +32,39 @@
         (expand-file-name "flyspell.en" my-emacs-private-directory)
         ispell-silently-savep t)
 
+  (defun flyspell-goto-previous-error ()
+    "Go to the previous previously detected spelling error."
+    (interactive)
+    (let ((pos (point))
+          (min (point-min)))
+      (if (and (eq (current-buffer) flyspell-old-buffer-error)
+               (eq pos flyspell-old-pos-error))
+          (progn
+            (if (= flyspell-old-pos-error min)
+                ;; goto beginning of buffer
+                (progn
+                  (message "Restarting from end of buffer")
+                  (goto-char (point-max)))
+              (backward-word 1))
+            (setq pos (point))))
+      ;; seek the next error
+      (while (and (> pos min)
+                  (let ((ovs (overlays-at pos))
+                        (r '()))
+                    (while (and (not r) (consp ovs))
+                      (if (flyspell-overlay-p (car ovs))
+                          (setq r t)
+                        (setq ovs (cdr ovs))))
+                    (not r)))
+        (backward-word)
+        (setq pos (point)))
+      ;; save the current location for next invocation
+      (setq flyspell-old-pos-error pos)
+      (setq flyspell-old-buffer-error (current-buffer))
+      (goto-char pos)
+      (if (= pos min)
+        (message "No more miss-spelled word!"))))
+
   ;; Aspell Setup (recommended):
   ;; Skipped because it's easy.
   ;;
