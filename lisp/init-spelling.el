@@ -19,6 +19,19 @@
   ;; (global-set-key (kbd "C-c s") 'flyspell-auto-correct-word)
 
   :config
+  ;; only check when Emacs has been idle instead of instantly
+  (use-package flyspell-lazy
+    :config (flyspell-lazy-mode))
+
+  ;; performance suggestion from flyspell-lazy:
+  (setq flyspell-issue-message-flag nil
+        flyspell-issue-welcome-flag nil)
+
+  ;; personal directory
+  (setq ispell-personal-dictionary
+        (expand-file-name "flyspell.en" my-emacs-private-directory)
+        ispell-silently-savep t)
+
   ;; Aspell Setup (recommended):
   ;; Skipped because it's easy.
   ;;
@@ -84,17 +97,6 @@ Please note RUN-TOGETHER will make aspell less capable. So it should only be use
         (flyspell-mode 1)))
 
   (add-hook 'prog-mode-hook #'flyspell-prog-mode)
-
-  ;; better performance
-  (setq flyspell-issue-message-flag nil)
-
-  ;; personal directory
-  (setq ispell-personal-dictionary
-        (expand-file-name "flyspell.en" my-emacs-private-directory)
-        ispell-silently-savep t)
-
-  (use-package flyspell-lazy
-    :config (flyspell-lazy-mode))
 
   (defun web-mode-flyspell-verify ()
     "Flyspell set up for web-mode."
