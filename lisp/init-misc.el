@@ -9,7 +9,8 @@
   :defer t
   :config
   ;; apropos result sort match with scores.
-  (setq apropos-sort-by-scores 'verbose))
+  (setq apropos-sort-by-scores 'verbose)
+  (setq apropos-documentation-sort-by-scores 'verbose))
 
 (use-package undo-tree
   :diminish "UndoT")
