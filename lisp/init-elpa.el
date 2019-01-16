@@ -15,6 +15,7 @@
       '(
         ;; essential packages
         use-package
+        general
         yasnippet
         restart-emacs
         sudo-edit
