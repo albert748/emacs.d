@@ -23,8 +23,7 @@
         auto-save-buffers-enhanced
         elpa-mirror
 
-        ;; front-end for the_silver_searcher, replacement of grep
-        ag
+        ag                              ; front-end for the_silver_searcher, replacement of grep
 
         org
         org-plus-contrib
@@ -38,6 +37,7 @@
         company-lua
         company-anaconda
         company-c-headers
+        company-statistics
 
         ;; paredit
         smartparens

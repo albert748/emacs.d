@@ -46,11 +46,11 @@
         (if (string= k (caar l))
             (setcdr (car l) (list url))
           (w3m-set-url-from-search-engine-alist k (cdr l) url))))
-  )
 
+  (defun w3m-mode-hook-setup ()
+    (w3m-lnum-mode 1))
 
-
-
+  (add-hook 'w3m-mode-hook 'w3m-mode-hook-setup))
 
 
 ;; C-u S g RET <search term> RET in w3m
@@ -129,10 +129,6 @@
   (interactive)
   (w3m-customized-search-api "j"))
 
-(defun w3m-mode-hook-setup ()
-  (w3m-lnum-mode 1))
-
-(add-hook 'w3m-mode-hook 'w3m-mode-hook-setup)
 
 ; {{ Search using external browser
 ;; (setq browse-url-generic-program

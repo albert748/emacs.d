@@ -1,3 +1,11 @@
+;;; init-dired.el --- init dired mode
+
+;;; Commentary:
+
+;;; Code:
+
+(eval-when-compile (defvar my-emacs-cache-directory))
+
 (use-package dired
   :ensure nil
   :config
@@ -106,4 +114,6 @@ if no files marked, always operate on current line in dired-mode
 ;; If you tramp is hanging, you can uncomment below line.
 ;; (setq tramp-ssh-controlmaster-options "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 ;; }}
+
 (provide 'init-dired)
+;;; init-dired.el ends here
