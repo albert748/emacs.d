@@ -1,4 +1,12 @@
+;;; init-dictionary.el --- dictionary search
+
+;;; Commentary:
+
+;;; Code:
+
 ;; @see https://github.com/xuchunyang/youdao-dictionary.el
+
+(eval-when-compile (defvar my-emacs-private-directory))
 
 (use-package youdao-dictionary
   :bind ("C-c u" . youdao-dictionary-search-at-point+)
@@ -20,4 +28,5 @@
     (push '("^\\*Youdao Dictionary\\*" . emacs) evil-buffer-regexps)))
 
 
-(provide 'init-youdao-dictionary)
+(provide 'init-dictionary)
+;;; init-dictionary.el ends here

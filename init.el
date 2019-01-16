@@ -189,7 +189,7 @@ dict.")
 
   (require 'init-emacs-w3m)
   (require 'init-hydra)
-  (require 'init-youdao-dictionary)
+  (require 'init-dictionary)
   (require 'init-misc-lazy)
   (require 'init-fonts)
   (require 'init-hs-minor-mode)
