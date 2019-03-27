@@ -376,7 +376,13 @@ instead."
   (setq org-clock-in-switch-to-state "STARTED")
 
   ;; Removes clocked tasks with 0:00 duration
-  (setq org-clock-out-remove-zero-time-clocks t))
+  (setq org-clock-out-remove-zero-time-clocks t)
+
+  ;; refer: https://orgmode.org/worg/org-contrib/org-protocol.html
+  (require 'org-protocol)
+  (unless (server-running-p server-name)
+      (server-start))
+  )
 
 (provide 'init-org)
 ;;; init-org.el ends here

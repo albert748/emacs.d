@@ -88,6 +88,8 @@
           (cnfonts-ui-mode . emacs)
           (process-menu-mode . emacs)
           (flycheck-error-list-mode . emacs)
+          (elfeed-search-mode . emacs)
+          (elfeed-show-mode . emacs)
           )
         do (evil-set-initial-state mode state))
 

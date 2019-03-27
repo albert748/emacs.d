@@ -1,3 +1,10 @@
+;;; init-grep.el --- grep command options
+
+;;; Commentary:
+
+;;; Code:
+
+
 (use-package grep
   :ensure nil
   :defer t
@@ -10,10 +17,19 @@
 
   ;; FIXME: add line filter advice function for long line.
 
-  (dolist (v '("auto" "target" "node_modules" "bower_components" ".sass_cache" ".git" ".cvs" ".svn" ".hg"))
+  (dolist (v '("auto"
+               "target"
+               "node_modules"
+               "bower_components"
+               ".sass_cache"
+               ".git"
+               ".cvs"
+               ".svn"
+               ".hg"))
     (cl-pushnew v grep-find-ignored-directories))
 
-  (dolist (v '("company-statistics-cache.el"))
+  (dolist (v '("company-statistics-cache.el"
+               "archive-contents"))
     (cl-pushnew v grep-find-ignored-files)))
 
 

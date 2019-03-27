@@ -72,7 +72,7 @@
       (setq company-anaconda-case-insensitive nil)))
 
   ;; org-babel functions for IPython evaluation
-  (use-package ob-ipython)
+  ;; (use-package ob-ipython)
 
   ;; ipython notebook support
   (use-package ein
