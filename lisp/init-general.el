@@ -211,7 +211,7 @@
     "bj" 'buf-move-down
     "bh" 'buf-move-left
     "bl" 'buf-move-right
-    "0" 'select-window-0
+    "0" 'delete-window
     "1" 'select-window-1
     "2" 'select-window-2
     "3" 'select-window-3
@@ -251,7 +251,8 @@
     "xnd" 'narrow-to-defun
     "xnr" 'narrow-to-region
     "ycr" 'my-yas-reload-all
-    "wf" 'popup-which-function)
+    "wf" 'popup-which-function
+    "mg" 'magit-status)
   ;; }}
 
   ;; {{ Use `SPC` as leader key
@@ -330,6 +331,8 @@
   ;; {{ Use `;` as leader key, for searching something
   (general-nvmap :prefix ";"
     ";" 'avy-goto-char-2
+    "di" 'youdao-dictionary-search-from-input
+    "do" 'youdao-dictionary-search-at-point+
     "db" 'sdcv-search-pointer ; in buffer
     "dt" 'sdcv-search-input+ ;; in tip
     "dd" 'my-lookup-dict-org

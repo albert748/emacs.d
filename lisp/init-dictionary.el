@@ -9,7 +9,6 @@
 (eval-when-compile (defvar my-emacs-private-directory))
 
 (use-package youdao-dictionary
-  :bind ("C-c u" . youdao-dictionary-search-at-point+)
   :config
   ;; Enable Cache
   (setq url-automatic-caching t)
