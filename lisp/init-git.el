@@ -5,7 +5,7 @@
 ;;; Code:
 
 (use-package git-gutter+
-  :diminish "GitG"
+  :diminish git-gutter+-mode
   :init (global-git-gutter+-mode)
   :config
 

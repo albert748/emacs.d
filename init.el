@@ -91,7 +91,6 @@ dict.")
 ;; Which means on every .el and .elc file loaded during start up, it has to runs those regexps against the filename.
 (let ((file-name-handler-alist nil))
   (require 'init-autoload)
-  (require 'init-modeline)
   (require 'cl-lib)
   (require 'init-compat)
   (require 'init-utils)

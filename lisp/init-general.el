@@ -14,8 +14,8 @@
   :config
   ;; {{ use `,` as leader key
   (general-nvmap :prefix ","
-    "=" 'increase-default-font-height ; GUI emacs only
-    "-" 'decrease-default-font-height ; GUI emacs only
+    "=" 'cnfonts-increase-fontsize
+    "-" 'cnfonts-decrease-fontsize
     "bf" 'beginning-of-defun
     "bu" 'backward-up-list
     "bb" 'back-to-previous-buffer
@@ -252,7 +252,8 @@
     "xnr" 'narrow-to-region
     "ycr" 'my-yas-reload-all
     "wf" 'popup-which-function
-    "mg" 'magit-status)
+    "mg" 'magit-status
+    "dc" 'desktop-clear)
   ;; }}
 
   ;; {{ Use `SPC` as leader key

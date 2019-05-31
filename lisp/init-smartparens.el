@@ -10,6 +10,7 @@
 ;; evil-move-beyond-eol t, otherwise sp-forward-sexp may not work as
 ;; expected.
 (use-package smartparens
+  :diminish smartparens-mode
   :bind (:map smartparens-mode-map ("M-(" . sp-wrap-with-parentheses))
 
   :init
@@ -19,7 +20,8 @@
   :config
   ;; because `evil-smartparens-mode' default is strict, do not add it
   ;; to `smartparens-enabled-hook'
-  (use-package evil-smartparens)
+  (use-package evil-smartparens
+    :diminish evil-smartparens-mode)
 
   (sp-use-smartparens-bindings)         ; or (sp-use-paredit-bindings)
 

@@ -5,6 +5,7 @@
 ;;; Code:
 
 (use-package ggtags
+  :diminish (ggtags-mode "GG")
   :if (or (executable-find "gtags")
           (progn (message "[Missing] You need install gtags, try: yay -S global universal-ctags-git python-pygments") nil))
 

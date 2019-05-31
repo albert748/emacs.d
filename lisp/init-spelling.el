@@ -8,6 +8,7 @@
 (eval-when-compile (defvar my-emacs-private-directory))
 
 (use-package flyspell
+  :diminish (flyspell-mode "FlyS")
   :ensure nil                           ;built-in package
   :if (or (executable-find "aspell")
           (executable-find "hunspell")

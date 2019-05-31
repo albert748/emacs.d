@@ -8,6 +8,8 @@
 
 (use-package projectile
   :init
+  (setq projectile-mode-line-prefix "Pro")
+
   (defun my-projectile-enable ()
     (projectile-mode)
     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))

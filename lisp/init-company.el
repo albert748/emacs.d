@@ -11,6 +11,8 @@
   (add-hook 'after-init-hook 'global-company-mode)
 
   :config
+  (setq company-lighter-base "C")
+
   (use-package company-lua
     :init
     (defun company-lua-mode-hook-setup ()

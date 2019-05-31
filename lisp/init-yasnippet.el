@@ -5,6 +5,7 @@
 ;;; Code:
 
 (use-package yasnippet
+  :diminish (yas-minor-mode "Y")
   :defer t
   :init
   (defun yas-minor-mode-hook-setup ()

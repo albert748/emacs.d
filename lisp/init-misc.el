@@ -13,13 +13,36 @@
   (setq apropos-documentation-sort-by-scores 'verbose))
 
 (use-package undo-tree
-  :diminish "UndoT")
+  :diminish undo-tree-mode)
+
+(use-package hideshow
+  :diminish hs-minor-mode
+  :ensure nil
+  :defer t)
+
+(use-package checkdoc
+  :diminish checkdoc-minor-mode
+  :ensure nil
+  :defer t)
+
+(use-package eldoc
+  :diminish eldoc-mode
+  :ensure nil
+  :defer t)
+
+(use-package subword
+  :diminish subword-mode
+  :ensure nil
+  :defer t)
 
 (use-package sudo-edit
   :commands (sudo-edit))
 
 (use-package powerline
-  :init (powerline-default-theme))
+  :init
+  (setq powerline-default-separator 'zigzag)
+  (powerline-default-theme)
+  )
 
 (use-package vimrc-mode
   :defer t)
@@ -271,6 +294,7 @@
 
 ;; {{ which-key-mode
 (use-package which-key
+  :diminish which-key-mode
   :init (which-key-mode t)
   ;; :config
   ;; (setq which-key-allow-imprecise-window-fit t) ; performance

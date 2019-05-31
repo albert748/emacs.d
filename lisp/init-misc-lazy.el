@@ -38,7 +38,11 @@
 ;;----------------------------------------------------------------------------
 ;; Page break lines
 ;;----------------------------------------------------------------------------
-(global-page-break-lines-mode)
+(use-package page-break-lines
+  :diminish page-break-lines-mode
+  :init
+  (global-page-break-lines-mode))
+
 
 (column-number-mode 1)
 

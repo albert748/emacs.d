@@ -28,6 +28,7 @@
   (setq eldoc-idle-delay 0.2))
 
 (use-package elisp-def
+  :diminish elisp-def-mode
   :init
   (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
     (add-hook hook #'elisp-def-mode)))
