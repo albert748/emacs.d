@@ -334,6 +334,7 @@ instead."
         org-edit-src-content-indentation 0
         org-edit-timestamp-down-means-later t
         org-fast-tag-selection-single-key 'expert
+        org-src-preserve-indentation t
 
         ;; org v8
         ;; org-odt-preferred-output-format "doc"

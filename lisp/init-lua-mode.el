@@ -15,8 +15,7 @@
                                              ("Variable" "^ *local +\\([^ ]+\\).*$" 1))))
 
     ;; @see http://lua-users.org/wiki/LuaStyleGuide
-    ;; others use indent 2 spaces by default, to make it more pythonic, use 4 instead.
-    (setq-local lua-indent-level 4))
+    (setq-local lua-indent-level 2))
 
   (add-hook 'lua-mode-hook 'my-lua-mode-setup))
 
