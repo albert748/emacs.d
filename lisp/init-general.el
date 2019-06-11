@@ -175,10 +175,14 @@
     "fr" 'ffip-ivy-resume
     "fc" 'cp-ffip-ivy-last
     "ss" 'swiper-the-thing ; http://oremacs.com/2015/03/25/swiper-0.2.0/ for guide
-    "hst" 'hs-toggle-fold
-    "hsa" 'hs-toggle-fold-all
-    "hsh" 'hs-hide-block
-    "hss" 'hs-show-block
+    ;; "hst" 'hs-toggle-fold
+    ;; "hsa" 'hs-toggle-fold-all
+    ;; "hsh" 'hs-hide-block
+    ;; "hss" 'hs-show-block
+    "ogt" 'origami-toggle-node
+    "oga" 'origami-toggle-all-nodes
+    "ogc" 'origami-close-node
+    "ogs" 'origami-show-node
     "hd" 'describe-function
     "hf" 'find-function
     "hk" 'describe-key
@@ -235,11 +239,14 @@
     "va" 'git-add-current-file
     "vk" 'git-checkout-current-file
     "vg" 'vc-annotate ; 'C-x v g' in original
-    "vs" 'git-gutter:stage-hunk
-    "vr" 'git-gutter:revert-hunk
+    "vn" 'git-gutter+-next-hunk
+    "vp" 'git-gutter+-previous-hunk
+    "v=" 'git-gutter+-show-hunk
+    "vr" 'git-gutter+-revert-hunks
+    "vt" 'git-gutter+-stage-hunks
+    "vT" 'git-gutter+-unstage-whole-buffer
     "vl" 'vc-print-log
     "vv" 'git-messenger:popup-message
-    "v=" 'git-gutter:popup-hunk
     "hh" 'cliphist-paste-item
     "yu" 'cliphist-select-item
     "ih" 'my-goto-git-gutter ; use ivy-mode
@@ -253,7 +260,8 @@
     "ycr" 'my-yas-reload-all
     "wf" 'popup-which-function
     "mg" 'magit-status
-    "dc" 'desktop-clear)
+    "dc" 'desktop-clear
+    "rst" 'restart-emacs)
   ;; }}
 
   ;; {{ Use `SPC` as leader key
