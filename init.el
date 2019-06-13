@@ -177,7 +177,7 @@ dict.")
   (require 'init-ggtags)
 
   (require 'init-smartparens)
-  (require 'init-origami)
+  (require 'init-folding)
   ;; projectile costs 7% startup time
 
   ;; misc has some crucial tools I need immediately

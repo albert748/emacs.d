@@ -43,6 +43,7 @@
         ;; paredit
         smartparens
         origami
+        folding
         projectile
         flycheck
         flymake-css

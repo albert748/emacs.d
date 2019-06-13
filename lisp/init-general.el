@@ -171,9 +171,9 @@
     "rnl" 'rinari-find-log
     "rno" 'rinari-console
     "rnt" 'rinari-find-test
-    "fs" 'ffip-save-ivy-last
-    "fr" 'ffip-ivy-resume
-    "fc" 'cp-ffip-ivy-last
+    ;; "fs" 'ffip-save-ivy-last
+    ;; "fr" 'ffip-ivy-resume
+    ;; "fc" 'cp-ffip-ivy-last
     "ss" 'swiper-the-thing ; http://oremacs.com/2015/03/25/swiper-0.2.0/ for guide
     ;; "hst" 'hs-toggle-fold
     ;; "hsa" 'hs-toggle-fold-all
@@ -183,6 +183,12 @@
     "oga" 'origami-toggle-all-nodes
     "ogc" 'origami-close-node
     "ogs" 'origami-show-node
+    "fo" 'folding-open-buffer
+    "fb" 'folding-whole-buffer
+    "fs" 'folding-toggle-show-hide
+    "fe" 'folding-toggle-enter-exit
+    "fj" 'folding-next-visible-heading
+    "fk" 'folding-previous-visible-heading
     "hd" 'describe-function
     "hf" 'find-function
     "hk" 'describe-key
